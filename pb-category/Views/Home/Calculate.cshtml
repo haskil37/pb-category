@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Расчет";
+}
+@using (Ajax.BeginForm("CalculateSteps", new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.InsertAfter,
+    UpdateTargetId = "CalculateSteps",
+    LoadingElementId = "loadingIndicator",
+}))
+{
+    @Html.AntiForgeryToken()
+
+    <input type="submit" class="btn center" value="Далее" id="Answer" />
+    <div class="row">
+        <div id="CalculateSteps">
+            <input type="text" name="Pmax" />
+        </div>
+    </div>
+}

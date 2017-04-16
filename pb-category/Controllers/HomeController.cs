@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pb_category.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,18 +14,30 @@ namespace pb_category.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Calculate()
         {
-            ViewBag.Message = "Your application description page.";
-
+            //Горючие газы
+            Session.Clear();
             return View();
         }
-
-        public ActionResult Contact()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public PartialViewResult CalculateSteps(CalculateModels model)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            switch (Session["Step"])
+            {
+                default:
+                    if (!string.IsNullOrEmpty(model.Pmax))
+                        Session["Step"] = 1;
+                    break;
+                case 1:
+                    if (!string.IsNullOrEmpty(model.P0))
+                        Session["Step"] = 2;
+                    else
+                        Session["Step"] = 0;
+                    break;
+            }
+            return PartialView();
         }
     }
 }
