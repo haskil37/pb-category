@@ -257,6 +257,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Step2.cshtml" />
+    <Content Include="Views\Home\Step1.cshtml" />
     <Content Include="Views\Home\CalculateSteps.cshtml" />
   </ItemGroup>
   <ItemGroup>
