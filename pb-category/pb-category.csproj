@@ -175,7 +175,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CalculateModels.cs" />
+    <Compile Include="Models\CalculateViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -257,8 +257,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Step2.cshtml" />
-    <Content Include="Views\Home\Step1.cshtml" />
     <Content Include="Views\Home\CalculateSteps.cshtml" />
   </ItemGroup>
   <ItemGroup>

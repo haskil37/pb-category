@@ -10,41 +10,60 @@ namespace pb_category.Controllers
     public class HomeController : Controller
     {
         public static int GlobalStep;
+        public static CalculateViewModels GlobalModel;
         public ActionResult Index()
         {
             return View();
         }
-
         public ActionResult Calculate()
         {
-            //Горючие газы
+            GlobalModel = new CalculateViewModels();
             GlobalStep = 1;
-            return View();
+            ViewBag.Step = GlobalStep;
+            return View(new CalculateViewModels());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public PartialViewResult CalculateSteps(CalculateModels model)
+        public PartialViewResult CalculateSteps(CalculateViewModels model)
         {
             int CurrentStep = 1;
-            string PartialStep = "Step";
             float Pmax, P0;
-            if (float.TryParse(model.Pmax, out Pmax))
-                CurrentStep++;
-            if (float.TryParse(model.P0, out P0))
-                CurrentStep++;
-
-            if (Pmax == 0)
-                Pmax = 900;
-            if (P0 == 0)
-                P0 = 101;
-
+            if (GlobalStep >= 1)
+            {
+                Pmax = GetValue(model.Pmax, ref CurrentStep);
+                if (Pmax == 0)
+                {
+                    Pmax = 900;
+                    CurrentStep++;
+                }
+                GlobalModel.Pmax = Pmax.ToString();
+            }
+            if (GlobalStep >= 2)
+            {
+                P0 = GetValue(model.P0, ref CurrentStep);
+                if (P0 == 0)
+                {
+                    P0 = 101;
+                    CurrentStep++;
+                }
+                GlobalModel.P0 = P0.ToString();
+            }
 
             if (CurrentStep > GlobalStep)
-            {
                 GlobalStep = CurrentStep;
-                PartialStep += CurrentStep;
-            }
-            return PartialView(PartialStep);
+
+            ViewBag.Step = GlobalStep;
+
+            return PartialView(GlobalModel);
         }
+        #region Вспомогательные функции
+        private float GetValue(string value, ref int CurrentStep)
+        {
+            float parse = 0;
+            if (!string.IsNullOrEmpty(value) && float.TryParse(value, out parse))
+                CurrentStep++;
+            return parse;
+        }
+        #endregion
     }
 }

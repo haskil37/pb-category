@@ -5,7 +5,7 @@ using System.Web;
 
 namespace pb_category.Models
 {
-    public class CalculateModels
+    public class CalculateViewModels
     {
         public string Pmax { get; set; }
         public string P0 { get; set; }

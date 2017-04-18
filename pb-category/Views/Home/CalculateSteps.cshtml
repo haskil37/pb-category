@@ -1,2 +1,9 @@
-﻿<input type="text" name="Pmax" />
-<input type="text" name="P0" />
+﻿@model pb_category.Models.CalculateViewModels
+@if ((int)ViewBag.Step >= 1)
+{
+    <input id="Pmax" name="Pmax" type="text" value="@Model.Pmax">
+}
+@if ((int)ViewBag.Step >= 2)
+{
+    <input id="P0" name="P0" type="text" value="@Model.P0">
+}
