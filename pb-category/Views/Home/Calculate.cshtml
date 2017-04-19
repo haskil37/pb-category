@@ -17,11 +17,9 @@
     <input type="submit" class="btn center" value="Далее" id="Answer" />
 
     <div id="Steps">
-        @Html.TextBoxFor(m => m.Pmax)
+        <input id="Pmax" name="Pmax" type="text" value="@Model.Pmax" autofocus>
     </div>
 }
 @section scripts
 {
-    <script>
-    </script>
 }

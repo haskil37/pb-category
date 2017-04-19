@@ -2,8 +2,49 @@
 @if ((int)ViewBag.Step >= 1)
 {
     <input id="Pmax" name="Pmax" type="text" value="@Model.Pmax">
+    <br />
 }
 @if ((int)ViewBag.Step >= 2)
 {
     <input id="P0" name="P0" type="text" value="@Model.P0">
+    <br />
 }
+@if ((int)ViewBag.Step >= 3)
+{
+    <input id="Vcb" name="Vcb" type="text" value="@Model.Vcb">
+    <br />
+}
+@if ((int)ViewBag.Step >= 4)
+{
+    <input id="Kh" name="Kh" type="text" value="@Model.Kh">
+    <br />
+}
+@if ((int)ViewBag.Step >= 5)
+{
+    @Html.DropDownListFor(x => x.Z,
+                     new SelectList(Model.ListZ, "Value", "Name"), "-- Выберите --")
+    <br />
+}
+@if ((int)ViewBag.Step >= 6)
+{
+    <input id="Rogp" name="Rogp" type="text" value="@Model.Rogp">
+    <h5 class="spoiler-title closed">Рассчитать</h5>
+    <div class="spoiler-body">
+        <input id="M" name="M" type="text" value="@Model.M" autofocus>
+        <input id="Tp" name="Tp" type="text" value="@Model.Tp" autofocus>
+        <input id="V0" name="V0" type="text" value="@Model.V0" autofocus>
+        <button type="submit" value="RogpButton" name="submitButton" class="button-Cancel">Посчитать РО</button>
+    </div>
+    <br />
+}
+@if ((int)ViewBag.Step >= 7)
+{
+    <div>Ck dfsdfsadfasdf</div>
+    <br />
+}
+<script type="text/javascript">
+        $('.spoiler-body').hide();
+        $('.spoiler-title').click(function () {
+            $(this).next().slideToggle();
+        });
+</script>

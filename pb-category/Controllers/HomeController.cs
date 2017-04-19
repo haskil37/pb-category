@@ -20,14 +20,21 @@ namespace pb_category.Controllers
             GlobalModel = new CalculateViewModels();
             GlobalStep = 1;
             ViewBag.Step = GlobalStep;
+
+            //Горючие газы
+            GlobalModel.ListZ = new List<ListZ>
+                {
+                    new ListZ{ Value="1", Name="Водород - 1" },
+                    new ListZ{ Value="0,5", Name="Горючие газы (кроме водорода) - 0,5" }
+                };
             return View(new CalculateViewModels());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public PartialViewResult CalculateSteps(CalculateViewModels model)
+        public PartialViewResult CalculateSteps(CalculateViewModels model, string submitButton)
         {
             int CurrentStep = 1;
-            float Pmax, P0;
+            double Pmax, P0, Vcb, Kh, Z, Rogp;
             if (GlobalStep >= 1)
             {
                 Pmax = GetValue(model.Pmax, ref CurrentStep);
@@ -48,19 +55,70 @@ namespace pb_category.Controllers
                 }
                 GlobalModel.P0 = P0.ToString();
             }
+            if (GlobalStep >= 3)
+            {
+                Vcb = GetValue(model.Vcb, ref CurrentStep);
+                if (Vcb != 0)
+                    GlobalModel.Vcb = Vcb.ToString();
+            }
+            if (GlobalStep >= 4)
+            {
+                Kh = GetValue(model.Kh, ref CurrentStep);
+                if (Kh == 0)
+                {
+                    Kh = 3;
+                    CurrentStep++;
+                }
+                GlobalModel.Kh = Kh.ToString();
+            }
+            if (GlobalStep >= 5)
+            {
+                Z = GetValue(model.Z, ref CurrentStep);
+                if (Z != 0)
+                    GlobalModel.Z = Z.ToString();
+            }
+            if(GlobalStep >= 6)
+            {
+                if(submitButton == "RogpButton")
+                {
+                    double M, V0, Tp;
+                    int FullData = 0;
+                    M = GetValue(model.M, ref FullData);
+                    GlobalModel.M = M.ToString();
+                    V0 = GetValue(model.V0, ref FullData);
+                    GlobalModel.V0 = V0.ToString();
+                    Tp = GetValue(model.Tp, ref FullData);
+                    GlobalModel.Tp = Tp.ToString();
+                    if (FullData == 3)
+                    {
+                        Rogp = M / (V0 * (1 + 0.00367 * Tp));
+                        GlobalModel.Rogp = Rogp.ToString();
+                        CurrentStep++;
+                    }
+                }
+                else
+                {
+                    Rogp = GetValue(model.Rogp, ref CurrentStep);
+                    if (Rogp != 0)
+                        GlobalModel.Rogp = Rogp.ToString();
+                }
+            }
+
+
+
+
+
 
             if (CurrentStep > GlobalStep)
                 GlobalStep = CurrentStep;
-
             ViewBag.Step = GlobalStep;
-
             return PartialView(GlobalModel);
         }
         #region Вспомогательные функции
-        private float GetValue(string value, ref int CurrentStep)
+        private double GetValue(string value, ref int CurrentStep)
         {
-            float parse = 0;
-            if (!string.IsNullOrEmpty(value) && float.TryParse(value, out parse))
+            double parse = 0;
+            if (!string.IsNullOrEmpty(value) && double.TryParse(value, out parse))
                 CurrentStep++;
             return parse;
         }
