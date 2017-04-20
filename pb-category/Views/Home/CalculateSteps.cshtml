@@ -66,7 +66,7 @@
             <input id="Rogp" name="Rogp" type="text" value="@Model.Rogp">
         </p>
         <p>плотность газа или пара при расчетной температуре \(t_p, кг\cdotм^{–3}\)</p>
-        <h5 class="spoiler-title closed">Рассчитать</h5>
+        <p class="spoiler-title closed">Рассчитать ▼</p>
         <div class="spoiler-body">
             <p>
                 $$\rho_{гп} = \frac{M}{V_0(1+0,00367\cdot t_p)}$$
@@ -97,7 +97,7 @@
             <input id="Cct" name="Cct" type="text" value="@Model.Cct">
         </p>
         <p>стехиометрическая концентрация горючего газа</p>
-        <h5 class="spoiler-title closed">Рассчитать</h5>
+        <p class="spoiler-title closed">Рассчитать ▼</p>
         <div class="spoiler-body">
             <p>
                 $$С_{ст}=\frac{100}{1+4,84\cdot\beta}$$
@@ -122,10 +122,78 @@
         </div>
     </div>
 }
+@if ((int)ViewBag.Step >= 8)
+{
+    <div class="jumbotron">
+        <div class="text-center"><p>Шаг 8</p></div>
+        <p>
+            m, кг
+            <input id="Mkg" name="Mkg" type="text" value="@Model.Mkg">
+        </p>
+        <p>масса поступившего в помещение при расчетной аварии газа</p>
+        <p class="spoiler-title closed">Рассчитать ▼</p>
+        <div class="spoiler-body">
+            <p>
+                $$m=(V_a+V_t)\cdot \rho_г$$
+                \(\rho_г, кг/м^3\)
+                <input id="Rog" name="Rog" type="text" value="@Model.Rog">
+            </p>
+            <p>плотность газа</p>
+            <hr />
+            <p>Объем газа вышедшего из аппарата \(V_a, м^3\)</p>
+            <p>
+                $$V_a=0,001\cdot P_1V$$
+                \(P_1\), кПа
+                <input id="P1" name="P1" type="text" value="@Model.P1">
+            </p>
+            <p>давление в аппарате</p>
+            <p>
+                \(V, м^3\) 
+                <input id="V" name="V" type="text" value="@Model.V">
+            </p>
+            <p>объем аппарата</p>
+            <hr />
+            <p>Объем газа вышедшего из трубопровода \(V_Т, м^3\)</p>
+            <p>
+                До отключения
+
+                $$V_Т=V_{1T} + V_{2T}$$
+                $$V_{1T}=qT$$
+                \(q, м^3\cdot c^{-1}\)
+                <input id="Q" name="Q" type="text" value="@Model.Q">
+            </p>
+            <p>расход газа, определяемый в соответствии с технологическим регламентом в зависимости от давления в трубопроводе, его диаметра, температуры газовой среды</p>
+            <p>
+                \(T, c\)
+                <input id="T" name="T" type="text" value="@Model.T">
+            </p>
+            <p>Расчетное время отключения, определяемое по А.1.2</p>
+            <p>
+                После отключения
+                $$V_{2T}=0,01\cdot \pi P_2(r_{1}^{2}L_1+r_{2}^{2}L_2+\ldots + r_{n}^{2}L_n)$$
+                \(P_2\), кПа
+                <input id="P2" name="P2" type="text" value="@Model.P2">
+            </p>
+            <p>максимальное давление в трубопроводе по технологическому регламенту</p>
+            <p>
+                \(r\), м
+                <input id="R" name="R" type="text" value="@Model.R">
+            </p>
+            <p>внутренний радиус трубопроводов</p>
+            <p>
+                \(L\), м
+                <input id="L" name="L" type="text" value="@Model.L">
+            </p>
+            <p>длина трубопроводов от аварийного аппарата до задвижек</p>
+            <button type="submit" value="CctButton" name="submitButton" class="button-Cancel">Рассчитать массу</button>
+        </div>
+    </div>
+}
+
 <script type="text/javascript">
     MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'Steps']);
     $(".target").focus();
-    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    $("html, body").scrollTop($(document).height());
     $('.spoiler-body').hide();
     $('.spoiler-title').click(function () {
         $(this).next().slideToggle();

@@ -140,7 +140,40 @@ namespace pb_category.Controllers
                         GlobalModel.Cct = Cct.ToString();
                 }
             }
-
+            if (GlobalStep >= 8)
+            {
+                if (submitButton == "CctButton")
+                {
+                    double Beta, Nc, Nh, Nx, No;
+                    int FullData = 0;
+                    Nc = GetValue(model.Nc, ref FullData);
+                    GlobalModel.Nc = Nc.ToString();
+                    Nh = GetValue(model.Nh, ref FullData);
+                    GlobalModel.Nh = Nh.ToString();
+                    Nx = GetValue(model.Nx, ref FullData);
+                    GlobalModel.Nx = Nx.ToString();
+                    No = GetValue(model.No, ref FullData);
+                    GlobalModel.No = No.ToString();
+                    if (FullData == 4)
+                    {
+                        Beta = Nc + (Nh - Nx) / 4 - No / 2;
+                        GlobalModel.Beta = Beta.ToString();
+                        Cct = 100 / (1 + 4.84 * Beta);
+                        GlobalModel.Cct = Cct.ToString();
+                        CurrentStep++;
+                    }
+                }
+                else
+                {
+                    GlobalModel.Nc = model.Nc;
+                    GlobalModel.Nh = model.Nh;
+                    GlobalModel.Nx = model.Nx;
+                    GlobalModel.No = model.No;
+                    Cct = GetValue(model.Cct, ref CurrentStep);
+                    if (Cct != 0)
+                        GlobalModel.Cct = Cct.ToString();
+                }
+            }
 
 
 

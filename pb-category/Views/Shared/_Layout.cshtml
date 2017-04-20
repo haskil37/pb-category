@@ -9,24 +9,20 @@
     @Scripts.Render("~/bundles/modernizr")
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
+        tex2jax: {
+        preview: ["[Загрузка формулы...]"]
+        },
         showMathMenu: false,
         showMathMenuMSIE: false,
         showMathPlayer: false,
-        showRenderer: false,
-        preRemoveClass: "MathJax_Preview",
+        showRenderer: true,
         showProcessingMessages: false,
         messageStyle:"none",
         extensions: ["tex2jax.js"],
-        jax: ["input/TeX", "output/HTML-CSS"],
-        "HTML-CSS": {
-        styles: {".MathJax:focus, body :focus .MathJax":{display:"inline"},".MathJax":{"font-size":"20px","margin":"0.5em","outline":"none"}}
-        }
+        jax: ["input/TeX", "output/HTML-CSS"]
         });
     </script>
-    <script src="~/Scripts/MathJax/MathJax.js"></script>
-    <script type="text/javascript" async
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js">
-    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top text-center">

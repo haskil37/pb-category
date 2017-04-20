@@ -1,5 +1,4 @@
-﻿@model pb_category.Models.CalculateViewModels
-@{
+﻿@{
     ViewBag.Title = "Расчет";
 }
 @using (Ajax.BeginForm("CalculateSteps", new AjaxOptions
@@ -25,7 +24,4 @@
 }
 @section scripts
 {
-<script type="text/javascript">
-    MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'Steps']);
-</script>
 }

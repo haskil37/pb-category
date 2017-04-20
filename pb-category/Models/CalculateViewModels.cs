@@ -29,5 +29,17 @@ namespace pb_category.Models
         public string Nh { get; set; }
         public string Nx { get; set; }
         public string No { get; set; }
+        public string Mkg { get; set; }
+        public string Rog { get; set; }
+        public string Va { get; set; }
+        public string P1 { get; set; }
+        public string V { get; set; }
+        public string V1t { get; set; }
+        public string Q { get; set; }
+        public string T { get; set; }
+        public string V2t { get; set; }
+        public string P2 { get; set; }
+        public string R { get; set; }
+        public string L { get; set; }
     }
 }
