@@ -1,50 +1,133 @@
 ﻿@model pb_category.Models.CalculateViewModels
 @if ((int)ViewBag.Step >= 1)
 {
-    <input id="Pmax" name="Pmax" type="text" value="@Model.Pmax">
-    <br />
+    <div class="jumbotron">
+        <div class="text-center"><p>Шаг 1</p></div>
+        <p>
+            \(P_{max}\), кПа
+            <input id="Pmax" name="Pmax" type="text" value="@Model.Pmax" autofocus>
+        </p>
+        <p>Максимальное давление, развиваемое при сгорании стехиометрической газовоздушной или паровоздушной смеси в замкнутом объеме, определяемое экспериментально или по справочным данным в соответствии с требованиями 4.3. При отсутствии данных допускается принимать \(P_{max}\) равным 900 кПа</p>
+    </div>
 }
 @if ((int)ViewBag.Step >= 2)
 {
-    <input id="P0" name="P0" type="text" value="@Model.P0">
-    <br />
+    <div class="jumbotron">
+        <div class="text-center"><p>Шаг 2</p></div>
+       <p>
+            \(P_{0}\), кПа
+            <input id="P0" name="P0" type="text" value="@Model.P0" class="target">
+        </p>
+        <p>Начальное давление, кПа (допускается принимать равным 101 кПа)</p>
+    </div>
 }
 @if ((int)ViewBag.Step >= 3)
 {
-    <input id="Vcb" name="Vcb" type="text" value="@Model.Vcb">
-    <br />
+    <div class="jumbotron">
+        <div class="text-center"><p>Шаг 3</p></div>
+        <p>
+            \(М_{св}, м^3\)
+            <input id="Vcb" name="Vcb" type="text" value="@Model.Vcb" class="target">
+        </p>
+        <p>Свободный объем помещения. Свободный объем помещения определяется как разность между объемом помещения и объемом, занимаемым технологическим оборудованием.</p>
+        <p>По умолчанию 80% от объема помещения.</p>
+</div>
 }
 @if ((int)ViewBag.Step >= 4)
 {
-    <input id="Kh" name="Kh" type="text" value="@Model.Kh">
-    <br />
+    <div class="jumbotron">
+        <div class="text-center"><p>Шаг 4</p></div>
+        <p>
+            \(K_{H}\)
+            <input id="Kh" name="Kh" type="text" value="@Model.Kh">
+        </p>
+        <p>коэффициент, учитывающий негерметичность помещения и неадиабатичность процесса горения. Допускается принимать \(K_{H}\) равным трем</p>
+    </div>
 }
 @if ((int)ViewBag.Step >= 5)
 {
-    @Html.DropDownListFor(x => x.Z,
+    <div class="jumbotron">
+        <div class="text-center"><p>Шаг 5</p></div>
+        <p>
+            Z
+            @Html.DropDownListFor(x => x.Z,
                      new SelectList(Model.ListZ, "Value", "Name"), "-- Выберите --")
-    <br />
+        </p>
+        <p>Коэффициент участия горючих газов и паров в горении, который может быть рассчитан на основе характера распределения газов и паров в объеме помещения согласно приложению Д СП12.</p>
+        <p>Допускается принимать значение Z из предложенных значений.</p>
+    </div>
 }
 @if ((int)ViewBag.Step >= 6)
 {
-    <input id="Rogp" name="Rogp" type="text" value="@Model.Rogp">
-    <h5 class="spoiler-title closed">Рассчитать</h5>
-    <div class="spoiler-body">
-        <input id="M" name="M" type="text" value="@Model.M" autofocus>
-        <input id="Tp" name="Tp" type="text" value="@Model.Tp" autofocus>
-        <input id="V0" name="V0" type="text" value="@Model.V0" autofocus>
-        <button type="submit" value="RogpButton" name="submitButton" class="button-Cancel">Посчитать РО</button>
+    <div class="jumbotron">
+        <div class="text-center"><p>Шаг 6</p></div>
+        <p>
+            \(\rho_{гп}, кг/м^3\)
+            <input id="Rogp" name="Rogp" type="text" value="@Model.Rogp">
+        </p>
+        <p>плотность газа или пара при расчетной температуре \(t_p, кг\cdotм^{–3}\)</p>
+        <h5 class="spoiler-title closed">Рассчитать</h5>
+        <div class="spoiler-body">
+            <p>
+                $$\rho_{гп} = \frac{M}{V_0(1+0,00367\cdot t_p)}$$
+                M, \(м^3\cdot кмоль^{-1}\)
+                <input id="M" name="M" type="text" value="@Model.M">
+            </p>
+            <p>молярная масса</p>
+            <p>
+                \(t_р, ^{0}C\)
+                <input id="Tp" name="Tp" type="text" value="@Model.Tp">
+            </p>
+            <p>расчетная температура</p>
+            <p>
+                \(V_0, м^3\cdot кмоль^{-1}\)
+                <input id="V0" name="V0" type="text" value="@Model.V0">
+            </p>
+            <p>мольный  объем</p>
+            <button type="submit" value="RogpButton" name="submitButton" class="button-Cancel">Посчитать РО</button>
+        </div>
     </div>
-    <br />
 }
 @if ((int)ViewBag.Step >= 7)
 {
-    <div>Ck dfsdfsadfasdf</div>
-    <br />
+    <div class="jumbotron">
+        <div class="text-center"><p>Шаг 7</p></div>
+        <p>
+            \(С_{ст}\), %
+            <input id="Cct" name="Cct" type="text" value="@Model.Cct">
+        </p>
+        <p>стехиометрическая концентрация горючего газа</p>
+        <h5 class="spoiler-title closed">Рассчитать</h5>
+        <div class="spoiler-body">
+            <p>
+                $$С_{ст}=\frac{100}{1+4,84\cdot\beta}$$
+                $$\beta=n_c + \frac{n_н + n_х}{4} - \frac{n_о}{2}$$
+                \(n_c\)
+                <input id="Nc" name="Nc" type="text" value="@Model.Nc">
+            </p>
+            <p>
+                \(n_н\)
+                <input id="Nh" name="Nh" type="text" value="@Model.Nh">
+            </p>
+            <p>
+                \(n_х\)
+                <input id="Nx" name="Nx" type="text" value="@Model.Nx">
+            </p>
+            <p>
+                \(n_о\)
+                <input id="No" name="No" type="text" value="@Model.No">
+            </p>
+            <p>число атомов С, Н, О и галоидов в молекуле горючего</p>
+            <button type="submit" value="CctButton" name="submitButton" class="button-Cancel">Рассчитать стехиометрическая концентрация горючего газа</button>
+        </div>
+    </div>
 }
 <script type="text/javascript">
-        $('.spoiler-body').hide();
-        $('.spoiler-title').click(function () {
-            $(this).next().slideToggle();
-        });
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'Steps']);
+    $(".target").focus();
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    $('.spoiler-body').hide();
+    $('.spoiler-title').click(function () {
+        $(this).next().slideToggle();
+    });
 </script>

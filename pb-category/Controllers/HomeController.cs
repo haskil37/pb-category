@@ -34,7 +34,7 @@ namespace pb_category.Controllers
         public PartialViewResult CalculateSteps(CalculateViewModels model, string submitButton)
         {
             int CurrentStep = 1;
-            double Pmax, P0, Vcb, Kh, Z, Rogp;
+            double Pmax, P0, Vcb, Kh, Z, Rogp, Cct;
             if (GlobalStep >= 1)
             {
                 Pmax = GetValue(model.Pmax, ref CurrentStep);
@@ -98,9 +98,46 @@ namespace pb_category.Controllers
                 }
                 else
                 {
+                    GlobalModel.M = model.M;
+                    GlobalModel.V0 = model.V0;
+                    GlobalModel.Tp = model.Tp;
                     Rogp = GetValue(model.Rogp, ref CurrentStep);
                     if (Rogp != 0)
                         GlobalModel.Rogp = Rogp.ToString();
+                }
+            }
+            if (GlobalStep >= 7)
+            {
+                if (submitButton == "CctButton")
+                {
+                    double Beta, Nc, Nh, Nx, No;
+                    int FullData = 0;
+                    Nc = GetValue(model.Nc, ref FullData);
+                    GlobalModel.Nc = Nc.ToString();
+                    Nh = GetValue(model.Nh, ref FullData);
+                    GlobalModel.Nh = Nh.ToString();
+                    Nx = GetValue(model.Nx, ref FullData);
+                    GlobalModel.Nx = Nx.ToString();
+                    No = GetValue(model.No, ref FullData);
+                    GlobalModel.No = No.ToString();
+                    if (FullData == 4)
+                    {
+                        Beta = Nc + (Nh - Nx) / 4 - No / 2;
+                        GlobalModel.Beta = Beta.ToString();
+                        Cct = 100 / (1 + 4.84 * Beta);
+                        GlobalModel.Cct = Cct.ToString();
+                        CurrentStep++;
+                    }
+                }
+                else
+                {
+                    GlobalModel.Nc = model.Nc;
+                    GlobalModel.Nh = model.Nh;
+                    GlobalModel.Nx = model.Nx;
+                    GlobalModel.No = model.No;
+                    Cct = GetValue(model.Cct, ref CurrentStep);
+                    if (Cct != 0)
+                        GlobalModel.Cct = Cct.ToString();
                 }
             }
 
