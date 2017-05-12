@@ -1,38 +1,98 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Расчет категорий";
 }
+<div class="row">
+    <div id="myCarousel" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="menu-container">
+                            <a href="/Home/Calculate">
+                                <h2>Складские помещения</h2>
+                                <img src="~/Content/1.png" alt="Складские помещения" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="menu-container">
 
-<div class="row text-center ">
-    <div class="col-md-3">
-        <div class="category">
-            <a href="/Home/Calculate">
-                <h2>Складские помещения</h2>
-                <img src="~/Content/1.png" />
-            </a>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="category">
-            <a href="#">
-                <h2>Производственные помещения</h2>
-                <img src="~/Content/2.png" />
-            </a>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="category">
-            <a href="#">
-                <h2>Помещения гаражей, автостоянок</h2>
-                <img src="~/Content/3.png" />
-            </a>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="category">
-            <a href="#">
-                <h2>Помещения объектов торговли</h2>
-                <img src="~/Content/4.png" />
-            </a>
+                            <a href="#">
+                                <h2>Производственные помещения</h2>
+                                <img src="~/Content/2.png" alt="Image" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="menu-container">
+
+                            <a href="#">
+                                <h2>Помещения гаражей, автостоянок</h2>
+                                <img src="~/Content/3.png" alt="Image" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="menu-container">
+
+                            <a href="#">
+                                <h2>Помещения объектов торговли</h2>
+                                <img src="~/Content/4.png" alt="Image" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item menu">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="menu-container">
+                            <a href="/Home/Calculate">
+                                <h2>Складские помещения</h2>
+                                <img src="~/Content/1.png" alt="Складские помещения" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="menu-container">
+
+                            <a href="#">
+                                <h2>Производственные помещения</h2>
+                                <img src="~/Content/2.png" alt="Image" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="menu-container">
+
+                            <a href="#">
+                                <h2>Помещения гаражей, автостоянок</h2>
+                                <img src="~/Content/3.png" alt="Image" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="menu-container">
+
+                            <a href="#">
+                                <h2>Помещения объектов торговли</h2>
+                                <img src="~/Content/4.png" alt="Image" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<div class="row slide-control">
+    <div class="col-xs-offset-3 col-xs-1" align="center"><a href="#myCarousel" data-slide="prev">‹</a></div>
+    <div class="col-xs-4" align="center"><span class="slide-text">Виды расчетов</span></div>
+    <div class="col-xs-1" align="center"><a href="#myCarousel" data-slide="next">›</a></div>
+    
+</div>
+<script>
+        $('#myCarousel').carousel({
+            interval: false
+    });
+</script>

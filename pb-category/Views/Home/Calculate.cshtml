@@ -6,21 +6,15 @@
     HttpMethod = "POST",
     InsertionMode = InsertionMode.Replace,
     UpdateTargetId = "Steps",
-    LoadingElementId = "loadingIndicator",
 }))
 {
     @Html.AntiForgeryToken()
-
-    <div id="Steps">
-        @{ Html.RenderPartial("CalculateSteps"); }
-    </div>
-    <div id="loadingIndicator" style="display:none;">
-        <div class="cssload-container">
-            <div class="cssload-speeding-wheel"></div>
+    <div class="row">
+        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
+        <div id="Steps">
+            @{ Html.RenderPartial("CalculateSteps"); }
         </div>
-        <h3 class="text-center">Загрузка</h3>
     </div>
-    <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
 }
 @section scripts
 {
