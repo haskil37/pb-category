@@ -29,6 +29,7 @@ namespace pb_category.Controllers
                 };
             return View(new CalculateViewModels());
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public PartialViewResult CalculateSteps(CalculateViewModels model, string submitButton)
@@ -77,9 +78,9 @@ namespace pb_category.Controllers
                 if (Z != 0)
                     GlobalModel.Z = Z.ToString();
             }
-            if(GlobalStep >= 6)
+            if (GlobalStep >= 6)
             {
-                if(submitButton == "RogpButton")
+                if (submitButton == "RogpButton")
                 {
                     double M, V0, Tp;
                     int FullData = 0;

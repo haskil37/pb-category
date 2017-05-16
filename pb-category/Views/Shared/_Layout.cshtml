@@ -7,6 +7,7 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
@@ -46,7 +47,6 @@
             </div>
         </footer>
     </div>
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")    
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

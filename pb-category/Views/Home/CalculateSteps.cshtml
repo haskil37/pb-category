@@ -1,263 +1,236 @@
 ﻿@model pb_category.Models.CalculateViewModels
-<div id="accordian">
-    <ul>
-        <li class="step @((int)ViewBag.Step == 1 ? "active" : "")">
-            <h3>Шаг 1</h3>
-            <ul class="step-content">
-                @if ((int)ViewBag.Step >= 1)
-                {
-                    <li>
+<div class="accordion">
+    <div class="accordion-section">
+        <a class="accordion-section-title" href="#accordion-1">Шаг 1</a>
+        @if ((int)ViewBag.Step >= 1)
+        {
+            <div id="accordion-1" class="accordion-section-content">
+                <p>
+                    \(P_{max}\), кПа
+                    <input id="Pmax" name="Pmax" type="text" value="@Model.Pmax" autofocus>
+                </p>
+                <p>Максимальное давление, развиваемое при сгорании стехиометрической газовоздушной или паровоздушной смеси в замкнутом объеме, определяемое экспериментально или по справочным данным в соответствии с требованиями 4.3. При отсутствии данных допускается принимать \(P_{max}\) равным 900 кПа</p>
+            </div>
+        }
+    </div>
+    <div id="Steps">
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#accordion-2">Шаг 2</a>
+            @if ((int)ViewBag.Step >= 2)
+            {
+                <div id="accordion-2" class="accordion-section-content">
+                    <p>
+                        \(P_{0}\), кПа
+                        <input id="P0" name="P0" type="text" value="@Model.P0" class="target">
+                    </p>
+                    <p>Начальное давление, кПа (допускается принимать равным 101 кПа)</p>
+                </div>
+            }
+        </div>
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#accordion-3">Шаг 3</a>
+            @if ((int)ViewBag.Step >= 3)
+            {
+                <div id="accordion-3" class="accordion-section-content">
+                    <p>
+                        \(М_{св}, м^3\)
+                        <input id="Vcb" name="Vcb" type="text" value="@Model.Vcb" class="target">
+                    </p>
+                    <p>Свободный объем помещения. Свободный объем помещения определяется как разность между объемом помещения и объемом, занимаемым технологическим оборудованием.</p>
+                    <p>По умолчанию 80% от объема помещения.</p>
+                </div>
+            }
+        </div>
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#accordion-4">Шаг 4</a>
+            @if ((int)ViewBag.Step >= 4)
+            {
+                <div id="accordion-4" class="accordion-section-content">
+                    <p>
+                        \(K_{H}\)
+                        <input id="Kh" name="Kh" type="text" value="@Model.Kh">
+                    </p>
+                    <p>коэффициент, учитывающий негерметичность помещения и неадиабатичность процесса горения. Допускается принимать \(K_{H}\) равным трем</p>
+                </div>
+            }
+        </div>
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#accordion-5">Шаг 5</a>
+            @if ((int)ViewBag.Step >= 5)
+            {
+                <div id="accordion-5" class="accordion-section-content">
+                    <p>
+                        Z
+                        @Html.DropDownListFor(x => x.Z,
+                         new SelectList(Model.ListZ, "Value", "Name"), "-- Выберите --")
+                    </p>
+                    <p>Коэффициент участия горючих газов и паров в горении, который может быть рассчитан на основе характера распределения газов и паров в объеме помещения согласно приложению Д СП12.</p>
+                    <p>Допускается принимать значение Z из предложенных значений.</p>
+                </div>
+            }
+        </div>
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#accordion-6">Шаг 6</a>
+            @if ((int)ViewBag.Step >= 6)
+            {
+                <div id="accordion-6" class="accordion-section-content">
+                    <p>
+                        \(\rho_{гп}, кг/м^3\)
+                        <input id="Rogp" name="Rogp" type="text" value="@Model.Rogp">
+                    </p>
+                    <p>плотность газа или пара при расчетной температуре \(t_p, кг\cdotм^{–3}\)</p>
+                    <p class="spoiler-title closed">Рассчитать ▼</p>
+                    <div class="spoiler-body">
+                        <p>
+                            $$\rho_{гп} = \frac{M}{V_0(1+0,00367\cdot t_p)}$$
+                            M, \(м^3\cdot кмоль^{-1}\)
+                            <input id="M" name="M" type="text" value="@Model.M">
+                        </p>
+                        <p>молярная масса</p>
+                        <p>
+                            \(t_р, ^{0}C\)
+                            <input id="Tp" name="Tp" type="text" value="@Model.Tp">
+                        </p>
+                        <p>расчетная температура</p>
+                        <p>
+                            \(V_0, м^3\cdot кмоль^{-1}\)
+                            <input id="V0" name="V0" type="text" value="@Model.V0">
+                        </p>
+                        <p>мольный объем</p>
+                        <button type="submit" value="RogpButton" name="submitButton" class="button-Cancel">Посчитать РО</button>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#accordion-7">Шаг 7</a>
+            @if ((int)ViewBag.Step >= 7)
+            {
+                <div id="accordion-7" class="accordion-section-content">
+                    <p>
+                        \(С_{ст}\), %
+                        <input id="Cct" name="Cct" type="text" value="@Model.Cct">
+                    </p>
+                    <p>стехиометрическая концентрация горючего газа</p>
+                    <p class="spoiler-title closed">Рассчитать ▼</p>
+                    <div class="spoiler-body">
+                        <p>
+                            $$С_{ст}=\frac{100}{1+4,84\cdot\beta}$$
+                            $$\beta=n_c + \frac{n_н + n_х}{4} - \frac{n_о}{2}$$
+                            \(n_c\)
+                            <input id="Nc" name="Nc" type="text" value="@Model.Nc">
+                        </p>
+                        <p>
+                            \(n_н\)
+                            <input id="Nh" name="Nh" type="text" value="@Model.Nh">
+                        </p>
+                        <p>
+                            \(n_х\)
+                            <input id="Nx" name="Nx" type="text" value="@Model.Nx">
+                        </p>
+                        <p>
+                            \(n_о\)
+                            <input id="No" name="No" type="text" value="@Model.No">
+                        </p>
+                        <p>число атомов С, Н, О и галоидов в молекуле горючего</p>
+                        <button type="submit" value="CctButton" name="submitButton" class="button-Cancel">Рассчитать стехиометрическая концентрация горючего газа</button>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#accordion-8">Шаг 8</a>
+            @if ((int)ViewBag.Step >= 8)
+            {
+                <div id="accordion-8" class="accordion-section-content">
+                    <p>
+                        m, кг
+                        <input id="Mkg" name="Mkg" type="text" value="@Model.Mkg">
+                    </p>
+                    <p>масса поступившего в помещение при расчетной аварии газа</p>
+                    <p class="spoiler-title closed">Рассчитать ▼</p>
+                    <div class="spoiler-body">
+                        <p>
+                            $$m=(V_a+V_t)\cdot \rho_г$$
+                            \(\rho_г, кг/м^3\)
+                            <input id="Rog" name="Rog" type="text" value="@Model.Rog">
+                        </p>
+                        <p>плотность газа</p>
                         <hr />
-                        <div>
-                            <p>
-                                \(P_{max}\), кПа
-                                <input id="Pmax" name="Pmax" type="text" value="@Model.Pmax" autofocus>
-                            </p>
-                            <p>Максимальное давление, развиваемое при сгорании стехиометрической газовоздушной или паровоздушной смеси в замкнутом объеме, определяемое экспериментально или по справочным данным в соответствии с требованиями 4.3. При отсутствии данных допускается принимать \(P_{max}\) равным 900 кПа</p>
-                        </div>
-                    </li>
-                }
-            </ul>
-        </li>
-        <li class="step @((int)ViewBag.Step == 2 ? "active" : "")">
-            <h3>Шаг 2</h3>
-            <ul class="step-content">
-                @if ((int)ViewBag.Step >= 2)
-                {
-                    <li>
+                        <p>Объем газа вышедшего из аппарата \(V_a, м^3\)</p>
+                        <p>
+                            $$V_a=0,001\cdot P_1V$$
+                            \(P_1\), кПа
+                            <input id="P1" name="P1" type="text" value="@Model.P1">
+                        </p>
+                        <p>давление в аппарате</p>
+                        <p>
+                            \(V, м^3\)
+                            <input id="V" name="V" type="text" value="@Model.V">
+                        </p>
+                        <p>объем аппарата</p>
                         <hr />
-                        <div>
-                            <p>
-                                \(P_{0}\), кПа
-                                <input id="P0" name="P0" type="text" value="@Model.P0" class="target">
-                            </p>
-                            <p>Начальное давление, кПа (допускается принимать равным 101 кПа)</p>
-                        </div>
-                    </li>
-                }
-            </ul>
-        </li>
-        <li class="step @((int)ViewBag.Step == 3 ? "active" : "")">
-            <h3>Шаг 3</h3>
-            <ul class="step-content">
-                @if ((int)ViewBag.Step >= 3)
-                {
-                    <li>
-                        <hr />
-                        <div>
-                            <p>
-                                \(М_{св}, м^3\)
-                                <input id="Vcb" name="Vcb" type="text" value="@Model.Vcb" class="target">
-                            </p>
-                            <p>Свободный объем помещения. Свободный объем помещения определяется как разность между объемом помещения и объемом, занимаемым технологическим оборудованием.</p>
-                            <p>По умолчанию 80% от объема помещения.</p>
-                                                </div>
-                    </li>
-                }
-            </ul>
-        </li>
-        <li class="step @((int)ViewBag.Step == 4 ? "active" : "")">
-            <h3>Шаг 4</h3>
-            <ul class="step-content">
-                @if ((int)ViewBag.Step >= 4)
-                {
-                    <li>
-                        <hr />
-                        <div>
-                            <p>
-                                \(K_{H}\)
-                                <input id="Kh" name="Kh" type="text" value="@Model.Kh">
-                            </p>
-                            <p>коэффициент, учитывающий негерметичность помещения и неадиабатичность процесса горения. Допускается принимать \(K_{H}\) равным трем</p>
-                        </div>
-                    </li>
-                }
-            </ul>
-        </li>
-        <li class="step @((int)ViewBag.Step == 5 ? "active" : "")">
-            <h3>Шаг 5</h3>
-            <ul class="step-content">
-                @if ((int)ViewBag.Step >= 5)
-                {
-                    <li>
-                        <hr />
-                        <div>
-                            <p>
-                                Z
-                                @Html.DropDownListFor(x => x.Z,
-                     new SelectList(Model.ListZ, "Value", "Name"), "-- Выберите --")
-                            </p>
-                            <p>Коэффициент участия горючих газов и паров в горении, который может быть рассчитан на основе характера распределения газов и паров в объеме помещения согласно приложению Д СП12.</p>
-                            <p>Допускается принимать значение Z из предложенных значений.</p>
-                        </div>
-                    </li>
-                }
-            </ul>
-        </li>
-        <li class="step @((int)ViewBag.Step == 6 ? "active" : "")">
-            <h3>Шаг 6</h3>
-            <ul class="step-content">
-                @if ((int)ViewBag.Step >= 6)
-                {
-                    <li>
-                        <hr />
-                        <div>
-                            <p>
-                                \(\rho_{гп}, кг/м^3\)
-                                <input id="Rogp" name="Rogp" type="text" value="@Model.Rogp">
-                            </p>
-                            <p>плотность газа или пара при расчетной температуре \(t_p, кг\cdotм^{–3}\)</p>
-                            <p class="spoiler-title closed">Рассчитать ▼</p>
-                            <div class="spoiler-body">
-                                <p>
-                                    $$\rho_{гп} = \frac{M}{V_0(1+0,00367\cdot t_p)}$$
-                                    M, \(м^3\cdot кмоль^{-1}\)
-                                    <input id="M" name="M" type="text" value="@Model.M">
-                                </p>
-                                <p>молярная масса</p>
-                                <p>
-                                    \(t_р, ^{0}C\)
-                                    <input id="Tp" name="Tp" type="text" value="@Model.Tp">
-                                </p>
-                                <p>расчетная температура</p>
-                                <p>
-                                    \(V_0, м^3\cdot кмоль^{-1}\)
-                                    <input id="V0" name="V0" type="text" value="@Model.V0">
-                                </p>
-                                <p>мольный объем</p>
-                                <button type="submit" value="RogpButton" name="submitButton" class="button-Cancel">Посчитать РО</button>
-                            </div>
-                        </div>
-                    </li>
-                }
-            </ul>
-        </li>
-        <li class="step @((int)ViewBag.Step == 7 ? "active" : "")">
-            <h3>Шаг 7</h3>
-            <ul class="step-content">
-                @if ((int)ViewBag.Step >= 7)
-                {
-                    <li>
-                        <hr />
-                        <div>
-                            <p>
-                                \(С_{ст}\), %
-                                <input id="Cct" name="Cct" type="text" value="@Model.Cct">
-                            </p>
-                            <p>стехиометрическая концентрация горючего газа</p>
-                            <p class="spoiler-title closed">Рассчитать ▼</p>
-                            <div class="spoiler-body">
-                                <p>
-                                    $$С_{ст}=\frac{100}{1+4,84\cdot\beta}$$
-                                    $$\beta=n_c + \frac{n_н + n_х}{4} - \frac{n_о}{2}$$
-                                    \(n_c\)
-                                    <input id="Nc" name="Nc" type="text" value="@Model.Nc">
-                                </p>
-                                <p>
-                                    \(n_н\)
-                                    <input id="Nh" name="Nh" type="text" value="@Model.Nh">
-                                </p>
-                                <p>
-                                    \(n_х\)
-                                    <input id="Nx" name="Nx" type="text" value="@Model.Nx">
-                                </p>
-                                <p>
-                                    \(n_о\)
-                                    <input id="No" name="No" type="text" value="@Model.No">
-                                </p>
-                                <p>число атомов С, Н, О и галоидов в молекуле горючего</p>
-                                <button type="submit" value="CctButton" name="submitButton" class="button-Cancel">Рассчитать стехиометрическая концентрация горючего газа</button>
-                            </div>
-                                                </div>
-                    </li>
-                }
-            </ul>
-        </li>
-        <li class="step @((int)ViewBag.Step == 8 ? "active" : "")">
-            <h3>Шаг 8</h3>
-            <ul class="step-content">
-                @if ((int)ViewBag.Step >= 8)
-                {
-                    <li>
-                        <hr />
-                        <div>
-                            <p>
-                                m, кг
-                                <input id="Mkg" name="Mkg" type="text" value="@Model.Mkg">
-                            </p>
-                            <p>масса поступившего в помещение при расчетной аварии газа</p>
-                            <p class="spoiler-title closed">Рассчитать ▼</p>
-                            <div class="spoiler-body">
-                                <p>
-                                    $$m=(V_a+V_t)\cdot \rho_г$$
-                                    \(\rho_г, кг/м^3\)
-                                    <input id="Rog" name="Rog" type="text" value="@Model.Rog">
-                                </p>
-                                <p>плотность газа</p>
-                                <hr />
-                                <p>Объем газа вышедшего из аппарата \(V_a, м^3\)</p>
-                                <p>
-                                    $$V_a=0,001\cdot P_1V$$
-                                    \(P_1\), кПа
-                                    <input id="P1" name="P1" type="text" value="@Model.P1">
-                                </p>
-                                <p>давление в аппарате</p>
-                                <p>
-                                    \(V, м^3\)
-                                    <input id="V" name="V" type="text" value="@Model.V">
-                                </p>
-                                <p>объем аппарата</p>
-                                <hr />
-                                <p>Объем газа вышедшего из трубопровода \(V_Т, м^3\)</p>
-                                <p>
-                                    До отключения
+                        <p>Объем газа вышедшего из трубопровода \(V_Т, м^3\)</p>
+                        <p>
+                            До отключения
 
-                                    $$V_Т=V_{1T} + V_{2T}$$
-                                    $$V_{1T}=qT$$
-                                    \(q, м^3\cdot c^{-1}\)
-                                    <input id="Q" name="Q" type="text" value="@Model.Q">
-                                </p>
-                                <p>расход газа, определяемый в соответствии с технологическим регламентом в зависимости от давления в трубопроводе, его диаметра, температуры газовой среды</p>
-                                <p>
-                                    \(T, c\)
-                                    <input id="T" name="T" type="text" value="@Model.T">
-                                </p>
-                                <p>Расчетное время отключения, определяемое по А.1.2</p>
-                                <p>
-                                    После отключения
-                                    $$V_{2T}=0,01\cdot \pi P_2(r_{1}^{2}L_1+r_{2}^{2}L_2+\ldots + r_{n}^{2}L_n)$$
-                                    \(P_2\), кПа
-                                    <input id="P2" name="P2" type="text" value="@Model.P2">
-                                </p>
-                                <p>максимальное давление в трубопроводе по технологическому регламенту</p>
-                                <p>
-                                    \(r\), м
-                                    <input id="R" name="R" type="text" value="@Model.R">
-                                </p>
-                                <p>внутренний радиус трубопроводов</p>
-                                <p>
-                                    \(L\), м
-                                    <input id="L" name="L" type="text" value="@Model.L">
-                                </p>
-                                <p>длина трубопроводов от аварийного аппарата до задвижек</p>
-                                <button type="submit" value="CctButton" name="submitButton" class="button-Cancel">Рассчитать массу</button>
-                            </div>
-                                                </div>
-                    </li>
-                }
-            </ul>
-        </li>
-    </ul>
+                            $$V_Т=V_{1T} + V_{2T}$$
+                            $$V_{1T}=qT$$
+                            \(q, м^3\cdot c^{-1}\)
+                            <input id="Q" name="Q" type="text" value="@Model.Q">
+                        </p>
+                        <p>расход газа, определяемый в соответствии с технологическим регламентом в зависимости от давления в трубопроводе, его диаметра, температуры газовой среды</p>
+                        <p>
+                            \(T, c\)
+                            <input id="T" name="T" type="text" value="@Model.T">
+                        </p>
+                        <p>Расчетное время отключения, определяемое по А.1.2</p>
+                        <p>
+                            После отключения
+                            $$V_{2T}=0,01\cdot \pi P_2(r_{1}^{2}L_1+r_{2}^{2}L_2+\ldots + r_{n}^{2}L_n)$$
+                            \(P_2\), кПа
+                            <input id="P2" name="P2" type="text" value="@Model.P2">
+                        </p>
+                        <p>максимальное давление в трубопроводе по технологическому регламенту</p>
+                        <p>
+                            \(r\), м
+                            <input id="R" name="R" type="text" value="@Model.R">
+                        </p>
+                        <p>внутренний радиус трубопроводов</p>
+                        <p>
+                            \(L\), м
+                            <input id="L" name="L" type="text" value="@Model.L">
+                        </p>
+                        <p>длина трубопроводов от аварийного аппарата до задвижек</p>
+                        <button type="submit" value="CctButton" name="submitButton" class="button-Cancel">Рассчитать массу</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
 <script>
-    $("#accordian h3").click(function () {
-        $("#accordian ul ul").slideUp();
-        if (!$(this).next().is(":visible")) {
-            $(this).next().slideDown();
+    function close_accordion_section() {
+        jQuery('.accordion .accordion-section-title').removeClass('active');
+        jQuery('.accordion .accordion-section-content').slideUp(300).removeClass('open');
+    }
+    jQuery('.accordion-section-title').click(function (e) {
+        var currentAttrValue = jQuery(this).attr('href');
+        if (jQuery(e.target).is('.active')) {
+            close_accordion_section();
+        } else {
+            close_accordion_section();
+            jQuery(this).addClass('active');
+            jQuery('.accordion ' + currentAttrValue).slideDown(300).addClass('open');
         }
-    })
-    $('.spoiler-body').hide();
-    $('.spoiler-title').click(function () {
+        e.preventDefault();
+    });
+    close_accordion_section();
+    var step = "accordion-" + @ViewBag.Step;
+    jQuery('[href*="' + step + '"]').addClass('active');
+    jQuery('#' + step).slideDown(300).addClass('open');
+    jQuery('.spoiler-body').hide();
+    jQuery('.spoiler-title').click(function () {
         $(this).next().slideToggle();
     });
 </script>
