@@ -1,31 +1,39 @@
 ﻿body {
     padding-bottom: 20px;
-    color:#7f7f7f
+    color: #7f7f7f;
+    font-size: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-
 }
- .navbar-fixed-bottom {
+
+.navbar-fixed-bottom {
     padding-left: 50px;
     padding-right: 50px;
 }
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
+
 .dl-horizontal dt {
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.padding-footer {
+    height: 100px;
 }
+
+.btn {
+    font-size: 25px;
+    background-color: #64b7ce;
+    color: black;
+    padding: 15px;
+    margin: 15px;
+}
+
+    .btn:hover {
+        background-color: #72bfe6;
+        color: black;
+    }
 
 .navbar .navbar-nav {
     display: inline-block;
@@ -35,141 +43,167 @@ textarea {
 .navbar .navbar-collapse {
     text-align: center;
 }
+
 .navbar-inverse .navbar-nav > li > a {
     color: white;
 }
+
 .navbar {
     margin-bottom: 0;
 }
-.fond{
-    width:50%;
+
+.fond {
+    width: 50%;
 }
+
 hr {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
-.brand{
-    background-image: url(http://ramki-vsem.ru/fon/zheltyj-fon25.jpg); 
+
+.brand {
+    background-image: url(http://ramki-vsem.ru/fon/zheltyj-fon25.jpg);
     background-color: #faaf1b;
     height: 400px;
 }
-#myCarousel{
-    padding-top:50px;
+
+#myCarousel {
+    padding-top: 50px;
 }
+
 .slide-control {
-font-size:70px;
+    font-size: 70px;
 }
-.slide-text{
-font-size:40px;
 
+.slide-text {
+    font-size: 40px;
 }
-.slide-control a{
-color:#7f7f7f;
+
+.slide-control a {
+    color: #7f7f7f;
+    text-decoration: none;
 }
-.slide-control a:hover{
-text-decoration:none;
-color:#64b7ce
+
+    .slide-control a:hover {
+        text-decoration: none;
+        color: #64b7ce
+    }
+
+.menu-container {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    height: 250px;
+    background-image: -ms-linear-gradient(left, #eee 0%, #eee 50%, #eee 100%);
+    background-image: -moz-linear-gradient(left, #eee 0%, #eee 50%, #eee 100%);
+    background-image: -o-linear-gradient(left, #eee 0%, #eee 50%, #eee 100%);
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #eee), color-stop(50, #FFFFFF), color-stop(100, #eee));
+    background-image: -webkit-linear-gradient(left, #eee 0%, #FFFFFF 50%, #eee 100%);
+    background-image: linear-gradient(to right, #eee 0%, #FFFFFF 50%, #eee 100%);
+    border-bottom: 5px solid white;
 }
-.menu-container
-{ display:table-cell; vertical-align:middle; text-align:center; height:250px; 
-  /* IE10+ */ 
-background-image: -ms-linear-gradient(left, #eee 0%, #eee 50%, #eee 100%);
 
-/* Mozilla Firefox */ 
-background-image: -moz-linear-gradient(left, #eee 0%, #eee 50%, #eee 100%);
-
-/* Opera */ 
-background-image: -o-linear-gradient(left, #eee 0%, #eee 50%, #eee 100%);
-
-/* Webkit (Safari/Chrome 10) */ 
-background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #eee), color-stop(50, #FFFFFF), color-stop(100, #eee));
-
-/* Webkit (Chrome 11+) */ 
-background-image: -webkit-linear-gradient(left, #eee 0%, #FFFFFF 50%, #eee 100%);
-
-/* W3C Markup */ 
-background-image: linear-gradient(to right, #eee 0%, #FFFFFF 50%, #eee 100%);
-    border-bottom:5px solid white;
-} 
-.carousel-inner img{
-    height:100px;
+.carousel-inner img {
+    height: 100px;
     margin: 0 auto;
+}
 
+.carousel-inner a {
+    text-align: center;
+    text-decoration: none;
+    color: #7f7f7f;
 }
-.carousel-inner a{
-    text-align:center;
-    text-decoration:none;
-    color:#7f7f7f;
+
+.menu-container:hover {
+    border-bottom: 5px solid #64b7ce;
 }
-.menu-container:hover{
-    border-bottom:5px solid #64b7ce;
-}
+
 .carousel-control.left {
-  background-image: none;
-  color:black;
-  font-size:50px;
- margin-left: -25px;
-
+    background-image: none;
+    color: black;
+    font-size: 50px;
+    margin-left: -25px;
 }
 
 .carousel-control.right {
-  background-image: none;
-  color:black;
-  font-size:50px;
- margin-right: -25px;}
+    background-image: none;
+    color: black;
+    font-size: 50px;
+    margin-right: -25px;
+}
 
 .spoiler-body {
     display: none;
 }
+
 .spoiler-title {
-    cursor:pointer;
+    cursor: pointer;
 }
 
-
-/*------------------------------------*\
--------- DEMO Code: accordion
-\*------------------------------------*/
-/*----- Accordion -----*/
 .accordion, .accordion * {
-	-webkit-box-sizing:border-box; 
-	-moz-box-sizing:border-box; 
-	box-sizing:border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .accordion {
-	overflow:hidden;
-	box-shadow:0px 1px 3px rgba(0,0,0,0.25);
-	border-radius:3px;
-	background:#f7f7f7;
+    overflow: hidden;
+    border-radius: 3px;
+    background: #f7f7f7;
 }
 
-/*----- Section Titles -----*/
 .accordion-section-title {
-	width:100%;
-	padding:15px;
-	display:inline-block;
-	border-bottom:1px solid #1a1a1a;
-	background:#333;
-	transition:all linear 0.15s;
-	/* Type */
-	font-size:1.200em;
-	text-shadow:0px 1px 0px #1a1a1a;
-	color:#fff;
+    width: 100%;
+    padding: 15px;
+    display: inline-block;
+    border-bottom: 1px solid #1a1a1a;
+    background: #333;
+    transition: all linear 0.15s;
+    /* Type */
+    font-size: 1.200em;
+    text-shadow: 0px 1px 0px #1a1a1a;
+    color: #fff;
 }
 
-.accordion-section-title.active, .accordion-section-title:hover {
-	background:#4c4c4c;
-	/* Type */
-	text-decoration:none;
+    .accordion-section-title.active, .accordion-section-title:hover {
+        background: #4c4c4c;
+        color: #fff;
+        text-decoration: none;
+    }
+
+.accordion-section a:focus {
+    color: #fff;
+    text-decoration: none;
 }
 
 .accordion-section:last-child .accordion-section-title {
-	border-bottom:none;
+    border-bottom: none;
 }
 
-/*----- Section Content -----*/
 .accordion-section-content {
-	padding:15px;
-	display:none;
+    padding: 15px;
+    display: none;
+}
+
+.alert {
+    color: red;
+}
+
+.modal_button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    color: #72bfe6;
+    outline: none;
+}
+
+.MathJax {
+    outline: none;
+}
+.total {
+    margin:40px;
+    text-align: center;
 }

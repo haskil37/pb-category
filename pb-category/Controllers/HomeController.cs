@@ -61,6 +61,10 @@ namespace pb_category.Controllers
                 Vcb = GetValue(model.Vcb, ref CurrentStep);
                 if (Vcb != 0)
                     GlobalModel.Vcb = Vcb.ToString();
+                else
+                {
+                    ViewBag.ErrorVcb = "Не указан свободный объем помещения";
+                }
             }
             if (GlobalStep >= 4)
             {
@@ -77,6 +81,10 @@ namespace pb_category.Controllers
                 Z = GetValue(model.Z, ref CurrentStep);
                 if (Z != 0)
                     GlobalModel.Z = Z.ToString();
+                else
+                {
+                    ViewBag.ErrorZ = "Выберите коэффициент";
+                }
             }
             if (GlobalStep >= 6)
             {
@@ -184,6 +192,38 @@ namespace pb_category.Controllers
                 GlobalStep = CurrentStep;
             ViewBag.Step = GlobalStep;
             return PartialView(GlobalModel);
+        }
+        public PartialViewResult StepA1()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA2()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA3()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA4()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA5()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA6()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA7()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA8()
+        {
+            return PartialView();
         }
         #region Вспомогательные функции
         private double GetValue(string value, ref int CurrentStep)

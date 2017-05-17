@@ -1,214 +1,201 @@
 ﻿@model pb_category.Models.CalculateViewModels
 <div class="accordion">
     <div class="accordion-section">
-        <a class="accordion-section-title" href="#accordion-1">Шаг 1</a>
+        <a class="accordion-section-title" href="#accordion-1">Шаг 1
+        @if ((int)ViewBag.Step > 1)
+        {
+            <span> -  
+                <span class="math" id="MathJax-Span-1028" style="width: 2.585em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.127em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.377em 1002.13em 2.46em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1029"><span class="msubsup" id="MathJax-Span-1030"><span style="display: inline-block; position: relative; width: 2.127em; height: 0px;"><span style="position: absolute; clip: rect(3.21em 1000.75em 4.127em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1031" style="font-family: MathJax_Math-italic;">P<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.127em;"></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.831em; left: 0.627em;"><span class="texatom" id="MathJax-Span-1032"><span class="mrow" id="MathJax-Span-1033"><span class="mi" id="MathJax-Span-1034" style="font-size: 70.7%; font-family: MathJax_Math-italic;">m</span><span class="mi" id="MathJax-Span-1035" style="font-size: 70.7%; font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-1036" style="font-size: 70.7%; font-family: MathJax_Math-italic;">x</span></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.103em;"></span></span>
+                = @Model.Pmax
+                <span class="texatom" id="MathJax-Span-1145" style="padding-left: 0.169em;"><span class="mrow" id="MathJax-Span-1146"><span class="mo" id="MathJax-Span-1147"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">к</span></span></span></span><span class="texatom" id="MathJax-Span-1148"><span class="mrow" id="MathJax-Span-1149"><span class="mo" id="MathJax-Span-1150"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">П</span></span></span></span><span class="texatom" id="MathJax-Span-1151"><span class="mrow" id="MathJax-Span-1152"><span class="mo" id="MathJax-Span-1153"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">а</span></span></span></span>
+            </span>
+        }
+        </a>
         @if ((int)ViewBag.Step >= 1)
         {
             <div id="accordion-1" class="accordion-section-content">
-                <p>
-                    \(P_{max}\), кПа
-                    <input id="Pmax" name="Pmax" type="text" value="@Model.Pmax" autofocus>
-                </p>
-                <p>Максимальное давление, развиваемое при сгорании стехиометрической газовоздушной или паровоздушной смеси в замкнутом объеме, определяемое экспериментально или по справочным данным в соответствии с требованиями 4.3. При отсутствии данных допускается принимать \(P_{max}\) равным 900 кПа</p>
+                @{ Html.RenderPartial("StepA1"); }
+                @if ((int)ViewBag.Step == 1)
+                {
+                    <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
+                }
             </div>
         }
     </div>
     <div id="Steps">
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-2">Шаг 2</a>
+            <a class="accordion-section-title" href="#accordion-2">Шаг 2
+           @if ((int)ViewBag.Step > 2)
+           {
+                <span> -
+                    <span class="MathJax" id="MathJax-Element-258-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1054" style="width: 1.335em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.085em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.377em 1001.09em 2.46em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1055"><span class="msubsup" id="MathJax-Span-1056"><span style="display: inline-block; position: relative; width: 1.085em; height: 0px;"><span style="position: absolute; clip: rect(3.21em 1000.75em 4.127em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1057" style="font-family: MathJax_Math-italic;">P<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.127em;"></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.831em; left: 0.627em;"><span class="mn" id="MathJax-Span-1058" style="font-size: 70.7%; font-family: MathJax_Main;">0</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.103em;"></span></span></nobr></span>
+                    = @Model.P0
+                    <span class="texatom" id="MathJax-Span-1145" style="padding-left: 0.169em;"><span class="mrow" id="MathJax-Span-1146"><span class="mo" id="MathJax-Span-1147"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">к</span></span></span></span><span class="texatom" id="MathJax-Span-1148"><span class="mrow" id="MathJax-Span-1149"><span class="mo" id="MathJax-Span-1150"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">П</span></span></span></span><span class="texatom" id="MathJax-Span-1151"><span class="mrow" id="MathJax-Span-1152"><span class="mo" id="MathJax-Span-1153"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">а</span></span></span></span>
+                </span>
+            }
+            </a>
             @if ((int)ViewBag.Step >= 2)
             {
                 <div id="accordion-2" class="accordion-section-content">
-                    <p>
-                        \(P_{0}\), кПа
-                        <input id="P0" name="P0" type="text" value="@Model.P0" class="target">
-                    </p>
-                    <p>Начальное давление, кПа (допускается принимать равным 101 кПа)</p>
+                    @{ Html.RenderPartial("StepA2"); }
+                    @if ((int)ViewBag.Step == 2)
+                    {
+                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
+                    }
                 </div>
             }
         </div>
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-3">Шаг 3</a>
+            <a class="accordion-section-title" href="#accordion-3">Шаг 3
+                @if ((int)ViewBag.Step > 3)
+                {
+                    <span>
+                        -
+                        <span class="MathJax" id="MathJax-Element-280-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1139" style="width: 1.46em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.21em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.377em 1001.21em 2.669em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1140"><span class="msubsup" id="MathJax-Span-1141"><span style="display: inline-block; position: relative; width: 1.21em; height: 0px;"><span style="position: absolute; clip: rect(3.21em 1000.75em 4.169em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1142" style="font-family: MathJax_Math-italic;">V<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.169em;"></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -1.956em; left: 0.585em;"><span class="texatom" id="MathJax-Span-1143"><span class="mrow" id="MathJax-Span-1144"><span class="texatom" id="MathJax-Span-1145"><span class="mrow" id="MathJax-Span-1146"><span class="mo" id="MathJax-Span-1147" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">с</span></span></span></span><span class="texatom" id="MathJax-Span-1148"><span class="mrow" id="MathJax-Span-1149"><span class="mo" id="MathJax-Span-1150" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">в</span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.497em; border-left: 0px solid; width: 0px; height: 1.353em;"></span></span></nobr></span>
+                        = @Model.Vcb
+                        <span class="MathJax" id="MathJax-Element-290-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1173" style="width: 1.169em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.96em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.044em 1000.96em 2.502em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1174"><span class="msubsup" id="MathJax-Span-1175"><span style="display: inline-block; position: relative; width: 0.96em; height: 0px;"><span style="position: absolute; clip: rect(1.252em 1000.54em 2.502em -999.998em); top: -2.165em; left: 0em;"><span class="texatom" id="MathJax-Span-1176"><span class="mrow" id="MathJax-Span-1177"><span class="mo" id="MathJax-Span-1178"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">м</span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span><span style="position: absolute; top: -4.54em; left: 0.544em;"><span class="mn" id="MathJax-Span-1179" style="font-size: 70.7%; font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.297em; border-left: 0px solid; width: 0px; height: 1.552em;"></span></span></nobr></span>
+                    </span>
+                }
+            </a>
             @if ((int)ViewBag.Step >= 3)
             {
                 <div id="accordion-3" class="accordion-section-content">
-                    <p>
-                        \(М_{св}, м^3\)
-                        <input id="Vcb" name="Vcb" type="text" value="@Model.Vcb" class="target">
-                    </p>
-                    <p>Свободный объем помещения. Свободный объем помещения определяется как разность между объемом помещения и объемом, занимаемым технологическим оборудованием.</p>
-                    <p>По умолчанию 80% от объема помещения.</p>
+                    @{ Html.RenderPartial("StepA3"); }
+                    @if ((int)ViewBag.Step == 3)
+                    {
+                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
+                    }
                 </div>
             }
         </div>
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-4">Шаг 4</a>
+            <a class="accordion-section-title" href="#accordion-4">Шаг 4
+                @if ((int)ViewBag.Step > 4)
+                {
+                    <span>
+                        -
+                        <span class="MathJax" id="MathJax-Element-255-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1117" style="width: 1.877em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.544em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.377em 1001.54em 2.46em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1118"><span class="msubsup" id="MathJax-Span-1119"><span style="display: inline-block; position: relative; width: 1.544em; height: 0px;"><span style="position: absolute; clip: rect(3.21em 1000.88em 4.127em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1120" style="font-family: MathJax_Math-italic;">K<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.044em;"></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.831em; left: 0.835em;"><span class="texatom" id="MathJax-Span-1121"><span class="mrow" id="MathJax-Span-1122"><span class="mi" id="MathJax-Span-1123" style="font-size: 70.7%; font-family: MathJax_Math-italic;">H<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.044em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.103em;"></span></span></nobr></span>
+                        = @Model.Kh
+                    </span>
+                }
+            </a>
             @if ((int)ViewBag.Step >= 4)
             {
                 <div id="accordion-4" class="accordion-section-content">
-                    <p>
-                        \(K_{H}\)
-                        <input id="Kh" name="Kh" type="text" value="@Model.Kh">
-                    </p>
-                    <p>коэффициент, учитывающий негерметичность помещения и неадиабатичность процесса горения. Допускается принимать \(K_{H}\) равным трем</p>
+                    @{ Html.RenderPartial("StepA4"); }
+                    @if ((int)ViewBag.Step == 4)
+                    {
+                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
+                    }
                 </div>
             }
         </div>
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-5">Шаг 5</a>
+            <a class="accordion-section-title" href="#accordion-5">Шаг 5
+                @if ((int)ViewBag.Step > 5)
+                {
+                    <span>
+                        - Z = @Model.Z
+                    </span>
+                }
+            </a>
             @if ((int)ViewBag.Step >= 5)
             {
                 <div id="accordion-5" class="accordion-section-content">
                     <p>
                         Z
                         @Html.DropDownListFor(x => x.Z,
-                         new SelectList(Model.ListZ, "Value", "Name"), "-- Выберите --")
+                         new SelectList(Model.ListZ, "Value", "Name"), "-- Выберите --") <span class="alert">@ViewBag.ErrorZ</span>
                     </p>
                     <p>Коэффициент участия горючих газов и паров в горении, который может быть рассчитан на основе характера распределения газов и паров в объеме помещения согласно приложению Д СП12.</p>
                     <p>Допускается принимать значение Z из предложенных значений.</p>
+                    @if ((int)ViewBag.Step == 5)
+                    {
+                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
+                    }
                 </div>
             }
         </div>
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-6">Шаг 6</a>
+            <a class="accordion-section-title" href="#accordion-6">Шаг 6
+                @if ((int)ViewBag.Step > 6)
+                {
+                    <span>
+                        -
+                        <span class="MathJax" id="MathJax-Element-316-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1251" style="width: 1.419em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.169em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.585em 1001.17em 2.669em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1252"><span class="msubsup" id="MathJax-Span-1253"><span style="display: inline-block; position: relative; width: 1.169em; height: 0px;"><span style="position: absolute; clip: rect(3.419em 1000.5em 4.335em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1254" style="font-family: MathJax_Math-italic;">ρ</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -1.956em; left: 0.502em;"><span class="texatom" id="MathJax-Span-1255"><span class="mrow" id="MathJax-Span-1256"><span class="texatom" id="MathJax-Span-1257"><span class="mrow" id="MathJax-Span-1258"><span class="mo" id="MathJax-Span-1259" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">г</span></span></span></span><span class="texatom" id="MathJax-Span-1260"><span class="mrow" id="MathJax-Span-1261"><span class="mo" id="MathJax-Span-1262" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">п</span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.497em; border-left: 0px solid; width: 0px; height: 1.052em;"></span></span></nobr></span>
+                        = @Model.Rogp
+                        <span class="MathJax" id="MathJax-Element-330-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1329" style="width: 2.669em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.21em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.085em 1002.21em 2.585em -999.998em); top: -2.206em; left: 0em;"><span class="mrow" id="MathJax-Span-1330"><span class="texatom" id="MathJax-Span-1331"><span class="mrow" id="MathJax-Span-1332"><span class="mo" id="MathJax-Span-1333"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">к</span></span></span></span><span class="texatom" id="MathJax-Span-1334"><span class="mrow" id="MathJax-Span-1335"><span class="mo" id="MathJax-Span-1336"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">г</span></span></span></span><span class="texatom" id="MathJax-Span-1337"><span class="mrow" id="MathJax-Span-1338"><span class="mo" id="MathJax-Span-1339" style="font-family: MathJax_Main;">/</span></span></span><span class="msubsup" id="MathJax-Span-1340"><span style="display: inline-block; position: relative; width: 0.96em; height: 0px;"><span style="position: absolute; clip: rect(1.252em 1000.54em 2.502em -999.998em); top: -2.165em; left: 0em;"><span class="texatom" id="MathJax-Span-1341"><span class="mrow" id="MathJax-Span-1342"><span class="mo" id="MathJax-Span-1343"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">м</span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span><span style="position: absolute; top: -4.54em; left: 0.544em;"><span class="mn" id="MathJax-Span-1344" style="font-size: 70.7%; font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.21em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.348em; border-left: 0px solid; width: 0px; height: 1.602em;"></span></span></nobr></span>
+                    </span>
+                }
+            </a>
             @if ((int)ViewBag.Step >= 6)
             {
                 <div id="accordion-6" class="accordion-section-content">
-                    <p>
-                        \(\rho_{гп}, кг/м^3\)
-                        <input id="Rogp" name="Rogp" type="text" value="@Model.Rogp">
-                    </p>
-                    <p>плотность газа или пара при расчетной температуре \(t_p, кг\cdotм^{–3}\)</p>
-                    <p class="spoiler-title closed">Рассчитать ▼</p>
-                    <div class="spoiler-body">
-                        <p>
-                            $$\rho_{гп} = \frac{M}{V_0(1+0,00367\cdot t_p)}$$
-                            M, \(м^3\cdot кмоль^{-1}\)
-                            <input id="M" name="M" type="text" value="@Model.M">
-                        </p>
-                        <p>молярная масса</p>
-                        <p>
-                            \(t_р, ^{0}C\)
-                            <input id="Tp" name="Tp" type="text" value="@Model.Tp">
-                        </p>
-                        <p>расчетная температура</p>
-                        <p>
-                            \(V_0, м^3\cdot кмоль^{-1}\)
-                            <input id="V0" name="V0" type="text" value="@Model.V0">
-                        </p>
-                        <p>мольный объем</p>
-                        <button type="submit" value="RogpButton" name="submitButton" class="button-Cancel">Посчитать РО</button>
-                    </div>
+                    @{ Html.RenderPartial("StepA6"); }
+                    @if ((int)ViewBag.Step == 6)
+                    {
+                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
+                    }
                 </div>
             }
         </div>
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-7">Шаг 7</a>
+            <a class="accordion-section-title" href="#accordion-7">Шаг 7
+                @if ((int)ViewBag.Step > 7)
+                {
+                    <span>
+                        -
+                        <span class="MathJax" id="MathJax-Element-347-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1446" style="width: 1.377em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.127em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.252em 1001.13em 2.669em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1447"><span class="msubsup" id="MathJax-Span-1448"><span style="display: inline-block; position: relative; width: 1.127em; height: 0px;"><span style="position: absolute; clip: rect(1.252em 1000.54em 2.502em -999.998em); top: -2.165em; left: 0em;"><span class="texatom" id="MathJax-Span-1449"><span class="mrow" id="MathJax-Span-1450"><span class="mo" id="MathJax-Span-1451"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">С</span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span><span style="position: absolute; top: -1.915em; left: 0.544em;"><span class="texatom" id="MathJax-Span-1452"><span class="mrow" id="MathJax-Span-1453"><span class="texatom" id="MathJax-Span-1454"><span class="mrow" id="MathJax-Span-1455"><span class="mo" id="MathJax-Span-1456" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">с</span></span></span></span><span class="texatom" id="MathJax-Span-1457"><span class="mrow" id="MathJax-Span-1458"><span class="mo" id="MathJax-Span-1459" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">т</span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.497em; border-left: 0px solid; width: 0px; height: 1.502em;"></span></span></nobr></span>
+                        = @Model.Cct
+                        <span class="MathJax" id="MathJax-Element-348-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1460" style="width: 1.002em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.835em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.335em 1000.79em 2.377em -999.998em); top: -2.206em; left: 0em;"><span class="mrow" id="MathJax-Span-1461"><span class="mi" id="MathJax-Span-1462" style="font-family: MathJax_Main;">%</span></span><span style="display: inline-block; width: 0px; height: 2.21em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.098em; border-left: 0px solid; width: 0px; height: 1.052em;"></span></span></nobr></span>
+                    </span>
+                }
+            </a>
             @if ((int)ViewBag.Step >= 7)
             {
                 <div id="accordion-7" class="accordion-section-content">
-                    <p>
-                        \(С_{ст}\), %
-                        <input id="Cct" name="Cct" type="text" value="@Model.Cct">
-                    </p>
-                    <p>стехиометрическая концентрация горючего газа</p>
-                    <p class="spoiler-title closed">Рассчитать ▼</p>
-                    <div class="spoiler-body">
-                        <p>
-                            $$С_{ст}=\frac{100}{1+4,84\cdot\beta}$$
-                            $$\beta=n_c + \frac{n_н + n_х}{4} - \frac{n_о}{2}$$
-                            \(n_c\)
-                            <input id="Nc" name="Nc" type="text" value="@Model.Nc">
-                        </p>
-                        <p>
-                            \(n_н\)
-                            <input id="Nh" name="Nh" type="text" value="@Model.Nh">
-                        </p>
-                        <p>
-                            \(n_х\)
-                            <input id="Nx" name="Nx" type="text" value="@Model.Nx">
-                        </p>
-                        <p>
-                            \(n_о\)
-                            <input id="No" name="No" type="text" value="@Model.No">
-                        </p>
-                        <p>число атомов С, Н, О и галоидов в молекуле горючего</p>
-                        <button type="submit" value="CctButton" name="submitButton" class="button-Cancel">Рассчитать стехиометрическая концентрация горючего газа</button>
-                    </div>
+                    @{ Html.RenderPartial("StepA7"); }
+                    @if ((int)ViewBag.Step == 7)
+                    {
+                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
+                    }
                 </div>
             }
         </div>
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-8">Шаг 8</a>
+            <a class="accordion-section-title" href="#accordion-8">Шаг 8
+                @if ((int)ViewBag.Step > 8)
+                {
+                    <span>
+                        -
+                        <span class="MathJax" id="MathJax-Element-354-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1471" style="width: 1.085em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.877em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.585em 1000.84em 2.294em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1472"><span class="mi" id="MathJax-Span-1473" style="font-family: MathJax_Math-italic;">m</span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.048em; border-left: 0px solid; width: 0px; height: 0.653em;"></span></span></nobr></span>
+                        = @Model.Mkg
+                        <span class="MathJax" id="MathJax-Element-359-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1482" style="width: 0.919em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.752em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.252em 1000.75em 2.502em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1483"><span class="texatom" id="MathJax-Span-1484"><span class="mrow" id="MathJax-Span-1485"><span class="mo" id="MathJax-Span-1486"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">к</span></span></span></span><span class="texatom" id="MathJax-Span-1487"><span class="mrow" id="MathJax-Span-1488"><span class="mo" id="MathJax-Span-1489"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">г</span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.297em; border-left: 0px solid; width: 0px; height: 1.302em;"></span></span></nobr></span>
+                    </span>
+                }
+            </a>
             @if ((int)ViewBag.Step >= 8)
             {
                 <div id="accordion-8" class="accordion-section-content">
-                    <p>
-                        m, кг
-                        <input id="Mkg" name="Mkg" type="text" value="@Model.Mkg">
-                    </p>
-                    <p>масса поступившего в помещение при расчетной аварии газа</p>
-                    <p class="spoiler-title closed">Рассчитать ▼</p>
-                    <div class="spoiler-body">
-                        <p>
-                            $$m=(V_a+V_t)\cdot \rho_г$$
-                            \(\rho_г, кг/м^3\)
-                            <input id="Rog" name="Rog" type="text" value="@Model.Rog">
-                        </p>
-                        <p>плотность газа</p>
-                        <hr />
-                        <p>Объем газа вышедшего из аппарата \(V_a, м^3\)</p>
-                        <p>
-                            $$V_a=0,001\cdot P_1V$$
-                            \(P_1\), кПа
-                            <input id="P1" name="P1" type="text" value="@Model.P1">
-                        </p>
-                        <p>давление в аппарате</p>
-                        <p>
-                            \(V, м^3\)
-                            <input id="V" name="V" type="text" value="@Model.V">
-                        </p>
-                        <p>объем аппарата</p>
-                        <hr />
-                        <p>Объем газа вышедшего из трубопровода \(V_Т, м^3\)</p>
-                        <p>
-                            До отключения
-
-                            $$V_Т=V_{1T} + V_{2T}$$
-                            $$V_{1T}=qT$$
-                            \(q, м^3\cdot c^{-1}\)
-                            <input id="Q" name="Q" type="text" value="@Model.Q">
-                        </p>
-                        <p>расход газа, определяемый в соответствии с технологическим регламентом в зависимости от давления в трубопроводе, его диаметра, температуры газовой среды</p>
-                        <p>
-                            \(T, c\)
-                            <input id="T" name="T" type="text" value="@Model.T">
-                        </p>
-                        <p>Расчетное время отключения, определяемое по А.1.2</p>
-                        <p>
-                            После отключения
-                            $$V_{2T}=0,01\cdot \pi P_2(r_{1}^{2}L_1+r_{2}^{2}L_2+\ldots + r_{n}^{2}L_n)$$
-                            \(P_2\), кПа
-                            <input id="P2" name="P2" type="text" value="@Model.P2">
-                        </p>
-                        <p>максимальное давление в трубопроводе по технологическому регламенту</p>
-                        <p>
-                            \(r\), м
-                            <input id="R" name="R" type="text" value="@Model.R">
-                        </p>
-                        <p>внутренний радиус трубопроводов</p>
-                        <p>
-                            \(L\), м
-                            <input id="L" name="L" type="text" value="@Model.L">
-                        </p>
-                        <p>длина трубопроводов от аварийного аппарата до задвижек</p>
-                        <button type="submit" value="CctButton" name="submitButton" class="button-Cancel">Рассчитать массу</button>
-                    </div>
-                </div>
+                    @{ Html.RenderPartial("StepA8"); }
+                    @if ((int)ViewBag.Step == 8)
+                    {
+                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
+                    }
+               </div>
             }
         </div>
     </div>
 </div>
+<div class="total">
+    @if ((int)ViewBag.Step == 9)
+    {
+        <span>
+            <span class="MathJax" id="MathJax-Element-428-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-4776" style="width: 19.169em; display: inline-block;"><span style="display: inline-block; position: relative; width: 15.96em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(0.71em 1015.96em 3.46em -999.998em); top: -2.206em; left: 0em;"><span class="mrow" id="MathJax-Span-4777"><span class="mi" id="MathJax-Span-4778" style="font-family: MathJax_Main;">Δ</span><span class="mi" id="MathJax-Span-4779" style="font-family: MathJax_Math-italic;">P<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.127em;"></span></span><span class="mo" id="MathJax-Span-4780" style="font-family: MathJax_Main; padding-left: 0.294em;">=</span><span class="mo" id="MathJax-Span-4781" style="font-family: MathJax_Main; padding-left: 0.294em;">(</span><span class="msubsup" id="MathJax-Span-4782"><span style="display: inline-block; position: relative; width: 2.127em; height: 0px;"><span style="position: absolute; clip: rect(3.21em 1000.75em 4.127em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-4783" style="font-family: MathJax_Math-italic;">P<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.127em;"></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.831em; left: 0.627em;"><span class="texatom" id="MathJax-Span-4784"><span class="mrow" id="MathJax-Span-4785"><span class="mi" id="MathJax-Span-4786" style="font-size: 70.7%; font-family: MathJax_Math-italic;">m</span><span class="mi" id="MathJax-Span-4787" style="font-size: 70.7%; font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-4788" style="font-size: 70.7%; font-family: MathJax_Math-italic;">x</span></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-4789" style="font-family: MathJax_Main; padding-left: 0.21em;">−</span><span class="msubsup" id="MathJax-Span-4790" style="padding-left: 0.21em;"><span style="display: inline-block; position: relative; width: 1.085em; height: 0px;"><span style="position: absolute; clip: rect(3.21em 1000.75em 4.127em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-4791" style="font-family: MathJax_Math-italic;">P<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.127em;"></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.831em; left: 0.627em;"><span class="mn" id="MathJax-Span-4792" style="font-size: 70.7%; font-family: MathJax_Main;">0</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-4793" style="font-family: MathJax_Main;">)</span><span class="mfrac" id="MathJax-Span-4794"><span style="display: inline-block; position: relative; width: 2.877em; height: 0px; margin-right: 0.127em; margin-left: 0.127em;"><span style="position: absolute; clip: rect(3.21em 1001.59em 4.127em -999.998em); top: -4.665em; left: 50%; margin-left: -0.79em;"><span class="mrow" id="MathJax-Span-4795"><span class="mi" id="MathJax-Span-4796" style="font-family: MathJax_Math-italic;">m</span><span class="mi" id="MathJax-Span-4797" style="font-family: MathJax_Math-italic;">Z<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.044em;"></span></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(3.21em 1002.75em 4.502em -999.998em); top: -3.331em; left: 50%; margin-left: -1.373em;"><span class="mrow" id="MathJax-Span-4798"><span class="msubsup" id="MathJax-Span-4799"><span style="display: inline-block; position: relative; width: 1.419em; height: 0px;"><span style="position: absolute; clip: rect(3.21em 1000.75em 4.169em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-4800" style="font-family: MathJax_Math-italic;">V<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.169em;"></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -1.956em; left: 0.585em;"><span class="texatom" id="MathJax-Span-4801"><span class="mrow" id="MathJax-Span-4802"><span class="texatom" id="MathJax-Span-4803"><span class="mrow" id="MathJax-Span-4804"><span class="mo" id="MathJax-Span-4805" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">С</span></span></span></span><span class="texatom" id="MathJax-Span-4806"><span class="mrow" id="MathJax-Span-4807"><span class="mo" id="MathJax-Span-4808" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">В</span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span></span><span class="msubsup" id="MathJax-Span-4809"><span style="display: inline-block; position: relative; width: 1.335em; height: 0px;"><span style="position: absolute; clip: rect(3.419em 1000.5em 4.335em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-4810" style="font-family: MathJax_Math-italic;">ρ</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -1.956em; left: 0.502em;"><span class="texatom" id="MathJax-Span-4811"><span class="mrow" id="MathJax-Span-4812"><span class="texatom" id="MathJax-Span-4813"><span class="mrow" id="MathJax-Span-4814"><span class="mo" id="MathJax-Span-4815" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">Г</span></span></span></span><span class="texatom" id="MathJax-Span-4816"><span class="mrow" id="MathJax-Span-4817"><span class="mo" id="MathJax-Span-4818" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">П</span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(0.877em 1002.88em 1.169em -999.998em); top: -1.248em; left: 0em;"><span style="display: inline-block; overflow: hidden; vertical-align: 0em; border-top: 1.4px solid; width: 2.877em; height: 0px;"></span><span style="display: inline-block; width: 0px; height: 1.044em;"></span></span></span></span><span class="mo" id="MathJax-Span-4819" style="font-family: MathJax_Main; padding-left: 0.21em;">⋅</span><span class="mfrac" id="MathJax-Span-4820" style="padding-left: 0.21em;"><span style="display: inline-block; position: relative; width: 1.627em; height: 0px; margin-right: 0.127em; margin-left: 0.127em;"><span style="position: absolute; clip: rect(3.21em 1001.46em 4.169em -999.998em); top: -4.665em; left: 50%; margin-left: -0.748em;"><span class="mn" id="MathJax-Span-4821" style="font-family: MathJax_Main;">100</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(3.085em 1001.38em 4.502em -999.998em); top: -3.248em; left: 50%; margin-left: -0.665em;"><span class="msubsup" id="MathJax-Span-4822"><span style="display: inline-block; position: relative; width: 1.377em; height: 0px;"><span style="position: absolute; clip: rect(1.252em 1000.54em 2.502em -999.998em); top: -2.165em; left: 0em;"><span class="texatom" id="MathJax-Span-4823"><span class="mrow" id="MathJax-Span-4824"><span class="mo" id="MathJax-Span-4825"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">С</span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span><span style="position: absolute; top: -1.915em; left: 0.544em;"><span class="texatom" id="MathJax-Span-4826"><span class="mrow" id="MathJax-Span-4827"><span class="texatom" id="MathJax-Span-4828"><span class="mrow" id="MathJax-Span-4829"><span class="mo" id="MathJax-Span-4830" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">С</span></span></span></span><span class="texatom" id="MathJax-Span-4831"><span class="mrow" id="MathJax-Span-4832"><span class="mo" id="MathJax-Span-4833" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">Т</span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(0.877em 1001.63em 1.169em -999.998em); top: -1.248em; left: 0em;"><span style="display: inline-block; overflow: hidden; vertical-align: 0em; border-top: 1.4px solid; width: 1.627em; height: 0px;"></span><span style="display: inline-block; width: 0px; height: 1.044em;"></span></span></span></span><span class="mo" id="MathJax-Span-4834" style="font-family: MathJax_Main; padding-left: 0.21em;">⋅</span><span class="mfrac" id="MathJax-Span-4835" style="padding-left: 0.21em;"><span style="display: inline-block; position: relative; width: 1.169em; height: 0px; margin-right: 0.127em; margin-left: 0.127em;"><span style="position: absolute; clip: rect(3.21em 1000.42em 4.127em -999.998em); top: -4.665em; left: 50%; margin-left: -0.248em;"><span class="mn" id="MathJax-Span-4836" style="font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(3.085em 1001.04em 4.502em -999.998em); top: -3.248em; left: 50%; margin-left: -0.498em;"><span class="msubsup" id="MathJax-Span-4837"><span style="display: inline-block; position: relative; width: 1.044em; height: 0px;"><span style="position: absolute; clip: rect(1.252em 1000.54em 2.502em -999.998em); top: -2.165em; left: 0em;"><span class="texatom" id="MathJax-Span-4838"><span class="mrow" id="MathJax-Span-4839"><span class="mo" id="MathJax-Span-4840"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">К</span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span><span style="position: absolute; top: -1.915em; left: 0.544em;"><span class="texatom" id="MathJax-Span-4841"><span class="mrow" id="MathJax-Span-4842"><span class="mo" id="MathJax-Span-4843" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">Н</span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(0.877em 1001.17em 1.169em -999.998em); top: -1.248em; left: 0em;"><span style="display: inline-block; overflow: hidden; vertical-align: 0em; border-top: 1.4px solid; width: 1.169em; height: 0px;"></span><span style="display: inline-block; width: 0px; height: 1.044em;"></span></span></span></span><span class="mo" id="MathJax-Span-4780" style="font-family: MathJax_Main; padding-left: 0.294em;">=</span></span><span style="display: inline-block; width: 0px; height: 2.21em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -1.397em; border-left: 0px solid; width: 0px; height: 3.103em;"></span></span></nobr></span>
+            dsfgdfgdsfgdsfgdfgs dfgdfgdfsgdfgdfg
+        </span>
+    }
+</div>     
 <script>
     function close_accordion_section() {
         jQuery('.accordion .accordion-section-title').removeClass('active');
