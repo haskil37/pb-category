@@ -22,11 +22,15 @@ namespace pb_category.Controllers
             ViewBag.Step = GlobalStep;
 
             //Горючие газы
-            GlobalModel.ListZ = new List<ListZ>
-                {
-                    new ListZ{ Value="1", Name="Водород - 1" },
-                    new ListZ{ Value="0,5", Name="Горючие газы (кроме водорода) - 0,5" }
-                };
+            //GlobalModel.ListZ = new List<ListZ>
+            //    {
+            //        new ListZ{ Value="1", Name="Водород - 1" },
+            //        new ListZ{ Value="0,5", Name="Горючие газы (кроме водорода) - 0,5" }
+            //    };
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "Водород - 1", Value = "1" });
+            items.Add(new SelectListItem { Text = "Горючие газы (кроме водорода) - 0,5", Value = "0,5" });
+            ViewBag.Z = items;
             return View(new CalculateViewModels());
         }
 
@@ -184,10 +188,11 @@ namespace pb_category.Controllers
                 }
             }
 
-
-
-
-
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "Водород - 1", Value = "1" });
+            items.Add(new SelectListItem { Text = "Горючие газы (кроме водорода) - 0,5", Value = "0,5" });
+            ViewBag.Z = items;
+            
             if (CurrentStep > GlobalStep)
                 GlobalStep = CurrentStep;
             ViewBag.Step = GlobalStep;
@@ -222,6 +227,38 @@ namespace pb_category.Controllers
             return PartialView();
         }
         public PartialViewResult StepA8()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA1_H()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA2_H()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA3_H()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA4_H()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA5_H()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA6_H()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA7_H()
+        {
+            return PartialView();
+        }
+        public PartialViewResult StepA8_H()
         {
             return PartialView();
         }

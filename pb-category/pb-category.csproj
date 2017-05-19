@@ -258,6 +258,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\CalculateSteps.cshtml" />
+    <Content Include="Views\Home\StepA1_H.cshtml" />
     <None Include="Views\Home\StepA1.cshtml" />
     <Content Include="Views\Home\StepA2.cshtml" />
     <Content Include="Views\Home\StepA3.cshtml" />
@@ -266,6 +267,13 @@
     <Content Include="Views\Home\StepA6.cshtml" />
     <Content Include="Views\Home\StepA7.cshtml" />
     <Content Include="Views\Home\StepA8.cshtml" />
+    <Content Include="Views\Home\StepA2_H.cshtml" />
+    <Content Include="Views\Home\StepA3_H.cshtml" />
+    <Content Include="Views\Home\StepA4_H.cshtml" />
+    <Content Include="Views\Home\StepA5_H.cshtml" />
+    <Content Include="Views\Home\StepA6_H.cshtml" />
+    <Content Include="Views\Home\StepA7_H.cshtml" />
+    <Content Include="Views\Home\StepA8_H.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

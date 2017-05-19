@@ -1,191 +1,27 @@
 ﻿@model pb_category.Models.CalculateViewModels
 <div class="accordion">
-    <div class="accordion-section">
-        <a class="accordion-section-title" href="#accordion-1">Шаг 1
-        @if ((int)ViewBag.Step > 1)
-        {
-            <span> -  
-                <span class="math" id="MathJax-Span-1028" style="width: 2.585em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.127em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.377em 1002.13em 2.46em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1029"><span class="msubsup" id="MathJax-Span-1030"><span style="display: inline-block; position: relative; width: 2.127em; height: 0px;"><span style="position: absolute; clip: rect(3.21em 1000.75em 4.127em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1031" style="font-family: MathJax_Math-italic;">P<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.127em;"></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.831em; left: 0.627em;"><span class="texatom" id="MathJax-Span-1032"><span class="mrow" id="MathJax-Span-1033"><span class="mi" id="MathJax-Span-1034" style="font-size: 70.7%; font-family: MathJax_Math-italic;">m</span><span class="mi" id="MathJax-Span-1035" style="font-size: 70.7%; font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-1036" style="font-size: 70.7%; font-family: MathJax_Math-italic;">x</span></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.103em;"></span></span>
-                = @Model.Pmax
-                <span class="texatom" id="MathJax-Span-1145" style="padding-left: 0.169em;"><span class="mrow" id="MathJax-Span-1146"><span class="mo" id="MathJax-Span-1147"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">к</span></span></span></span><span class="texatom" id="MathJax-Span-1148"><span class="mrow" id="MathJax-Span-1149"><span class="mo" id="MathJax-Span-1150"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">П</span></span></span></span><span class="texatom" id="MathJax-Span-1151"><span class="mrow" id="MathJax-Span-1152"><span class="mo" id="MathJax-Span-1153"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">а</span></span></span></span>
-            </span>
-        }
-        </a>
-        @if ((int)ViewBag.Step >= 1)
-        {
-            <div id="accordion-1" class="accordion-section-content">
-                @{ Html.RenderPartial("StepA1"); }
-                @if ((int)ViewBag.Step == 1)
-                {
-                    <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
-                }
-            </div>
-        }
-    </div>
-    <div id="Steps">
+    @for (int i = 1; i <= 8; i++)
+    {
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-2">Шаг 2
-           @if ((int)ViewBag.Step > 2)
-           {
-                <span> -
-                    <span class="MathJax" id="MathJax-Element-258-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1054" style="width: 1.335em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.085em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.377em 1001.09em 2.46em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1055"><span class="msubsup" id="MathJax-Span-1056"><span style="display: inline-block; position: relative; width: 1.085em; height: 0px;"><span style="position: absolute; clip: rect(3.21em 1000.75em 4.127em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1057" style="font-family: MathJax_Math-italic;">P<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.127em;"></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.831em; left: 0.627em;"><span class="mn" id="MathJax-Span-1058" style="font-size: 70.7%; font-family: MathJax_Main;">0</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.103em;"></span></span></nobr></span>
-                    = @Model.P0
-                    <span class="texatom" id="MathJax-Span-1145" style="padding-left: 0.169em;"><span class="mrow" id="MathJax-Span-1146"><span class="mo" id="MathJax-Span-1147"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">к</span></span></span></span><span class="texatom" id="MathJax-Span-1148"><span class="mrow" id="MathJax-Span-1149"><span class="mo" id="MathJax-Span-1150"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">П</span></span></span></span><span class="texatom" id="MathJax-Span-1151"><span class="mrow" id="MathJax-Span-1152"><span class="mo" id="MathJax-Span-1153"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">а</span></span></span></span>
-                </span>
-            }
+            <a class="accordion-section-title" href="#accordion-@i">
+                Шаг @i
+                @if ((int)ViewBag.Step > i)
+                {
+                    { Html.RenderPartial("StepA" + @i + "_H"); }
+                }
             </a>
-            @if ((int)ViewBag.Step >= 2)
+            @if ((int)ViewBag.Step >= i)
             {
-                <div id="accordion-2" class="accordion-section-content">
-                    @{ Html.RenderPartial("StepA2"); }
-                    @if ((int)ViewBag.Step == 2)
+                <div id="accordion-@i" class="accordion-section-content">
+                    @{ Html.RenderPartial("StepA" + @i); }
+                    @if ((int)ViewBag.Step == i)
                     {
                         <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
                     }
                 </div>
             }
         </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-3">Шаг 3
-                @if ((int)ViewBag.Step > 3)
-                {
-                    <span>
-                        -
-                        <span class="MathJax" id="MathJax-Element-280-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1139" style="width: 1.46em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.21em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.377em 1001.21em 2.669em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1140"><span class="msubsup" id="MathJax-Span-1141"><span style="display: inline-block; position: relative; width: 1.21em; height: 0px;"><span style="position: absolute; clip: rect(3.21em 1000.75em 4.169em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1142" style="font-family: MathJax_Math-italic;">V<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.169em;"></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -1.956em; left: 0.585em;"><span class="texatom" id="MathJax-Span-1143"><span class="mrow" id="MathJax-Span-1144"><span class="texatom" id="MathJax-Span-1145"><span class="mrow" id="MathJax-Span-1146"><span class="mo" id="MathJax-Span-1147" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">с</span></span></span></span><span class="texatom" id="MathJax-Span-1148"><span class="mrow" id="MathJax-Span-1149"><span class="mo" id="MathJax-Span-1150" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">в</span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.497em; border-left: 0px solid; width: 0px; height: 1.353em;"></span></span></nobr></span>
-                        = @Model.Vcb
-                        <span class="MathJax" id="MathJax-Element-290-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1173" style="width: 1.169em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.96em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.044em 1000.96em 2.502em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1174"><span class="msubsup" id="MathJax-Span-1175"><span style="display: inline-block; position: relative; width: 0.96em; height: 0px;"><span style="position: absolute; clip: rect(1.252em 1000.54em 2.502em -999.998em); top: -2.165em; left: 0em;"><span class="texatom" id="MathJax-Span-1176"><span class="mrow" id="MathJax-Span-1177"><span class="mo" id="MathJax-Span-1178"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">м</span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span><span style="position: absolute; top: -4.54em; left: 0.544em;"><span class="mn" id="MathJax-Span-1179" style="font-size: 70.7%; font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.297em; border-left: 0px solid; width: 0px; height: 1.552em;"></span></span></nobr></span>
-                    </span>
-                }
-            </a>
-            @if ((int)ViewBag.Step >= 3)
-            {
-                <div id="accordion-3" class="accordion-section-content">
-                    @{ Html.RenderPartial("StepA3"); }
-                    @if ((int)ViewBag.Step == 3)
-                    {
-                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
-                    }
-                </div>
-            }
-        </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-4">Шаг 4
-                @if ((int)ViewBag.Step > 4)
-                {
-                    <span>
-                        -
-                        <span class="MathJax" id="MathJax-Element-255-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1117" style="width: 1.877em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.544em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.377em 1001.54em 2.46em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1118"><span class="msubsup" id="MathJax-Span-1119"><span style="display: inline-block; position: relative; width: 1.544em; height: 0px;"><span style="position: absolute; clip: rect(3.21em 1000.88em 4.127em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1120" style="font-family: MathJax_Math-italic;">K<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.044em;"></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.831em; left: 0.835em;"><span class="texatom" id="MathJax-Span-1121"><span class="mrow" id="MathJax-Span-1122"><span class="mi" id="MathJax-Span-1123" style="font-size: 70.7%; font-family: MathJax_Math-italic;">H<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.044em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.103em;"></span></span></nobr></span>
-                        = @Model.Kh
-                    </span>
-                }
-            </a>
-            @if ((int)ViewBag.Step >= 4)
-            {
-                <div id="accordion-4" class="accordion-section-content">
-                    @{ Html.RenderPartial("StepA4"); }
-                    @if ((int)ViewBag.Step == 4)
-                    {
-                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
-                    }
-                </div>
-            }
-        </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-5">Шаг 5
-                @if ((int)ViewBag.Step > 5)
-                {
-                    <span>
-                        - Z = @Model.Z
-                    </span>
-                }
-            </a>
-            @if ((int)ViewBag.Step >= 5)
-            {
-                <div id="accordion-5" class="accordion-section-content">
-                    <p>
-                        Z
-                        @Html.DropDownListFor(x => x.Z,
-                         new SelectList(Model.ListZ, "Value", "Name"), "-- Выберите --") <span class="alert">@ViewBag.ErrorZ</span>
-                    </p>
-                    <p>Коэффициент участия горючих газов и паров в горении, который может быть рассчитан на основе характера распределения газов и паров в объеме помещения согласно приложению Д СП12.</p>
-                    <p>Допускается принимать значение Z из предложенных значений.</p>
-                    @if ((int)ViewBag.Step == 5)
-                    {
-                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
-                    }
-                </div>
-            }
-        </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-6">Шаг 6
-                @if ((int)ViewBag.Step > 6)
-                {
-                    <span>
-                        -
-                        <span class="MathJax" id="MathJax-Element-316-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1251" style="width: 1.419em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.169em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.585em 1001.17em 2.669em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1252"><span class="msubsup" id="MathJax-Span-1253"><span style="display: inline-block; position: relative; width: 1.169em; height: 0px;"><span style="position: absolute; clip: rect(3.419em 1000.5em 4.335em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1254" style="font-family: MathJax_Math-italic;">ρ</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -1.956em; left: 0.502em;"><span class="texatom" id="MathJax-Span-1255"><span class="mrow" id="MathJax-Span-1256"><span class="texatom" id="MathJax-Span-1257"><span class="mrow" id="MathJax-Span-1258"><span class="mo" id="MathJax-Span-1259" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">г</span></span></span></span><span class="texatom" id="MathJax-Span-1260"><span class="mrow" id="MathJax-Span-1261"><span class="mo" id="MathJax-Span-1262" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">п</span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.497em; border-left: 0px solid; width: 0px; height: 1.052em;"></span></span></nobr></span>
-                        = @Model.Rogp
-                        <span class="MathJax" id="MathJax-Element-330-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1329" style="width: 2.669em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.21em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.085em 1002.21em 2.585em -999.998em); top: -2.206em; left: 0em;"><span class="mrow" id="MathJax-Span-1330"><span class="texatom" id="MathJax-Span-1331"><span class="mrow" id="MathJax-Span-1332"><span class="mo" id="MathJax-Span-1333"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">к</span></span></span></span><span class="texatom" id="MathJax-Span-1334"><span class="mrow" id="MathJax-Span-1335"><span class="mo" id="MathJax-Span-1336"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">г</span></span></span></span><span class="texatom" id="MathJax-Span-1337"><span class="mrow" id="MathJax-Span-1338"><span class="mo" id="MathJax-Span-1339" style="font-family: MathJax_Main;">/</span></span></span><span class="msubsup" id="MathJax-Span-1340"><span style="display: inline-block; position: relative; width: 0.96em; height: 0px;"><span style="position: absolute; clip: rect(1.252em 1000.54em 2.502em -999.998em); top: -2.165em; left: 0em;"><span class="texatom" id="MathJax-Span-1341"><span class="mrow" id="MathJax-Span-1342"><span class="mo" id="MathJax-Span-1343"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">м</span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span><span style="position: absolute; top: -4.54em; left: 0.544em;"><span class="mn" id="MathJax-Span-1344" style="font-size: 70.7%; font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.21em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.348em; border-left: 0px solid; width: 0px; height: 1.602em;"></span></span></nobr></span>
-                    </span>
-                }
-            </a>
-            @if ((int)ViewBag.Step >= 6)
-            {
-                <div id="accordion-6" class="accordion-section-content">
-                    @{ Html.RenderPartial("StepA6"); }
-                    @if ((int)ViewBag.Step == 6)
-                    {
-                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
-                    }
-                </div>
-            }
-        </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-7">Шаг 7
-                @if ((int)ViewBag.Step > 7)
-                {
-                    <span>
-                        -
-                        <span class="MathJax" id="MathJax-Element-347-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1446" style="width: 1.377em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.127em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.252em 1001.13em 2.669em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1447"><span class="msubsup" id="MathJax-Span-1448"><span style="display: inline-block; position: relative; width: 1.127em; height: 0px;"><span style="position: absolute; clip: rect(1.252em 1000.54em 2.502em -999.998em); top: -2.165em; left: 0em;"><span class="texatom" id="MathJax-Span-1449"><span class="mrow" id="MathJax-Span-1450"><span class="mo" id="MathJax-Span-1451"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">С</span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span><span style="position: absolute; top: -1.915em; left: 0.544em;"><span class="texatom" id="MathJax-Span-1452"><span class="mrow" id="MathJax-Span-1453"><span class="texatom" id="MathJax-Span-1454"><span class="mrow" id="MathJax-Span-1455"><span class="mo" id="MathJax-Span-1456" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">с</span></span></span></span><span class="texatom" id="MathJax-Span-1457"><span class="mrow" id="MathJax-Span-1458"><span class="mo" id="MathJax-Span-1459" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">т</span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.497em; border-left: 0px solid; width: 0px; height: 1.502em;"></span></span></nobr></span>
-                        = @Model.Cct
-                        <span class="MathJax" id="MathJax-Element-348-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1460" style="width: 1.002em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.835em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.335em 1000.79em 2.377em -999.998em); top: -2.206em; left: 0em;"><span class="mrow" id="MathJax-Span-1461"><span class="mi" id="MathJax-Span-1462" style="font-family: MathJax_Main;">%</span></span><span style="display: inline-block; width: 0px; height: 2.21em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.098em; border-left: 0px solid; width: 0px; height: 1.052em;"></span></span></nobr></span>
-                    </span>
-                }
-            </a>
-            @if ((int)ViewBag.Step >= 7)
-            {
-                <div id="accordion-7" class="accordion-section-content">
-                    @{ Html.RenderPartial("StepA7"); }
-                    @if ((int)ViewBag.Step == 7)
-                    {
-                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
-                    }
-                </div>
-            }
-        </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-8">Шаг 8
-                @if ((int)ViewBag.Step > 8)
-                {
-                    <span>
-                        -
-                        <span class="MathJax" id="MathJax-Element-354-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1471" style="width: 1.085em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.877em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.585em 1000.84em 2.294em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1472"><span class="mi" id="MathJax-Span-1473" style="font-family: MathJax_Math-italic;">m</span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.048em; border-left: 0px solid; width: 0px; height: 0.653em;"></span></span></nobr></span>
-                        = @Model.Mkg
-                        <span class="MathJax" id="MathJax-Element-359-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1482" style="width: 0.919em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.752em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.252em 1000.75em 2.502em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1483"><span class="texatom" id="MathJax-Span-1484"><span class="mrow" id="MathJax-Span-1485"><span class="mo" id="MathJax-Span-1486"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">к</span></span></span></span><span class="texatom" id="MathJax-Span-1487"><span class="mrow" id="MathJax-Span-1488"><span class="mo" id="MathJax-Span-1489"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">г</span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.297em; border-left: 0px solid; width: 0px; height: 1.302em;"></span></span></nobr></span>
-                    </span>
-                }
-            </a>
-            @if ((int)ViewBag.Step >= 8)
-            {
-                <div id="accordion-8" class="accordion-section-content">
-                    @{ Html.RenderPartial("StepA8"); }
-                    @if ((int)ViewBag.Step == 8)
-                    {
-                        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
-                    }
-               </div>
-            }
-        </div>
-    </div>
+    }
 </div>
 <div class="total">
     @if ((int)ViewBag.Step == 9)

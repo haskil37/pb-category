@@ -6,18 +6,12 @@ using System.Web.Mvc;
 
 namespace pb_category.Models
 {
-    public class ListZ
-    {
-        public string Value { set; get; }
-        public string Name { set; get; }
-    }
     public class CalculateViewModels
     {
         public string Pmax { get; set; }
         public string P0 { get; set; }
         public string Vcb { get; set; }
         public string Kh { get; set; }
-        public List<ListZ> ListZ { set; get; }
         public string Z { set; get; }
         public string Rogp { get; set; }
         public string M { get; set; }
