@@ -4,45 +4,82 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 
 namespace pb_category.Controllers
 {
-    public class HomeController : Controller
+    public class CalculateController : Controller
     {
-        public static int GlobalStep;
+        public class Input
+        {
+            public string Name;
+            public string Value;
+        }
+        public class Step
+        {
+            public int Number { get; set; }
+            public string FinishValue { get; set; }
+            public List<Input> AllInputs { get; set; }
+        }
         public static CalculateViewModels GlobalModel;
-        public JsonResult GetModelValue(string id)
+
+        public JsonResult GetValueA(string id)
         {
-            switch (id)
+            List<Step> values = new List<Step>();
+
+            if (GlobalModel.Pmax != null)
             {
-                case "Pmax":
-                    return Json(new { Success = true, Result = GlobalModel.Pmax }, JsonRequestBehavior.AllowGet);
-                case "P0":
-                    return Json(new { Success = true, Result = GlobalModel.P0 }, JsonRequestBehavior.AllowGet);
-                default:
-                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+                Step step = new Step()
+                {
+                    Number = 1,
+                    FinishValue = GlobalModel.Pmax,
+                    AllInputs = new List<Input> {
+
+                        new Input()
+                        {
+                            Name = "Pmax",
+                            Value = GlobalModel.Pmax
+                        },
+
+                    }
+                };
+
+                values.Add(step);
             }
+            if (GlobalModel.P0 != null)
+            {
+                Step step = new Step()
+                {
+                    Number = 2,
+                    FinishValue = GlobalModel.P0,
+                    AllInputs = new List<Input> {
+
+                        new Input()
+                        {
+                            Name = "P0",
+                            Value = GlobalModel.P0
+                        },
+
+                    }
+                };
+
+                values.Add(step);
+            }
+            return Json(values, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Index()
-        {
-            return View();
-        }
-        public ActionResult Calculate()
+        public ActionResult A()
         {
             GlobalModel = new CalculateViewModels();
-            GlobalStep = 1;
-            ViewBag.Step = GlobalStep;
+            GlobalModel.GlobalStep = 1;
+            ViewBag.Step = GlobalModel.GlobalStep;
             return View(new CalculateViewModels());
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public PartialViewResult CalculateSteps(CalculateViewModels model, string submitButton)
+        public PartialViewResult Steps(CalculateViewModels model, string submitButton)
         {
             int CurrentStep = 1;
             double Pmax, P0, Vcb, Kh, Z, Rogp, Cct;
-            if (GlobalStep >= 1)
+            if (GlobalModel.GlobalStep >= 1)
             {
                 Pmax = GetValue(model.Pmax, ref CurrentStep);
                 if (Pmax == 0)
@@ -52,7 +89,7 @@ namespace pb_category.Controllers
                 }
                 GlobalModel.Pmax = Pmax.ToString();
             }
-            if (GlobalStep >= 2)
+            if (GlobalModel.GlobalStep >= 2)
             {
                 P0 = GetValue(model.P0, ref CurrentStep);
                 if (P0 == 0)
@@ -62,7 +99,7 @@ namespace pb_category.Controllers
                 }
                 GlobalModel.P0 = P0.ToString();
             }
-            if (GlobalStep >= 3)
+            if (GlobalModel.GlobalStep >= 3)
             {
                 Vcb = GetValue(model.Vcb, ref CurrentStep);
                 if (Vcb != 0)
@@ -72,7 +109,7 @@ namespace pb_category.Controllers
                     ViewBag.ErrorVcb = "Не указан свободный объем помещения";
                 }
             }
-            if (GlobalStep >= 4)
+            if (GlobalModel.GlobalStep >= 4)
             {
                 Kh = GetValue(model.Kh, ref CurrentStep);
                 if (Kh == 0)
@@ -82,7 +119,7 @@ namespace pb_category.Controllers
                 }
                 GlobalModel.Kh = Kh.ToString();
             }
-            if (GlobalStep >= 5)
+            if (GlobalModel.GlobalStep >= 5)
             {
                 Z = GetValue(model.Z, ref CurrentStep);
                 if (Z != 0)
@@ -92,7 +129,7 @@ namespace pb_category.Controllers
                     ViewBag.ErrorZ = "Выберите коэффициент";
                 }
             }
-            if (GlobalStep >= 6)
+            if (GlobalModel.GlobalStep >= 6)
             {
                 if (submitButton == "RogpButton")
                 {
@@ -121,7 +158,7 @@ namespace pb_category.Controllers
                         GlobalModel.Rogp = Rogp.ToString();
                 }
             }
-            if (GlobalStep >= 7)
+            if (GlobalModel.GlobalStep >= 7)
             {
                 if (submitButton == "CctButton")
                 {
@@ -155,7 +192,7 @@ namespace pb_category.Controllers
                         GlobalModel.Cct = Cct.ToString();
                 }
             }
-            if (GlobalStep >= 8)
+            if (GlobalModel.GlobalStep >= 8)
             {
                 if (submitButton == "CctButton")
                 {
@@ -196,10 +233,25 @@ namespace pb_category.Controllers
                 new SelectListItem { Text = "Горючие газы (кроме водорода) - 0,5", Value = "0,5" }
             };
 
-            if (CurrentStep > GlobalStep)
-                GlobalStep = CurrentStep;
-            ViewBag.Step = GlobalStep;
-            return PartialView("StepA" + GlobalStep + "00", GlobalModel);
+            if (CurrentStep > GlobalModel.GlobalStep)
+            {
+                GlobalModel.GlobalStep = CurrentStep;
+                ViewBag.Step = GlobalModel.GlobalStep;
+                return PartialView("Steps", GlobalModel);
+            }
+            else
+            {
+
+                return PartialView();
+            }
+        }
+        #region Вспомогательные функции
+        private double GetValue(string value, ref int CurrentStep)
+        {
+            double parse = 0;
+            if (!string.IsNullOrEmpty(value) && double.TryParse(value, out parse))
+                CurrentStep++;
+            return parse;
         }
         public PartialViewResult StepA1()
         {
@@ -233,46 +285,7 @@ namespace pb_category.Controllers
         {
             return PartialView();
         }
-        public PartialViewResult StepA1_H()
-        {
-            return PartialView();
-        }
-        public PartialViewResult StepA2_H()
-        {
-            return PartialView();
-        }
-        public PartialViewResult StepA3_H()
-        {
-            return PartialView();
-        }
-        public PartialViewResult StepA4_H()
-        {
-            return PartialView();
-        }
-        public PartialViewResult StepA5_H()
-        {
-            return PartialView();
-        }
-        public PartialViewResult StepA6_H()
-        {
-            return PartialView();
-        }
-        public PartialViewResult StepA7_H()
-        {
-            return PartialView();
-        }
-        public PartialViewResult StepA8_H()
-        {
-            return PartialView();
-        }
-        #region Вспомогательные функции
-        private double GetValue(string value, ref int CurrentStep)
-        {
-            double parse = 0;
-            if (!string.IsNullOrEmpty(value) && double.TryParse(value, out parse))
-                CurrentStep++;
-            return parse;
-        }
         #endregion
+
     }
 }

@@ -1,0 +1,35 @@
+﻿<div class="panel panel-default">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapse@(ViewBag.Step)">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                Шаг @ViewBag.Step
+                @{ Html.RenderPartial("Step" + (int)ViewBag.Step + "_H"); }
+            </h4>
+        </div>
+    </a>
+    <div id="collapse@(ViewBag.Step)" class="panel-collapse collapse">
+        <div class="panel-body">
+            @{ Html.RenderPartial("Step" + (int)ViewBag.Step); }
+        </div>
+    </div>
+</div>
+<div id="Steps">
+    @for (int i = @ViewBag.Step + 1; i <= 8; i++)
+    {
+        <div class="panel panel-default">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse@(i)">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        Шаг @i
+                    </h4>
+                </div>
+            </a>
+        </div>
+    }
+    <script>
+        $(function () {
+            jQuery('[href*="collapse' + @ViewBag.Step + '"]').click();
+        });
+    </script>
+    @Html.Hidden("GlobalStep", (int)ViewBag.Step)
+</div>

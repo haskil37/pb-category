@@ -4,14 +4,16 @@
 @using (Ajax.BeginForm("CalculateSteps", new AjaxOptions
 {
     HttpMethod = "POST",
-    InsertionMode = InsertionMode.Replace,
+    InsertionMode = InsertionMode.ReplaceWith,
     UpdateTargetId = "Steps",
+    OnSuccess = "Update"
 }))
 {
     @Html.AntiForgeryToken()
     <div class="row">
-        <div id="Steps">
-            @{ Html.RenderPartial("CalculateSteps"); }
+        <div class="panel-group" id="accordion">
+            @{ Html.RenderPartial("StepA100"); }
         </div>
+        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
     </div>
 }

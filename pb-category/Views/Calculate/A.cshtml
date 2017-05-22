@@ -1,0 +1,43 @@
+﻿@model pb_category.Models.CalculateViewModels
+@{
+    ViewBag.Title = "Расчет";
+}
+@using (Ajax.BeginForm("Steps", new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.ReplaceWith,
+    UpdateTargetId = "Steps",
+    OnSuccess = "UpdateA",
+}))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="panel-group" id="accordion">
+            @{ Html.RenderPartial("Steps"); }
+        </div>
+        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
+    </div>
+}
+<script>
+    function UpdateA(ajaxContext) {
+        $.ajax({
+            url: "/Calculate/GetValueA",
+            cache: false,
+            type: "GET",
+            dataType: "json",
+            success: function (result) {
+                for (var i = 0; i < result.length; i++) {
+                    var finishStep = result[i];
+                    for (var j = 0; j < finishStep.AllInputs.length; j++) {
+                        var y = finishStep.AllInputs[j];
+                        $('#' + y.Name).val(y.Value);
+                    }
+                    if ($('#Step' + finishStep.Number + 'Header').hasClass('invisible')) {
+                        $('#Step' + finishStep.Number + 'Header').removeClass('invisible');
+                    }
+                    $('#Step' + finishStep.Number + 'HeaderValue').html(finishStep.FinishValue);
+                }
+            }
+        });
+    }
+</script>

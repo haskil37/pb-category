@@ -8,6 +8,7 @@ namespace pb_category.Models
 {
     public class CalculateViewModels
     {
+        public int GlobalStep { get; set; }
         public string Pmax { get; set; }
         public string P0 { get; set; }
         public string Vcb { get; set; }
