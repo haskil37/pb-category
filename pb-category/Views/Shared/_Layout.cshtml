@@ -50,12 +50,5 @@
     @Scripts.Render("~/bundles/jqueryval")    
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script>
-
-        jQuery('.spoiler-body').hide();
-        jQuery('.spoiler-title').click(function () {
-            $(this).next().slideToggle();
-        });
-    </script>
 </body>
 </html>

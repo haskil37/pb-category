@@ -29,6 +29,7 @@
     color: black;
     padding: 15px;
     margin: 15px;
+    outline: none !important;
 }
 
     .btn:hover {
@@ -142,27 +143,35 @@ hr {
     cursor: pointer;
 }
 
-
-
 .panel-heading {
     border-bottom: 1px solid #1a1a1a;
     background: #333;
     text-shadow: 0px 1px 0px #1a1a1a;
     color: #fff;
 }
-.panel-heading h4{
-    font-size:20px;
+
+    .panel-heading h4 {
+        font-size: 25px;
+        height: 65px;
+        line-height: 65px;
+    }
+
+.panel-default a:hover, .panel-default a:focus {
+    text-decoration: none;
 }
 
-    .panel-default a:hover,.panel-default a:focus {
-        text-decoration: none;
-    }
-.panel-body{
-    padding:15px;
+.panel-body {
+    padding: 15px;
 }
+
 .panel-group .panel + .panel {
-     margin-top: 0;
+    margin-top: 0;
 }
+
+.panel-group .panel {
+    border-radius: 10px;
+}
+
 .alert {
     color: red;
 }
@@ -177,10 +186,16 @@ hr {
     outline: none;
 }
 
-.MathJax {
+.MathJax, .math {
     outline: none;
 }
+
 .total {
-    margin:40px;
+    margin: 40px;
     text-align: center;
+}
+
+#Steps input {
+    float: right;
+    margin-top: -30px;
 }

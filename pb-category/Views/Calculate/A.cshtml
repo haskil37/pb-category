@@ -7,7 +7,7 @@
     HttpMethod = "POST",
     InsertionMode = InsertionMode.ReplaceWith,
     UpdateTargetId = "Steps",
-    OnSuccess = "UpdateA",
+    OnComplete = "UpdateA",
 }))
 {
     @Html.AntiForgeryToken()
@@ -15,7 +15,6 @@
         <div class="panel-group" id="accordion">
             @{ Html.RenderPartial("Steps"); }
         </div>
-        <input type="submit" class="btn center" value="Перейти к следующему шагу" id="Answer" />
     </div>
 }
 <script>
@@ -25,19 +24,28 @@
             cache: false,
             type: "GET",
             dataType: "json",
-            success: function (result) {
-                for (var i = 0; i < result.length; i++) {
-                    var finishStep = result[i];
-                    for (var j = 0; j < finishStep.AllInputs.length; j++) {
-                        var y = finishStep.AllInputs[j];
-                        $('#' + y.Name).val(y.Value);
+            success: function (answer) {
+                for (var i = 0; i < answer.length; i++) {
+                    var Step = answer[i];
+                    for (var j = 0; j < Step.AllInputs.length; j++) {
+                        var inputs = Step.AllInputs[j];
+                        if (inputs.Error) {
+                            $('#alert' + inputs.Name).html(inputs.Error);
+                        }
+                        else {
+                            $('#' + inputs.Name).val(inputs.Value);
+                            $('#alert' + inputs.Name).empty();
+                        }
                     }
-                    if ($('#Step' + finishStep.Number + 'Header').hasClass('invisible')) {
-                        $('#Step' + finishStep.Number + 'Header').removeClass('invisible');
+                    if (Step.FinishValue != null) {
+                        if ($('#Step' + Step.Number + 'Header').hasClass('invisible')) {
+                            $('#Step' + Step.Number + 'Header').removeClass('invisible');
+                            $('#Step' + Step.Number + 'HeaderValue').html(Step.FinishValue);
+                        }
                     }
-                    $('#Step' + finishStep.Number + 'HeaderValue').html(finishStep.FinishValue);
                 }
             }
         });
+        $('#Answer').prependTo('#Steps').slideDown();
     }
 </script>
