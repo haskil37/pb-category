@@ -193,7 +193,7 @@ namespace pb_category.Controllers
                 if (GlobalModel.Rogp == "none-calculate")
                 {
                     if (GlobalModel.M == "none")
-                        step.AllInputs.Add( 
+                        step.AllInputs.Add(
                             new Input()
                             {
                                 Name = "M",
@@ -225,13 +225,13 @@ namespace pb_category.Controllers
                             }
                         );
                     if (GlobalModel.Tp == "none")
-                            step.AllInputs.Add(
-                            new Input()
-                            {
-                                Name = "Tp",
-                                Error = "Не указан мольный объем",
-                            }
-                        );
+                        step.AllInputs.Add(
+                        new Input()
+                        {
+                            Name = "Tp",
+                            Error = "Не указан мольный объем",
+                        }
+                    );
                     else
                         step.AllInputs.Add(
                             new Input()
@@ -460,22 +460,6 @@ namespace pb_category.Controllers
                                 Value = GlobalModel.T
                             }
                         );
-                    if (GlobalModel.R[0] == "none")
-                        step.AllInputs.Add(
-                        new Input()
-                        {
-                            Name = "R",
-                            Error = "Не указано",
-                        }
-                    );
-                    else
-                        step.AllInputs.Add(
-                            new Input()
-                            {
-                                Name = "R",
-                                Value = GlobalModel.R[0]
-                            }
-                        );
                     if (GlobalModel.Q == "none")
                         step.AllInputs.Add(
                         new Input()
@@ -492,22 +476,45 @@ namespace pb_category.Controllers
                                 Value = GlobalModel.Q
                             }
                         );
-                    if (GlobalModel.L[0] == "none")
-                        step.AllInputs.Add(
-                        new Input()
-                        {
-                            Name = "L",
-                            Error = "Не указано",
-                        }
-                    );
-                    else
-                        step.AllInputs.Add(
+                    for (int i = 0; i < GlobalModel.R.Count(); i++)
+                    {
+                        if (GlobalModel.R[i] == "none")
+                            step.AllInputs.Add(
                             new Input()
                             {
-                                Name = "L",
-                                Value = GlobalModel.L[0]
+                                Name = "R" + (i + 1),
+                                Error = "Не указано",
                             }
                         );
+                        else
+                            step.AllInputs.Add(
+                                new Input()
+                                {
+                                    Name = "R" + (i + 1),
+                                    Value = GlobalModel.R[i]
+                                }
+                            );
+                    }
+                    for (int i = 0; i < GlobalModel.L.Count(); i++)
+                    {
+                        if (GlobalModel.L[i] == "none")
+                            step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "L" + (i + 1),
+                                Error = "Не указано",
+                            }
+                        );
+                        else
+                            step.AllInputs.Add(
+                                new Input()
+                                {
+                                    Name = "L" + (i + 1),
+                                    Value = GlobalModel.L[i]
+                                }
+                            );
+                    }
+
                 }
                 values.Add(step);
             }
@@ -547,6 +554,12 @@ namespace pb_category.Controllers
             GlobalModel.L.Add(null);
             ViewBag.Step = GlobalModel.GlobalStep;
             return View(new CalculateAViewModels());
+        }
+        public PartialViewResult RLAdd()
+        {
+            GlobalModel.R.Add(null);
+            GlobalModel.L.Add(null);
+            return PartialView("RLAdd", GlobalModel);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -723,11 +736,6 @@ namespace pb_category.Controllers
                         GlobalModel.V = V.ToString();
                     else
                         GlobalModel.V = "none";
-                    R = GetValue(model.R[0], ref FullData);
-                    if (R != 0)
-                        GlobalModel.R[0] = R.ToString();
-                    else
-                        GlobalModel.R[0] = "none";
                     Q = GetValue(model.Q, ref FullData);
                     if (Q != 0)
                         GlobalModel.Q = Q.ToString();
@@ -738,16 +746,41 @@ namespace pb_category.Controllers
                         GlobalModel.T = T.ToString();
                     else
                         GlobalModel.T = "none";
-                    L = GetValue(model.L[0], ref FullData);
-                    if (L != 0)
-                        GlobalModel.L[0] = L.ToString();
-                    else
-                        GlobalModel.L[0] = "none";
-                    if (FullData == 8)
+
+
+                    int countR = 0;
+                    int temp = 0;
+                    foreach (var item in model.R)
                     {
-                        double Va, Vt;
+                        R = GetValue(item, ref countR);
+                        if (R != 0)
+                            GlobalModel.R[temp] = R.ToString();
+                        else
+                            GlobalModel.R[temp] = "none";
+                        temp++;
+                    }
+                    int countL = 0;
+                    temp = 0;
+                    foreach (var item in model.L)
+                    {
+                        L = GetValue(item, ref countL);
+                        if (L != 0)
+                            GlobalModel.L[temp] = L.ToString();
+                        else
+                            GlobalModel.L[temp] = "none";
+                        temp++;
+                    }
+
+
+
+
+                    if (FullData == 6 && countR == countL)
+                    {
+                        double Va, Vt, V2 = 0;
                         Va = 0.001 * P1 * V;
-                        Vt = Q * T + Math.PI * P2 * (R * R * L);
+                        for (int i = 0; i < countR; i++)
+                            V2 += Convert.ToDouble(GlobalModel.R[i]) * Convert.ToDouble(GlobalModel.R[i]) * Convert.ToDouble(GlobalModel.L[i]);
+                        Vt = Q * T + Math.PI * P2 * V2;
                         Mkg = Rog * (Va + Vt);
                         GlobalModel.Mkg = Mkg.ToString();
                         CurrentStep++;

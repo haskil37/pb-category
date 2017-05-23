@@ -1,0 +1,13 @@
+﻿@{
+    int count = @Model.R.Count;
+    <p>
+        r<sub>@(count)</sub>, м
+        <input id="R@(count)" name="R" type="text" value="@Model.R[count-1]"> <span id="alertR@(count)" class="alert"></span>
+    </p>
+    <p>внутренний радиус трубопроводов</p>
+    <p>
+        L<sub>@(count)</sub>, м
+        <input id="L@(count)" name="L" type="text" value="@Model.L[count-1]"> <span id="alertL@(count)" class="alert"></span>
+    </p>
+    <p>длина трубопроводов от аварийного аппарата до задвижек</p>
+}
