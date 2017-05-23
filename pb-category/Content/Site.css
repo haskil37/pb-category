@@ -19,6 +19,10 @@
     white-space: normal;
 }
 
+h4 {
+    font-size: 25px;
+}
+
 .padding-footer {
     height: 100px;
 }
@@ -48,6 +52,10 @@
 
 .navbar-inverse .navbar-nav > li > a {
     color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #64b7ce;
 }
 
 .navbar {
@@ -195,7 +203,7 @@ hr {
     text-align: center;
 }
 
-#Steps input {
+#accordion input[type=submit], #Steps input {
     float: right;
     margin-top: -30px;
 }

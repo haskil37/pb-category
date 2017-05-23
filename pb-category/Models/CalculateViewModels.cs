@@ -36,5 +36,6 @@ namespace pb_category.Models
         public string P2 { get; set; }
         public string R { get; set; }
         public string L { get; set; }
+        public string DeltaP { get; set; }
     }
 }
