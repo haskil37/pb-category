@@ -21,7 +21,7 @@ namespace pb_category.Controllers
             public string FinishValue { get; set; }
             public List<Input> AllInputs { get; set; }
         }
-        public static CalculateViewModels GlobalModel;
+        public static CalculateAViewModels GlobalModel;
 
         public JsonResult GetValueA(string id)
         {
@@ -460,7 +460,7 @@ namespace pb_category.Controllers
                                 Value = GlobalModel.T
                             }
                         );
-                    if (GlobalModel.R == "none")
+                    if (GlobalModel.R[0] == "none")
                         step.AllInputs.Add(
                         new Input()
                         {
@@ -473,7 +473,7 @@ namespace pb_category.Controllers
                             new Input()
                             {
                                 Name = "R",
-                                Value = GlobalModel.R
+                                Value = GlobalModel.R[0]
                             }
                         );
                     if (GlobalModel.Q == "none")
@@ -492,7 +492,7 @@ namespace pb_category.Controllers
                                 Value = GlobalModel.Q
                             }
                         );
-                    if (GlobalModel.L == "none")
+                    if (GlobalModel.L[0] == "none")
                         step.AllInputs.Add(
                         new Input()
                         {
@@ -505,7 +505,7 @@ namespace pb_category.Controllers
                             new Input()
                             {
                                 Name = "L",
-                                Value = GlobalModel.L
+                                Value = GlobalModel.L[0]
                             }
                         );
                 }
@@ -532,22 +532,25 @@ namespace pb_category.Controllers
                 values.Add(step);
             }
             #endregion
-
             return Json(values, JsonRequestBehavior.AllowGet);
         }
         public ActionResult A()
         {
-            GlobalModel = new CalculateViewModels()
+            GlobalModel = new CalculateAViewModels()
             {
                 GlobalStep = 1,
-                DeltaP= "none"
+                DeltaP = "none",
+                R = new List<string>(),
+                L = new List<string>(),
             };
+            GlobalModel.R.Add(null);
+            GlobalModel.L.Add(null);
             ViewBag.Step = GlobalModel.GlobalStep;
-            return View(new CalculateViewModels());
+            return View(new CalculateAViewModels());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Steps(CalculateViewModels model, string submitButton)
+        public ActionResult Steps(CalculateAViewModels model, string submitButton)
         {
             int CurrentStep = 1;
             double Pmax = 0, P0 = 0, Vcb = 0, Kh = 0, Z = 0, Rogp = 0, Cct = 0, Mkg = 0;
@@ -720,11 +723,11 @@ namespace pb_category.Controllers
                         GlobalModel.V = V.ToString();
                     else
                         GlobalModel.V = "none";
-                    R = GetValue(model.R, ref FullData);
+                    R = GetValue(model.R[0], ref FullData);
                     if (R != 0)
-                        GlobalModel.R = R.ToString();
+                        GlobalModel.R[0] = R.ToString();
                     else
-                        GlobalModel.R = "none";
+                        GlobalModel.R[0] = "none";
                     Q = GetValue(model.Q, ref FullData);
                     if (Q != 0)
                         GlobalModel.Q = Q.ToString();
@@ -735,11 +738,11 @@ namespace pb_category.Controllers
                         GlobalModel.T = T.ToString();
                     else
                         GlobalModel.T = "none";
-                    L = GetValue(model.L, ref FullData);
+                    L = GetValue(model.L[0], ref FullData);
                     if (L != 0)
-                        GlobalModel.L = L.ToString();
+                        GlobalModel.L[0] = L.ToString();
                     else
-                        GlobalModel.L = "none";
+                        GlobalModel.L[0] = "none";
                     if (FullData == 8)
                     {
                         double Va, Vt;

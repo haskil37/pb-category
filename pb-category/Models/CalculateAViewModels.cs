@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Collections.Generic;
 
 namespace pb_category.Models
 {
-    public class CalculateViewModels
+    public class CalculateAViewModels
     {
         public int GlobalStep { get; set; }
         public string Pmax { get; set; }
@@ -34,8 +30,8 @@ namespace pb_category.Models
         public string T { get; set; }
         public string V2t { get; set; }
         public string P2 { get; set; }
-        public string R { get; set; }
-        public string L { get; set; }
+        public List<string> R { get; set; }
+        public List<string> L { get; set; }
         public string DeltaP { get; set; }
     }
 }

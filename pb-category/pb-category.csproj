@@ -185,7 +185,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CalculateViewModels.cs" />
+    <Compile Include="Models\CalculateAViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -284,6 +284,7 @@
     <Content Include="Views\Calculate\Step6.cshtml" />
     <Content Include="Views\Calculate\Step7.cshtml" />
     <Content Include="Views\Calculate\Step8.cshtml" />
+    <Content Include="Views\Calculate\Total.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
