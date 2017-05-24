@@ -286,6 +286,8 @@
     <Content Include="Views\Calculate\Step8.cshtml" />
     <Content Include="Views\Calculate\Total.cshtml" />
     <Content Include="Views\Calculate\RLAdd.cshtml" />
+    <Content Include="Views\Home\Menu.cshtml" />
+    <Content Include="Views\Home\SelectCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,6 +10,13 @@
     padding-right: 15px;
 }
 
+.logo {
+    position: absolute;
+    z-index: 10000;
+    height: 57px;
+    padding-left: 15px;
+}
+
 .navbar-fixed-bottom {
     padding-left: 50px;
     padding-right: 50px;
@@ -73,10 +80,13 @@ hr {
 }
 
 .brand {
-    background-image: url(http://ramki-vsem.ru/fon/zheltyj-fon25.jpg);
-    background-color: #faaf1b;
-    height: 400px;
+    height: 100px;
 }
+
+    .brand img {
+        float: left;
+        padding-right: 20px;
+    }
 
 #myCarousel {
     padding-top: 50px;
@@ -113,6 +123,10 @@ hr {
     background-image: linear-gradient(to right, #eee 0%, #FFFFFF 50%, #eee 100%);
     border-bottom: 5px solid white;
 }
+
+    .menu-container h2 {
+        word-break: break-word;
+    }
 
 .carousel-inner img {
     height: 100px;
@@ -199,13 +213,12 @@ hr {
 }
 
 .total {
-    margin: 40px;
     text-align: center;
 }
 
 #accordion input[type=submit], #Steps input {
     float: right;
-    margin-top: -30px;
+    margin-top: -25px;
 }
 
 .circle {
@@ -231,3 +244,163 @@ hr {
     #addButton:hover {
         color: #72bfe6;
     }
+
+/* Menu Button*/
+.menu-toggle {
+    background-color: #f5f5f5;
+    width: 20px;
+    height: 100vh;
+    position: fixed;
+    margin-top: 58px;
+    display: table;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+    .menu-toggle:hover {
+        background-color: #e3e3e3;
+    }
+
+    .menu-toggle span {
+        display: table-cell;
+        vertical-align: middle;
+        line-height: normal;
+    }
+
+        .menu-toggle span i {
+            border: solid black;
+            border-width: 0 5px 5px 0;
+            display: inline-block;
+            padding: 5px;
+        }
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    margin-left: 5px;
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+    #wrapper.toggled {
+        padding-left: 250px;
+    }
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    overflow-x: hidden;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px 15px 15px 35px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+.container-fluid {
+    padding-top: 55px;
+}
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin-top: 70px;
+    padding: 0;
+    list-style: none;
+}
+
+    .sidebar-nav li {
+        text-indent: 20px;
+        line-height: 40px;
+    }
+
+        .sidebar-nav li a {
+            display: block;
+            text-decoration: none;
+            color: #7f7f7f;
+        }
+
+            .sidebar-nav li a:hover {
+                text-decoration: none;
+                background: #e3e3e3;
+            }
+
+            .sidebar-nav li a:active,
+            .sidebar-nav li a:focus {
+                text-decoration: none;
+            }
+
+    .sidebar-nav > .sidebar-brand {
+        height: 65px;
+        font-size: 18px;
+        line-height: 60px;
+    }
+
+        .sidebar-nav > .sidebar-brand a {
+            color: #999999;
+        }
+
+            .sidebar-nav > .sidebar-brand a:hover {
+                color: #fff;
+                background: none;
+            }
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 0;
+    }
+
+        #wrapper.toggled {
+            padding-left: 250px;
+        }
+
+    #sidebar-wrapper {
+        width: 0;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #page-content-wrapper {
+        padding: 15px 15px 15px 35px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}

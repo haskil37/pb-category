@@ -10,7 +10,9 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <img src="~/Content/logo.png" class="logo" />
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
@@ -27,28 +29,44 @@
             </ul>
         </div>
     </nav>
-    @*<div class="row brand">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div style="background-color:red;height:100px"></div>
+    <div id="wrapper" class="toggled">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            @{ Html.RenderAction("Menu", "Home"); }
+        </div>
+        <div class="menu-toggle" id="menu-toggle"><span><i id="arrow" class="left"></i></span></div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @RenderBody()
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>*@
-    <div class="container body-content">
-        @RenderBody()
-        <footer>
-            <hr />
-            <div class="pull-left">
-                <p>&copy; С. Садков, В. Попов @DateTime.Now.Year</p>
-            </div>
-            <div class="pull-right text-right">
-                <img src="~/Content/fond.png" class="fond" />
-            </div>
-        </footer>
+            <footer>
+                <hr />
+                <div class="pull-left">
+                    <p>&copy; С. Садков, В. Попов @DateTime.Now.Year</p>
+                </div>
+                <div class="pull-right text-right">
+                    <img src="~/Content/fond.png" class="fond" />
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <div class="container">
     </div>
     @Scripts.Render("~/bundles/jqueryval")    
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+            $("#arrow").toggleClass('left').toggleClass('right');
+        })
+    </script>
 </body>
 </html>

@@ -6,7 +6,18 @@ namespace pb_category.Controllers
     {
         public ActionResult Index()
         {
+            Session.Clear();
             return View();
+        }
+        public ActionResult SelectCategory()
+        {
+            Session["SelectMenu"] = 1;
+            return View();
+        }
+        [ChildActionOnly]
+        public ActionResult Menu()
+        {
+            return PartialView();
         }
     }
 }

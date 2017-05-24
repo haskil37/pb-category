@@ -543,6 +543,7 @@ namespace pb_category.Controllers
         }
         public ActionResult A()
         {
+            Session["SelectMenu"] = 2;
             GlobalModel = new CalculateAViewModels()
             {
                 GlobalStep = 1,

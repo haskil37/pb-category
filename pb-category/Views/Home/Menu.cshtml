@@ -1,0 +1,20 @@
+﻿<ul class="sidebar-nav">
+    @if ((int)Session["SelectMenu"] >= 1)
+    {
+        <li>
+            <a href="#">Выбор расчета</a>
+        </li>
+    }
+    @if ((int)Session["SelectMenu"] >= 2)
+    {
+        <li>
+            <a href="#">Расчет</a>
+        </li>
+    }
+    @if ((int)Session["SelectMenu"] >= 3)
+    {
+        <li>
+            <a href="#">Обозреватель проекта</a>
+        </li>
+    }
+</ul>
