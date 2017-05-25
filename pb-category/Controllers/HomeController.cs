@@ -24,7 +24,12 @@ namespace pb_category.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SelectCategory(OrganizationViewModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return View(model);
+            if (model.B == null && model.C == null && model.D == null && model.E == null)
+                return RedirectToAction("A", "Calculate");
+            return View(model);
+
         }
     }
 }
