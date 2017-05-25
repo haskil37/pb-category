@@ -1,9 +1,15 @@
-﻿using System.Web.Mvc;
+﻿using pb_category.Models;
+using System.Web.Mvc;
 
 namespace pb_category.Controllers
 {
     public class HomeController : Controller
     {
+        [ChildActionOnly]
+        public ActionResult Menu()
+        {
+            return PartialView();
+        }
         public ActionResult Index()
         {
             Session.Clear();
@@ -12,12 +18,13 @@ namespace pb_category.Controllers
         public ActionResult SelectCategory()
         {
             Session["SelectMenu"] = 1;
-            return View();
+            return View(new OrganizationViewModel());
         }
-        [ChildActionOnly]
-        public ActionResult Menu()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SelectCategory(OrganizationViewModel model)
         {
-            return PartialView();
+            return View();
         }
     }
 }
