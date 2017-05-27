@@ -26,10 +26,25 @@ namespace pb_category.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            if (model.B == null && model.C == null && model.D == null && model.E == null)
-                return RedirectToAction("A", "Calculate");
-            return View(model);
-
+            Session["Length"] = model.Length;
+            Session["Width"] = model.Width;
+            Session["Height"] = model.Height;
+            Session["SelectMenu"] = 2;
+            switch (model.Category)
+            {
+                case "A1":
+                    return RedirectToAction("Gas", "Calculate");
+                case "A2":
+                    Session["Category"] = "A";
+                    return RedirectToAction("HFL", "Calculate");
+                case "B2":
+                    Session["Category"] = "B";
+                    return RedirectToAction("HFL", "Calculate");
+                case "B3":
+                    goto case "B2";
+                default:
+                    return View(model);
+            }
         }
     }
 }

@@ -5,13 +5,13 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     Шаг @ViewBag.Step
-                    @{ Html.RenderPartial("Step" + (int)ViewBag.Step + "_H"); }
+                    @{ Html.RenderPartial("HFL/Step" + (int)ViewBag.Step + "_H"); }
                 </h4>
             </div>
         </a>
         <div id="collapse@(ViewBag.Step)" class="panel-collapse collapse">
             <div class="panel-body">
-                @{ Html.RenderPartial("Step" + (int)ViewBag.Step); }
+                @{ Html.RenderPartial("HFL/Step" + (int)ViewBag.Step); }
             </div>
         </div>
     </div>

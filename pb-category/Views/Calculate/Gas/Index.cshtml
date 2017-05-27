@@ -1,0 +1,81 @@
+﻿@model pb_category.Models.CalculateGasViewModel
+@{
+    ViewBag.Title = "Расчет";
+}
+@using (Ajax.BeginForm("StepsGas", new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.ReplaceWith,
+    UpdateTargetId = "Steps",
+    OnComplete = "UpdateGas",
+}))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <h3>Проверка помещения на принадлежность к категории А</h3>
+        <div class="total">
+            @{ Html.RenderPartial("Gas/Total"); }
+        </div>
+        <div class="panel-group" id="accordion">
+            @{ Html.RenderPartial("Gas/Steps"); }
+        </div>
+    </div>
+}
+<script>
+    function UpdateGas(ajaxContext) {
+        $.ajax({
+            url: "/Calculate/GetValueGas",
+            cache: false,
+            type: "GET",
+            dataType: "json",
+            success: function (answer) {
+                $('*[id^="alert"]').empty();
+                for (var i = 0; i < answer.length; i++) {
+                    var Step = answer[i];
+                    for (var j = 0; j < Step.AllInputs.length; j++) {
+                        var inputs = Step.AllInputs[j];
+                        if (inputs.Error) {
+                            $('#alert' + inputs.Name).html(inputs.Error);
+                            if ($('[href*="collapse' + Step.Number + '"]').hasClass('collapsed')) {
+                                jQuery('[href*="collapse' + Step.Number + '"]').click();
+                            }
+                        }
+                        else {
+                            $('#' + inputs.Name).val(inputs.Value);
+                        }
+                    }
+                    if (Step.FinishValue != null) {
+                        if ($('#Step' + Step.Number + 'Header').hasClass('invisible')) {
+                            $('#Step' + Step.Number + 'Header').removeClass('invisible');
+                        }
+                        $('#Step' + Step.Number + 'HeaderValue').html(Step.FinishValue);
+                        if(Step.Number == 7){
+                            $('#Answer').val('Рассчитать категорию');
+                        }
+                        if(Step.Number == 8){
+                            $('#Answer').prependTo('#accordion').slideDown();
+                            $('#Answer').val('Пересчитать категорию');
+                            $("html, body").animate({ scrollTop: 0 });
+                        }
+                        if (Step.Number == 9) {
+                            var value = parseInt(Step.FinishValue, 10);
+                            if (value < 5) {
+                                if (!$('#Category').hasClass('invisible')) {
+                                    $('#Category').addClass('invisible');
+                                }
+                            }
+                            if (value >= 5) {
+                                if ($('#Category').hasClass('invisible')) {
+                                    $('#Category').removeClass('invisible');
+                                }
+                            }
+                        }
+                    }
+                }
+                if ($('#Answer').val() != 'Пересчитать категорию') {
+                    $('#Answer').prependTo('#Steps').slideDown();
+                }
+            }
+        });
+    }
+</script>

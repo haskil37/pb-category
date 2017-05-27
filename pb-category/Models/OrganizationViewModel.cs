@@ -32,10 +32,6 @@ namespace pb_category.Models
         public string Width { get; set; }
         [ValidateDimensions]
         public string Height { get; set; }
-        public List<int> A { get; set; }
-        public List<int> B { get; set; }
-        public List<int> C { get; set; }
-        public List<int> D { get; set; }
-        public List<int> E { get; set; }
+        public string Category { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace pb_category.Models
 {
-    public class CalculateAViewModels
+    public class CalculateGasViewModel
     {
         public int GlobalStep { get; set; }
         public string Pmax { get; set; }
