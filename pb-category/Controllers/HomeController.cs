@@ -42,6 +42,11 @@ namespace pb_category.Controllers
                     return RedirectToAction("HFL", "Calculate");
                 case "B3":
                     goto case "B2";
+                case "C1":
+                    Session["Category"] = "C";
+                    return RedirectToAction("DCS", "Calculate");
+                case "C2":
+                    goto case "C1";
                 default:
                     return View(model);
             }

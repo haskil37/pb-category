@@ -33,7 +33,7 @@ namespace pb_category.Models
         public string Fi { get; set; }
         public string Nu { get; set; }
         public string MW { get; set; }
-        public string Pn { get; set; }
+        public string Tp2 { get; set; }
         public string Ca { get; set; }
         public string V { get; set; }
         public string Vkoef { get; set; }

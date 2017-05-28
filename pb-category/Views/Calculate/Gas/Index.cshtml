@@ -50,11 +50,11 @@
                         }
                         $('#Step' + Step.Number + 'HeaderValue').html(Step.FinishValue);
                         if(Step.Number == 7){
-                            $('#Answer').val('Рассчитать категорию');
+                            $('#Next').val('Рассчитать категорию');
                         }
                         if(Step.Number == 8){
-                            $('#Answer').prependTo('#accordion').slideDown();
-                            $('#Answer').val('Пересчитать категорию');
+                            $('#Next').prependTo('#accordion').slideDown();
+                            $('#Next').val('Пересчитать категорию');
                             $("html, body").animate({ scrollTop: 0 });
                         }
                         if (Step.Number == 9) {
@@ -72,8 +72,8 @@
                         }
                     }
                 }
-                if ($('#Answer').val() != 'Пересчитать категорию') {
-                    $('#Answer').prependTo('#Steps').slideDown();
+                if ($('#Next').val() != 'Пересчитать категорию') {
+                    $('#Next').prependTo('#Steps').slideDown();
                 }
             }
         });

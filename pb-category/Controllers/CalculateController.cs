@@ -30,6 +30,12 @@ namespace pb_category.Controllers
 
             return View("Gas/Index", new CalculateGasViewModel());
         }
+        public PartialViewResult RLAdd()
+        {
+            GlobalModelGas.R.Add(null);
+            GlobalModelGas.L.Add(null);
+            return PartialView("RLAdd", GlobalModelGas);
+        }
         public ActionResult HFL()
         {
             GlobalModelHFL = new CalculateHFLViewModel()
@@ -44,12 +50,7 @@ namespace pb_category.Controllers
             return View("HFL/Index", new CalculateHFLViewModel());
         }
 
-        public PartialViewResult RLAdd()
-        {
-            GlobalModelGas.R.Add(null);
-            GlobalModelGas.L.Add(null);
-            return PartialView("RLAdd", GlobalModelGas);
-        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult StepsGas(CalculateGasViewModel model, string submitButton)
@@ -59,7 +60,7 @@ namespace pb_category.Controllers
             if (GlobalModelGas.GlobalStep >= 1)
             {
                 Pmax = GetValue(model.Pmax, ref CurrentStep);
-                if (Pmax == 0)
+                if (Pmax < 0)
                 {
                     Pmax = 900;
                     CurrentStep++;
@@ -69,7 +70,7 @@ namespace pb_category.Controllers
             if (GlobalModelGas.GlobalStep >= 2)
             {
                 P0 = GetValue(model.P0, ref CurrentStep);
-                if (P0 == 0)
+                if (P0 < 0)
                 {
                     P0 = 101;
                     CurrentStep++;
@@ -79,7 +80,7 @@ namespace pb_category.Controllers
             if (GlobalModelGas.GlobalStep >= 3)
             {
                 Vcb = GetValue(model.Vcb, ref CurrentStep);
-                if (Vcb != 0)
+                if (Vcb > 0)
                     GlobalModelGas.Vcb = Vcb.ToString();
                 else
                 {
@@ -97,7 +98,7 @@ namespace pb_category.Controllers
             if (GlobalModelGas.GlobalStep >= 4)
             {
                 Kh = GetValue(model.Kh, ref CurrentStep);
-                if (Kh == 0)
+                if (Kh < 0)
                 {
                     Kh = 3;
                     CurrentStep++;
@@ -107,7 +108,7 @@ namespace pb_category.Controllers
             if (GlobalModelGas.GlobalStep >= 5)
             {
                 Z = GetValue(model.Z, ref CurrentStep);
-                if (Z != 0)
+                if (Z > 0)
                     GlobalModelGas.Z = Z.ToString();
                 else
                     GlobalModelGas.Z = "none";
@@ -119,22 +120,19 @@ namespace pb_category.Controllers
                     double M, V0, Tp;
                     int FullData = 0;
                     M = GetValue(model.M, ref FullData);
-                    if (M != 0)
+                    if (M > 0)
                         GlobalModelGas.M = M.ToString();
                     else
                         GlobalModelGas.M = "none";
                     V0 = GetValue(model.V0, ref FullData);
                     if (V0 > 0)
                         GlobalModelGas.V0 = V0.ToString();
-                    else if (V0 == 0)
-                    {
-                        FullData--;
-                        GlobalModelGas.V0 = "none";
-                    }
                     else
                         GlobalModelGas.V0 = "none";
+                    if (V0 == 0)
+                        FullData--;
                     Tp = GetValue(model.Tp, ref FullData);
-                    if (Tp != 0)
+                    if (Tp > 0)
                         GlobalModelGas.Tp = Tp.ToString();
                     else
                         GlobalModelGas.Tp = "none";
@@ -153,7 +151,7 @@ namespace pb_category.Controllers
                     GlobalModelGas.V0 = model.V0;
                     GlobalModelGas.Tp = model.Tp;
                     Rogp = GetValue(model.Rogp, ref CurrentStep);
-                    if (Rogp != 0)
+                    if (Rogp > 0)
                         GlobalModelGas.Rogp = Rogp.ToString();
                     else
                         GlobalModelGas.Rogp = "none";
@@ -166,22 +164,22 @@ namespace pb_category.Controllers
                     double Beta, Nc, Nh, Nx, No;
                     int FullData = 0;
                     Nc = GetValue(model.Nc, ref FullData);
-                    if (Nc != 0)
+                    if (Nc > 0)
                         GlobalModelGas.Nc = Nc.ToString();
                     else
                         GlobalModelGas.Nc = "none";
                     Nh = GetValue(model.Nh, ref FullData);
-                    if (Nh != 0)
+                    if (Nh > 0)
                         GlobalModelGas.Nh = Nh.ToString();
                     else
                         GlobalModelGas.Nh = "none";
                     Nx = GetValue(model.Nx, ref FullData);
-                    if (Nx != 0)
+                    if (Nx > 0)
                         GlobalModelGas.Nx = Nx.ToString();
                     else
                         GlobalModelGas.Nx = "none";
                     No = GetValue(model.No, ref FullData);
-                    if (No != 0)
+                    if (No > 0)
                         GlobalModelGas.No = No.ToString();
                     else
                         GlobalModelGas.No = "none";
@@ -203,7 +201,7 @@ namespace pb_category.Controllers
                     GlobalModelGas.Nx = model.Nx;
                     GlobalModelGas.No = model.No;
                     Cct = GetValue(model.Cct, ref CurrentStep);
-                    if (Cct != 0)
+                    if (Cct > 0)
                         GlobalModelGas.Cct = Cct.ToString();
                     else
                         GlobalModelGas.Cct = "none";
@@ -216,32 +214,32 @@ namespace pb_category.Controllers
                     double Rog, P1, P2, V, R, Q, T, L;
                     int FullData = 0;
                     Rog = GetValue(model.Rog, ref FullData);
-                    if (Rog != 0)
+                    if (Rog > 0)
                         GlobalModelGas.Rog = Rog.ToString();
                     else
                         GlobalModelGas.Rog = "none";
                     P1 = GetValue(model.P1, ref FullData);
-                    if (P1 != 0)
+                    if (P1 > 0)
                         GlobalModelGas.P1 = P1.ToString();
                     else
                         GlobalModelGas.P1 = "none";
                     P2 = GetValue(model.P2, ref FullData);
-                    if (P2 != 0)
+                    if (P2 > 0)
                         GlobalModelGas.P2 = P2.ToString();
                     else
                         GlobalModelGas.P2 = "none";
                     V = GetValue(model.V, ref FullData);
-                    if (V != 0)
+                    if (V > 0)
                         GlobalModelGas.V = V.ToString();
                     else
                         GlobalModelGas.V = "none";
                     Q = GetValue(model.Q, ref FullData);
-                    if (Q != 0)
+                    if (Q > 0)
                         GlobalModelGas.Q = Q.ToString();
                     else
                         GlobalModelGas.Q = "none";
                     T = GetValue(model.T, ref FullData);
-                    if (T != 0)
+                    if (T > 0)
                         GlobalModelGas.T = T.ToString();
                     else
                         GlobalModelGas.T = "none";
@@ -252,7 +250,7 @@ namespace pb_category.Controllers
                     foreach (var item in model.R)
                     {
                         R = GetValue(item, ref countR);
-                        if (R != 0)
+                        if (R > 0)
                             GlobalModelGas.R[temp] = R.ToString();
                         else
                             GlobalModelGas.R[temp] = "none";
@@ -263,7 +261,7 @@ namespace pb_category.Controllers
                     foreach (var item in model.L)
                     {
                         L = GetValue(item, ref countL);
-                        if (L != 0)
+                        if (L > 0)
                             GlobalModelGas.L[temp] = L.ToString();
                         else
                             GlobalModelGas.L[temp] = "none";
@@ -298,7 +296,7 @@ namespace pb_category.Controllers
                     GlobalModelGas.T = model.T;
                     GlobalModelGas.L = model.L;
                     Mkg = GetValue(model.Mkg, ref CurrentStep);
-                    if (Mkg != 0)
+                    if (Mkg > 0)
                         GlobalModelGas.Mkg = Mkg.ToString();
                     else
                         GlobalModelGas.Mkg = "none";
@@ -325,14 +323,14 @@ namespace pb_category.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult StepsHFL(CalculateGasViewModel model, string submitButton)
+        public ActionResult StepsHFL(CalculateHFLViewModel model, string submitButton)
         {
             int CurrentStep = 1;
             double Pmax = 0, P0 = 0, Vcb = 0, Kh = 0, Z = 0, Rogp = 0, Cct = 0, Mkg = 0;
             if (GlobalModelHFL.GlobalStep >= 1)
             {
                 Pmax = GetValue(model.Pmax, ref CurrentStep);
-                if (Pmax == 0)
+                if (Pmax < 0)
                 {
                     Pmax = 900;
                     CurrentStep++;
@@ -342,7 +340,7 @@ namespace pb_category.Controllers
             if (GlobalModelHFL.GlobalStep >= 2)
             {
                 P0 = GetValue(model.P0, ref CurrentStep);
-                if (P0 == 0)
+                if (P0 < 0)
                 {
                     P0 = 101;
                     CurrentStep++;
@@ -352,7 +350,7 @@ namespace pb_category.Controllers
             if (GlobalModelHFL.GlobalStep >= 3)
             {
                 Vcb = GetValue(model.Vcb, ref CurrentStep);
-                if (Vcb != 0)
+                if (Vcb > 0)
                     GlobalModelHFL.Vcb = Vcb.ToString();
                 else
                 {
@@ -370,7 +368,7 @@ namespace pb_category.Controllers
             if (GlobalModelHFL.GlobalStep >= 4)
             {
                 Kh = GetValue(model.Kh, ref CurrentStep);
-                if (Kh == 0)
+                if (Kh < 0)
                 {
                     Kh = 3;
                     CurrentStep++;
@@ -380,7 +378,7 @@ namespace pb_category.Controllers
             if (GlobalModelHFL.GlobalStep >= 5)
             {
                 Z = GetValue(model.Z, ref CurrentStep);
-                if (Z != 0)
+                if (Z >= 0)
                     GlobalModelHFL.Z = Z.ToString();
                 else
                     GlobalModelHFL.Z = "none";
@@ -392,22 +390,19 @@ namespace pb_category.Controllers
                     double M, V0, Tp;
                     int FullData = 0;
                     M = GetValue(model.M, ref FullData);
-                    if (M != 0)
+                    if (M > 0)
                         GlobalModelHFL.M = M.ToString();
                     else
                         GlobalModelHFL.M = "none";
                     V0 = GetValue(model.V0, ref FullData);
                     if (V0 > 0)
                         GlobalModelHFL.V0 = V0.ToString();
-                    else if (V0 == 0)
-                    {
-                        FullData--;
-                        GlobalModelHFL.V0 = "none";
-                    }
                     else
                         GlobalModelHFL.V0 = "none";
+                    if (V0 == 0)
+                        FullData--;
                     Tp = GetValue(model.Tp, ref FullData);
-                    if (Tp != 0)
+                    if (Tp > 0)
                         GlobalModelHFL.Tp = Tp.ToString();
                     else
                         GlobalModelHFL.Tp = "none";
@@ -426,7 +421,7 @@ namespace pb_category.Controllers
                     GlobalModelHFL.V0 = model.V0;
                     GlobalModelHFL.Tp = model.Tp;
                     Rogp = GetValue(model.Rogp, ref CurrentStep);
-                    if (Rogp != 0)
+                    if (Rogp > 0)
                         GlobalModelHFL.Rogp = Rogp.ToString();
                     else
                         GlobalModelHFL.Rogp = "none";
@@ -439,22 +434,22 @@ namespace pb_category.Controllers
                     double Beta, Nc, Nh, Nx, No;
                     int FullData = 0;
                     Nc = GetValue(model.Nc, ref FullData);
-                    if (Nc != 0)
+                    if (Nc > 0)
                         GlobalModelHFL.Nc = Nc.ToString();
                     else
                         GlobalModelHFL.Nc = "none";
                     Nh = GetValue(model.Nh, ref FullData);
-                    if (Nh != 0)
+                    if (Nh > 0)
                         GlobalModelHFL.Nh = Nh.ToString();
                     else
                         GlobalModelHFL.Nh = "none";
                     Nx = GetValue(model.Nx, ref FullData);
-                    if (Nx != 0)
+                    if (Nx > 0)
                         GlobalModelHFL.Nx = Nx.ToString();
                     else
                         GlobalModelHFL.Nx = "none";
                     No = GetValue(model.No, ref FullData);
-                    if (No != 0)
+                    if (No > 0)
                         GlobalModelHFL.No = No.ToString();
                     else
                         GlobalModelHFL.No = "none";
@@ -476,7 +471,7 @@ namespace pb_category.Controllers
                     GlobalModelHFL.Nx = model.Nx;
                     GlobalModelHFL.No = model.No;
                     Cct = GetValue(model.Cct, ref CurrentStep);
-                    if (Cct != 0)
+                    if (Cct > 0)
                         GlobalModelHFL.Cct = Cct.ToString();
                     else
                         GlobalModelHFL.Cct = "none";
@@ -484,74 +479,136 @@ namespace pb_category.Controllers
             }
             if (GlobalModelHFL.GlobalStep >= 8)
             {
-                //if (submitButton == "mButton")
-                //{
-                //    double Rog, P1, P2, V, R, Q, T, L;
-                //    int FullData = 0;
-                //    Rog = GetValue(model.Rog, ref FullData);
-                //    if (Rog != 0)
-                //        GlobalModelB.Rog = Rog.ToString();
-                //    else
-                //        GlobalModelB.Rog = "none";
-                //    P1 = GetValue(model.P1, ref FullData);
-                //    if (P1 != 0)
-                //        GlobalModelB.P1 = P1.ToString();
-                //    else
-                //        GlobalModelB.P1 = "none";
-                //    P2 = GetValue(model.P2, ref FullData);
-                //    if (P2 != 0)
-                //        GlobalModelB.P2 = P2.ToString();
-                //    else
-                //        GlobalModelB.P2 = "none";
-                //    V = GetValue(model.V, ref FullData);
-                //    if (V != 0)
-                //        GlobalModelB.V = V.ToString();
-                //    else
-                //        GlobalModelB.V = "none";
-                //    Q = GetValue(model.Q, ref FullData);
-                //    if (Q != 0)
-                //        GlobalModelB.Q = Q.ToString();
-                //    else
-                //        GlobalModelB.Q = "none";
-                //    T = GetValue(model.T, ref FullData);
-                //    if (T != 0)
-                //        GlobalModelB.T = T.ToString();
-                //    else
-                //        GlobalModelB.T = "none";
+                GlobalModelHFL.Mkg = "none";
+                double Mr, Memk, Msvokr;
+                if (submitButton == "WButton")
+                {
+                    double Tp2, Ca, A, B, MW, Nu;
+                    int fullW = 0;
+                    if (model.Tp == null)
+                    {
+                        Tp2 = GetValue(model.Tp2, ref fullW);
+                        if (Tp2 > 0)
+                            GlobalModelHFL.Tp2 = Tp2.ToString();
+                        else
+                            GlobalModelHFL.Tp2 = "none";
+                    }
+                    else
+                    {
+                        Tp2 = GetValue(model.Tp, ref fullW);
+                        GlobalModelHFL.Tp2 = Tp2.ToString();
+                    }
+                    A = GetValue(model.A, ref fullW);
+                    if (A > 0)
+                        GlobalModelHFL.A = A.ToString();
+                    else
+                        GlobalModelHFL.A = "none";
+                    B = GetValue(model.B, ref fullW);
+                    if (B > 0)
+                        GlobalModelHFL.B = B.ToString();
+                    else
+                        GlobalModelHFL.B = "none";
+                    Ca = GetValue(model.Ca, ref fullW);
+                    if (Ca > 0)
+                        GlobalModelHFL.Ca = Ca.ToString();
+                    else
+                        GlobalModelHFL.Ca = "none";
+                    MW = GetValue(model.MW, ref fullW);
+                    if (MW > 0)
+                        GlobalModelHFL.MW = MW.ToString();
+                    else
+                        GlobalModelHFL.MW = "none";
+                    Nu = GetValue(model.Nu, ref fullW);
+                    if (Nu > 0)
+                        GlobalModelHFL.Nu = Nu.ToString();
+                    else
+                        GlobalModelHFL.Nu = "none";
 
+                    if (fullW == 6)
+                    {
+                        double W, Pn;
+                        Pn = Math.Pow(10, A - B / (Tp2 + Ca));
+                        W = Math.Pow(10, -6) * Nu * Pn * Math.Pow(MW, 0.5);
+                        GlobalModelHFL.W = W.ToString();
+                    }
+                    else
+                        GlobalModelHFL.W = "none-calculate";
+                }
+                if (submitButton == "MrButton")
+                {
+                    double W, V, koef, T;
+                    int fullMr = 0;
+                    W = GetValue(model.W, ref fullMr);
+                    if (W > 0)
+                        GlobalModelHFL.W = W.ToString();
+                    else
+                        GlobalModelHFL.W = "none";
+                    V = GetValue(model.V, ref fullMr);
+                    if (V > 0)
+                        GlobalModelHFL.V = V.ToString();
+                    else
+                        GlobalModelHFL.V = "none";
+                    T = GetValue(model.T, ref fullMr);
+                    if (T > 0)
+                        GlobalModelHFL.T = T.ToString();
+                    else
+                        GlobalModelHFL.T = "none";
+                    koef = GetValue(model.Vkoef, ref fullMr);
+                    if (koef > 0)
+                        GlobalModelHFL.Vkoef = koef.ToString();
+                    else
+                        GlobalModelHFL.Vkoef = "none";
+                    if (fullMr == 4)
+                    {
+                        double Fi, S;
+                        Fi = V * koef;
+                        S = Convert.ToDouble(Session["Length"]) * Convert.ToDouble(Session["Width"]);
 
+                        if (Fi > S)
+                            Fi = S;
 
+                        Mr = W * T * Fi;
+                        GlobalModelHFL.Mr = Mr.ToString();
+                    }
+                    else
+                        GlobalModelHFL.Mr = "none-calculate";
+                }
+                if (submitButton == "mButton")
+                {
+                    int FullData = 0;
+                    Mr = GetValue(model.Mr, ref FullData);
+                    if (Mr > 0)
+                        GlobalModelHFL.Mr = Mr.ToString();
+                    else
+                        GlobalModelHFL.Mr = "none";
+                    Memk = GetValue(model.Memk, ref FullData);
+                    if (Memk > 0)
+                        GlobalModelHFL.Memk = Memk.ToString();
+                    else
+                        GlobalModelHFL.Memk = "none";
+                    Msvokr = GetValue(model.Msvokr, ref FullData);
+                    if (Msvokr > 0)
+                        GlobalModelHFL.Msvokr = Msvokr.ToString();
+                    else
+                        GlobalModelHFL.Msvokr = "none";
 
-
-
-                //    if (FullData == 6)
-                //    {
-                //        double Va, Vt, V2 = 0;
-                //        Va = 0.001 * P1 * V;
-                //        Vt = Q * T + Math.PI * P2 * V2;
-                //        Mkg = Rog * (Va + Vt);
-                //        GlobalModelB.Mkg = Mkg.ToString();
-                //        CurrentStep++;
-                //    }
-                //    else
-                //        GlobalModelB.Mkg = "none-calculate";
-                //}
-                //else
-                //{
-                //    GlobalModelB.Rog = model.Rog;
-                //    GlobalModelB.P1 = model.P1;
-                //    GlobalModelB.P2 = model.P2;
-                //    GlobalModelB.V = model.V;
-                //    GlobalModelB.R = model.R;
-                //    GlobalModelB.Q = model.Q;
-                //    GlobalModelB.T = model.T;
-                //    GlobalModelB.L = model.L;
-                //    Mkg = GetValue(model.Mkg, ref CurrentStep);
-                //    if (Mkg != 0)
-                //        GlobalModelB.Mkg = Mkg.ToString();
-                //    else
-                //        GlobalModelB.Mkg = "none";
-                //}
+                    if (FullData == 3)
+                    {
+                        Mkg = Mr + Memk + Msvokr;
+                        GlobalModelHFL.Mkg = Mkg.ToString();
+                        CurrentStep++;
+                    }
+                    else
+                        GlobalModelHFL.Mkg = "none-calculate";
+                }
+                if (submitButton != "MrButton" && submitButton != "WButton" && submitButton != "mButton")
+                {
+                    Mkg = GetValue(model.Mkg, ref CurrentStep);
+                    if (Mkg > 0)
+                        GlobalModelHFL.Mkg = Mkg.ToString();
+                    else
+                        GlobalModelHFL.Mkg = "none";
+                }
             }
             if (CurrentStep == 9) //Если все нужные 8 шагов есть, то считаем категорию
             {
@@ -579,7 +636,7 @@ namespace pb_category.Controllers
         {
             if (!string.IsNullOrEmpty(value))
                 value = value.Replace(".", ",").Trim();
-            double parse = 0;
+            double parse = -1;
             if (!string.IsNullOrEmpty(value) && double.TryParse(value, out parse))
                 CurrentStep++;
             return parse;
@@ -1093,7 +1150,7 @@ namespace pb_category.Controllers
                 values.Add(step);
             }
             #endregion
-            #region DeplaP
+            #region DeltaP
             if (GlobalModelGas.DeltaP != "none")
             {
                 Step step = new Step()
@@ -1439,9 +1496,264 @@ namespace pb_category.Controllers
             }
             #endregion
             #region 
+            if (GlobalModelHFL.Mkg != "none" && GlobalModelHFL.Mkg != "none-calculate")
+            {
+                Step step = new Step()
+                {
+                    Number = 8,
+                    FinishValue = GlobalModelHFL.Mkg,
+                    AllInputs = new List<Input> {
 
+                        new Input()
+                        {
+                            Name = "Mkg",
+                            Value = GlobalModelHFL.Mkg
+                        },
+                    }
+                };
+                values.Add(step);
+            }
+            else
+            {
+                Step step = new Step()
+                {
+                    Number = 8,
+                    AllInputs = new List<Input> {
+                        new Input()
+                        {
+                            Name = "Mkg",
+                            Error = "Не указана масса",
+                        },
+                    }
+                };
+                //Если была нажата кнопка рассчета всей массы
+                if (GlobalModelHFL.Mkg == "none-calculate")
+                {
+                    if (GlobalModelHFL.Mr == "none")
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "Mr",
+                                Error = "Не указано",
+                            }
+                        );
+                    else
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "Mr",
+                                Value = GlobalModelHFL.Mr
+                            }
+                        );
+                    if (GlobalModelHFL.Memk == "none")
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "Memk",
+                                Error = "Не указано",
+                            }
+                        );
+                    else
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "Memk",
+                                Value = GlobalModelHFL.Memk
+                            }
+                        );
+                    if (GlobalModelHFL.Msvokr == "none")
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "Msvokr",
+                                Error = "Не указано",
+                            }
+                        );
+                    else
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "Msvokr",
+                                Value = GlobalModelHFL.Msvokr
+                            }
+                        );
+                }
+
+                //Если была нажата кнопка рассчета Mr
+                if (GlobalModelHFL.Mr != "none" && GlobalModelHFL.Mr != "none-calculate")
+                {
+                    step.AllInputs.Add(
+                        new Input()
+                        {
+                            Name = "Mr",
+                            Value = GlobalModelHFL.Mr
+                        });
+
+                }
+                else
+                { 
+                    if (GlobalModelHFL.W == "none")
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "W",
+                                Error = "Не указано",
+                            }
+                        );
+                    else
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "W",
+                                Value = GlobalModelHFL.W
+                            }
+                        );
+                    if (GlobalModelHFL.V == "none")
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "V",
+                                Error = "Не указано",
+                            }
+                        );
+                    else
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "V",
+                                Value = GlobalModelHFL.V
+                            }
+                        );
+                    if (GlobalModelHFL.T == "none")
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "T",
+                                Error = "Не указано",
+                            }
+                        );
+                    else
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "T",
+                                Value = GlobalModelHFL.T
+                            }
+                        );
+                }
+                //Если была нажата кнопка рассчета W
+                if (GlobalModelHFL.W != "none" && GlobalModelHFL.W != "none-calculate")
+                {
+                    step.AllInputs.Add(
+                        new Input()
+                        {
+                            Name = "W",
+                            Value = GlobalModelHFL.W
+                        });
+                }
+                else
+                { 
+                    if (GlobalModelHFL.Nu == "none")
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "Nu",
+                                Error = "Не указано",
+                            }
+                        );
+                    else
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "Nu",
+                                Value = GlobalModelHFL.Nu
+                            }
+                        );
+                    if (GlobalModelHFL.MW == "none")
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "MW",
+                                Error = "Не указано",
+                            }
+                        );
+                    else
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "MW",
+                                Value = GlobalModelHFL.MW
+                            }
+                        );
+                    if (GlobalModelHFL.A == "none")
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "A",
+                                Error = "Не указано",
+                            }
+                        );
+                    else
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "A",
+                                Value = GlobalModelHFL.A
+                            }
+                        );
+                    if (GlobalModelHFL.B == "none")
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "B",
+                                Error = "Не указано",
+                            }
+                        );
+                    else
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "B",
+                                Value = GlobalModelHFL.B
+                            }
+                        );
+                    if (GlobalModelHFL.Ca == "none")
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "Ca",
+                                Error = "Не указано",
+                            }
+                        );
+                    else
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "Ca",
+                                Value = GlobalModelHFL.Ca
+                            }
+                        );
+                    if (GlobalModelHFL.Tp2 == "none")
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "Tp2",
+                                Error = "Не указано",
+                            }
+                        );
+                    else
+                        step.AllInputs.Add(
+                            new Input()
+                            {
+                                Name = "Tp2",
+                                Value = GlobalModelHFL.Tp2
+                            }
+                        );
+                }
+                values.Add(step);
+            }
             #endregion
-            #region DeplaP
+            #region DeltaP
             if (GlobalModelHFL.DeltaP != "none")
             {
                 Step step = new Step()
