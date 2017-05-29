@@ -1,0 +1,27 @@
+﻿<h4>
+    <span class="MathJax" id="MathJax-Element-255-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1065" style="width: 4.919em; display: inline-block;"><span style="display: inline-block; position: relative; width: 4.085em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(0.71em 1004.04em 3.044em -999.998em); top: -2.206em; left: 0em;"><span class="mrow" id="MathJax-Span-1066"><span class="mi" id="MathJax-Span-1067" style="font-family: MathJax_Math-italic;">g<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.002em;"></span></span><span class="mo" id="MathJax-Span-1068" style="font-family: MathJax_Main; padding-left: 0.294em;">=</span><span class="mfrac" id="MathJax-Span-1069" style="padding-left: 0.294em;"><span style="display: inline-block; position: relative; width: 0.919em; height: 0px; margin-right: 0.127em; margin-left: 0.127em;"><span style="position: absolute; clip: rect(3.169em 1000.75em 4.335em -999.998em); top: -4.665em; left: 50%; margin-left: -0.373em;"><span class="mi" id="MathJax-Span-1070" style="font-family: MathJax_Math-italic;">Q</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(3.169em 1000.63em 4.169em -999.998em); top: -3.331em; left: 50%; margin-left: -0.331em;"><span class="mi" id="MathJax-Span-1071" style="font-family: MathJax_Math-italic;">S<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.044em;"></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(0.877em 1000.92em 1.169em -999.998em); top: -1.248em; left: 0em;"><span style="display: inline-block; overflow: hidden; vertical-align: 0em; border-top: 1.4px solid; width: 0.919em; height: 0px;"></span><span style="display: inline-block; width: 0px; height: 1.044em;"></span></span></span></span><span class="mo" id="MathJax-Span-1072" style="font-family: MathJax_Main; padding-left: 0.294em;">=</span></span><span style="display: inline-block; width: 0px; height: 2.21em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.897em; border-left: 0px solid; width: 0px; height: 2.603em;"></span></span></nobr></span>
+    <span id="TotalHeaderValue"></span>
+    <span id="TotalHeader" class="invisible">
+        МДж·м<sup>-2</sup>    
+   </span>
+@if (ViewBag.GategoryEnd == "end")
+{
+    if (ViewBag.GategoryStep == "C1")
+    {
+        <span id="Category" class="circleC"><u>В1</u></span>
+    }
+    if (ViewBag.GategoryStep == "C2")
+    {
+        <span id="Category" class="circleC"><u>В2</u></span>
+    }
+    if (ViewBag.GategoryStep == "C3")
+    {
+        <span id="Category" class="circleC"><u>В3</u></span>
+    }
+    if (ViewBag.GategoryStep == "C4")
+    {
+        <span id="Category" class="circleC"><u>В4</u></span>
+    }
+    @Html.ActionLink("Добавить в здание", "ViewOrganization", "Home", null, new { @class = "btn" })
+}
+</h4>

@@ -1,0 +1,196 @@
+﻿<div class="total">
+    @{ Html.RenderPartial("DCS/Total"); }
+</div>
+
+@Html.ValidationSummary("", new { @class = "text-danger" })
+<div class="well">
+    <span class="MathJax" id="MathJax-Element-338-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1636" style="width: 7.669em; display: inline-block;"><span style="display: inline-block; position: relative; width: 6.377em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(0.502em 1006.38em 3.544em -999.998em); top: -2.206em; left: 0em;"><span class="mrow" id="MathJax-Span-1637"><span class="mi" id="MathJax-Span-1638" style="font-family: MathJax_Math-italic;">Q</span><span class="mo" id="MathJax-Span-1639" style="font-family: MathJax_Main; padding-left: 0.294em;">=</span><span class="munderover" id="MathJax-Span-1640" style="padding-left: 0.294em;"><span style="display: inline-block; position: relative; width: 1.46em; height: 0px;"><span style="position: absolute; clip: rect(2.919em 1001.38em 4.585em -999.998em); top: -3.998em; left: 0em;"><span class="mo" id="MathJax-Span-1641" style="font-family: MathJax_Size2; vertical-align: 0em;">∑</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(3.419em 1001.09em 4.252em -999.998em); top: -2.915em; left: 0.169em;"><span class="texatom" id="MathJax-Span-1642"><span class="mrow" id="MathJax-Span-1643"><span class="mi" id="MathJax-Span-1644" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span><span class="mo" id="MathJax-Span-1645" style="font-size: 70.7%; font-family: MathJax_Main;">=</span><span class="mn" id="MathJax-Span-1646" style="font-size: 70.7%; font-family: MathJax_Main;">1</span></span></span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(3.46em 1000.42em 4.127em -999.998em); top: -5.165em; left: 0.502em;"><span class="mi" id="MathJax-Span-1647" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="msubsup" id="MathJax-Span-1648"><span style="display: inline-block; position: relative; width: 1.127em; height: 0px;"><span style="position: absolute; clip: rect(3.169em 1000.75em 4.169em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1649" style="font-family: MathJax_Math-italic;">G</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.831em; left: 0.794em;"><span class="mi" id="MathJax-Span-1650" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="msubsup" id="MathJax-Span-1651"><span style="display: inline-block; position: relative; width: 1.46em; height: 0px;"><span style="position: absolute; clip: rect(3.169em 1000.75em 4.335em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1652" style="font-family: MathJax_Math-italic;">Q</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(3.544em 1000.42em 4.252em -999.998em); top: -4.498em; left: 0.794em;"><span class="mi" id="MathJax-Span-1653" style="font-size: 70.7%; font-family: MathJax_Math-italic;">p</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(1.46em 1000.67em 2.419em -999.998em); top: -1.748em; left: 0.794em;"><span class="texatom" id="MathJax-Span-1654"><span class="mrow" id="MathJax-Span-1655"><span class="texatom" id="MathJax-Span-1656"><span class="mrow" id="MathJax-Span-1657"><span class="mo" id="MathJax-Span-1658" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">н</span></span></span></span><span class="mi" id="MathJax-Span-1659" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.21em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -1.498em; border-left: 0px solid; width: 0px; height: 3.402em;"></span></span></nobr></span>
+    <p>Пожарная нагрузка, включающая в себя различные сочетания (смесь) легковоспламеняющихся, горючих, трудногорючих жидкостей, твердых горючих и трудногорючих веществ и материалов в пределах пожароопасного участка</p>
+    <table class="table-bordered material" id="addRow">
+        <tr>
+            <th width="25%">Наименование вещества (материала)</th>
+            <th width="25%">Количество материала пожарной нагрузки, кг <br />G<sub>i</sub></th>
+            <th width="25%">Низшая теплота сгорания, МДж·кг<sup>-1</sup><br /><span class="MathJax" id="MathJax-Element-255-Frame" tabindex="0" style="text-align: center;"><nobr><span class="math" id="MathJax-Span-1062" style="width: 1.752em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.46em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.252em 1001.46em 2.835em -999.998em); top: -2.165em; left: 0em;"><span class="mrow" id="MathJax-Span-1063"><span class="msubsup" id="MathJax-Span-1064"><span style="display: inline-block; position: relative; width: 1.46em; height: 0px;"><span style="position: absolute; clip: rect(3.169em 1000.75em 4.335em -999.998em); top: -3.998em; left: 0em;"><span class="mi" id="MathJax-Span-1065" style="font-family: MathJax_Math-italic;">Q</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(3.544em 1000.42em 4.252em -999.998em); top: -4.498em; left: 0.794em;"><span class="mi" id="MathJax-Span-1066" style="font-size: 70.7%; font-family: MathJax_Math-italic;">p</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; clip: rect(1.46em 1000.67em 2.419em -999.998em); top: -1.748em; left: 0.794em;"><span class="texatom" id="MathJax-Span-1067"><span class="mrow" id="MathJax-Span-1068"><span class="texatom" id="MathJax-Span-1069"><span class="mrow" id="MathJax-Span-1070"><span class="mo" id="MathJax-Span-1071" style="font-size: 70.7%;"><span style="font-family: STIXGeneral, &quot;Arial Unicode MS&quot;, serif; font-size: 83%; font-style: normal; font-weight: normal;">н</span></span></span></span><span class="mi" id="MathJax-Span-1072" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.169em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.698em; border-left: 0px solid; width: 0px; height: 1.702em;"></span></span></nobr></span></th>
+            <th width="25%">Q, МДж вещества (материала)</th>
+        </tr>
+        @for (int i = 0; i < Model.Name.Count; i++)
+        {
+            <tr id="Material@(i)">
+                <td><input id="Name" name="Name" type="text" value="@Model.Name[i]"></td>
+                <td>
+                    <input id="G" name="G" type="text" value="@Model.G[i]" onkeyup="calc($(this))">
+                    @if (!string.IsNullOrEmpty(ViewBag.G) && string.IsNullOrEmpty(Model.G[i]))
+                    {
+                        <br><span class="text-danger">@ViewBag.G</span>
+                    }
+                </td>
+                <td>
+                    <input id="Qn" name="Qn" type="text" value="@Model.Qn[i]" onkeyup="calc($(this))">
+                    @if (!string.IsNullOrEmpty(ViewBag.Qn) && string.IsNullOrEmpty(Model.Qn[i]))
+                    {
+                        <br><span class="text-danger">@ViewBag.Qn</span>
+                    }
+                </td>
+                <td id="Q@(i)">
+                    @{
+                        double value1 = 0, value2 = 0;
+                        if (double.TryParse(Model.G[i], out value1) && double.TryParse(Model.Qn[i], out value2))
+                        {
+                            double value = value1 * value2;
+                            if (value != 0)
+                            {
+                                @value
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+        }        
+    </table>
+    <div id="addButton">Добавить материал</div>
+</div>
+<div id="buttonEnd"></div>
+<div class="well">
+    S, м<sup>2</sup> <input id="S" name="S" type="text" value="@Model.S">
+    Площадь размещения пожарной нагрузки (при расчете принимается не менее 10 м<sup>2</sup>)
+</div>
+<input type="submit" class="btn" value="Рассчитать категорию" id="Next"/>
+<div id="Hmodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                @if (ViewBag.Lpr == true)
+                {
+                    <p>
+                        Расстояние между стеллажами больше или равно @ViewBag.L?
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" value="Yes" name="submitButton" class="btn YesNo">
+                                Да
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" value="No" name="submitButton" class="btn YesNo">
+                                Нет
+                            </button>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    if (ViewBag.GategoryStep != "C1")
+                    {
+                        <p>
+                            Для проверки помещения на принадлежность к категории В2 нужно указать минимальное расстояние от поверхности пожарной нагрузки до нижнего пояса ферм перекрытия.
+                            <div class="well">
+                                H, м<sup>2</sup> <input id="H" name="H" type="text" value="@Model.H">
+                                минимальное расстояние от поверхности пожарной нагрузки до нижнего пояса ферм перекрытия
+                            </div>
+                        </p>
+                    }
+                    if (ViewBag.GategoryStep == "C4")
+                    {
+                        <p>
+                            Выберите величину критической плотности падающих лучистых потоков q<sub>кр</sub> кВт·м<sup>-2</sup>
+                        </p>
+                        <div class="HmodalRadio">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="radio" name="q" value="5" />5</td>
+                                        <td><input type="radio" name="q" value="10" />10</td>
+                                        <td><input type="radio" name="q" value="15" />15</td>
+                                        <td><input type="radio" name="q" value="20" />20</td>
+                                        <td><input type="radio" name="q" value="25" />25</td>
+                                        <td><input type="radio" name="q" value="30" />30</td>
+                                        <td><input type="radio" name="q" value="40" />40</td>
+                                        <td><input type="radio" name="q" value="50" />50</td>
+                                        <td><input type="radio" name="q" value="100" />Не знаю</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function calc(id) {
+        var parent = $(id).closest('tr').attr('id');
+        var value1 = parseFloat($('#' + parent + '> td > #G').val());
+        var value2 = parseFloat($('#' + parent + '> td > #Qn').val());
+        var count = 0;
+        var end = 1.0;
+        if (!isNaN(value1)) {
+            count++;
+            end *= value1;
+        }
+        if (!isNaN(value2)) {
+            count++;
+            end *= value2;
+        }
+        if (count != 0) {
+            var number = parent.replace('Material', '');
+            $('#Q' + number).text(end);
+        }
+    }
+    $("#addButton").click(function () {
+        $.ajax({
+            url: "/Calculate/MaterialAdd",
+            cache: false,
+            type: "GET",
+            success: function (result) {
+                $("#addRow").append(result);
+            }
+        });
+        return false;
+    });
+    function UpdateDCS() {
+        var end = '@(ViewBag.GategoryEnd)';
+        if (end == "end") {
+            $('#TotalHeaderValue').html(@ViewBag.Value);
+            $('#TotalHeader').removeClass('invisible');
+        }
+    };
+    function hideModal() {
+        $("#Hmodal").removeClass("in");
+        $(".modal-backdrop").remove();
+        $('body').removeClass('modal-open');
+        $('body').css('padding-right', '');
+        $("#Hmodal").hide();
+    }
+</script>
+@if (ViewBag.GategoryEnd == "noend" && (ViewBag.GategoryStep == "C2" || ViewBag.GategoryStep == "C3" || ViewBag.GategoryStep == "C4"))
+{
+    <script>
+        $(document).ready(function () {
+            $('#Hmodal').modal(
+                {
+                    backdrop: 'static',
+                    keyboard: false,
+                    show: 'show'
+                }
+            );
+            $('#Next').prependTo('.modal-footer').slideDown();
+        });
+        $(document).on('click', 'td', function () {
+            $('*td').removeClass('selected');
+            $(this).addClass('selected');
+            var target = $(this).find('input[type="radio"]');
+            target.prop('checked', !target.prop('checked'));
+        });
+    </script>
+}
+@if (ViewBag.Lpr == true)
+{
+    <script>
+        $(document).ready(function () {
+            $('#Next').prependTo('#buttonEnd').slideDown();
+        });
+    </script>
+}

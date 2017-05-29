@@ -12,6 +12,7 @@ namespace pb_category.Controllers
     {
         public static CalculateGasViewModel GlobalModelGas;
         public static CalculateHFLViewModel GlobalModelHFL;
+        public static int DCSCount = 0;
 
         public ActionResult Gas()
         {
@@ -34,7 +35,7 @@ namespace pb_category.Controllers
         {
             GlobalModelGas.R.Add(null);
             GlobalModelGas.L.Add(null);
-            return PartialView("RLAdd", GlobalModelGas);
+            return PartialView("Gas/RLAdd", GlobalModelGas);
         }
         public ActionResult HFL()
         {
@@ -49,7 +50,27 @@ namespace pb_category.Controllers
 
             return View("HFL/Index", new CalculateHFLViewModel());
         }
+        public ActionResult DCS()
+        {
+            var GlobalModelDCS = new CalculateDCSViewModel()
+            {
+                Name = new List<string>() { null },
+                Qn = new List<string>() { null },
+                G = new List<string>() { null },
 
+            };
+            ViewBag.GategoryEnd = "noend";
+
+            Session["SelectMenu"] = 2;//Удалить потом
+
+            return View("DCS/Index", GlobalModelDCS);
+        }
+        public PartialViewResult MaterialAdd()
+        {
+            ViewBag.MaterialCount = ++DCSCount;
+
+            return PartialView("DCS/MaterialAdd");
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -630,7 +651,121 @@ namespace pb_category.Controllers
 
             return PartialView("HFL/Steps", GlobalModelHFL);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult StepsDCS(CalculateDCSViewModel model, string submitButton, int? q)
+        {
+            if (!ModelState.IsValid)
+                return PartialView("DCS/Area", model);
+            int count = model.Name.Count;
+            double Q = 0;
+            for (int i = 0; i < count; i++)
+                Q += Convert.ToDouble(model.G[i]) * Convert.ToDouble(model.Qn[i]);
 
+            double G, S = Convert.ToDouble(model.S);
+
+            if (S < 10)
+                G = Q / 10;
+            else
+                G = Q / S;
+
+            ViewBag.GategoryEnd = "noend";
+            ViewBag.Value = G;
+            if (G > 2200)
+            {
+                ViewBag.GategoryEnd = "end";
+                ViewBag.GategoryStep = "C1";
+            }
+            if (G <= 2200 && G >= 1401)
+            {
+                ViewBag.GategoryStep = "C2";
+                if (!string.IsNullOrEmpty(model.H))
+                {
+                    bool result = double.TryParse(model.H, out double H);
+                    if (result == true)
+                    {
+                        ViewBag.GategoryEnd = "end";
+                        double value = 0.64 * G * H * H;
+                        if (Q >= value)
+                            ViewBag.GategoryStep = "C1";
+                    }
+                }
+            }
+            if (G <= 1400 && G >= 181)
+            {
+                ViewBag.GategoryStep = "C3";
+                if (!string.IsNullOrEmpty(model.H))
+                {
+                    bool result = double.TryParse(model.H, out double H);
+                    if (result == true)
+                    {
+                        ViewBag.GategoryEnd = "end";
+                        double value = 0.64 * G * H * H;
+                        if (Q >= value)
+                            ViewBag.GategoryStep = "C2";
+                    }
+                }
+            }
+            if (G <= 180 && G > 0)
+            {
+                ViewBag.GategoryStep = "C4";
+                if (Convert.ToDouble(model.S) < 10)
+                    ViewBag.GategoryEnd = "end";
+                double l = 0;
+                if (q != null)
+                {
+                    switch (q.Value)
+                    {
+                        case 5:
+                            l = 12;
+                            break;
+                        case 10:
+                            l = 8;
+                            break;
+                        case 15:
+                            l = 6;
+                            break;
+                        case 20:
+                            l = 5;
+                            break;
+                        case 25:
+                            l = 4;
+                            break;
+                        case 30:
+                            l = 3.8;
+                            break;
+                        case 40:
+                            l = 3.2;
+                            break;
+                        case 50:
+                            l = 2.8;
+                            break;
+                        default:
+                            l = 12;
+                            break;
+                    }
+                }
+                if (!string.IsNullOrEmpty(submitButton))
+                {
+                    if (submitButton == "No")
+                        ViewBag.GategoryStep = "C3";
+                    ViewBag.GategoryEnd = "end";
+                }
+                else
+                {
+                    if (Convert.ToDouble(model.H) > 11)
+                        ViewBag.L = l;
+                    else
+                        ViewBag.L = l + (11 - Convert.ToDouble(model.H));
+                }
+
+                if (l == 0 || string.IsNullOrEmpty(model.H))
+                    return PartialView("DCS/Area", model);
+
+                ViewBag.Lpr = true;
+            }
+            return PartialView("DCS/Area", model);
+        }
         #region Вспомогательные функции
         private double GetValue(string value, ref int CurrentStep)
         {
@@ -1495,7 +1630,7 @@ namespace pb_category.Controllers
                 values.Add(step);
             }
             #endregion
-            #region 
+            #region Mkg 
             if (GlobalModelHFL.Mkg != "none" && GlobalModelHFL.Mkg != "none-calculate")
             {
                 Step step = new Step()

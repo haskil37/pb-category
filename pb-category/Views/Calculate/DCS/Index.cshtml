@@ -1,0 +1,21 @@
+﻿@model pb_category.Models.CalculateDCSViewModel
+@{
+    ViewBag.Title = "Расчет";
+}
+@using (Ajax.BeginForm("StepsDCS", new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "AreaSteps",
+    OnBegin = "hideModal",
+    OnComplete = "UpdateDCS",
+}))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <h3>Проверка помещения на принадлежность к категории В1-В4</h3>
+        <div id="AreaSteps">
+            @{ Html.RenderPartial("DCS/Area"); }
+        </div>
+    </div>
+}

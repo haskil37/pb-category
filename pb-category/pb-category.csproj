@@ -185,6 +185,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CalculateDCSViewModel.cs" />
     <Compile Include="Models\CalculateGasViewModel.cs" />
     <Compile Include="Models\CalculateHFLViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -309,6 +310,11 @@
     <Content Include="Views\Calculate\HFL\Total.cshtml" />
     <Content Include="Views\Calculate\HFL\Step8_H.cshtml" />
     <Content Include="Views\Calculate\HFL\Step8.cshtml" />
+    <Content Include="Views\Home\ViewOrganization.cshtml" />
+    <Content Include="Views\Calculate\DCS\Index.cshtml" />
+    <Content Include="Views\Calculate\DCS\Total.cshtml" />
+    <Content Include="Views\Calculate\DCS\Area.cshtml" />
+    <Content Include="Views\Calculate\DCS\MaterialAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
