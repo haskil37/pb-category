@@ -512,6 +512,10 @@ hr {
     #h4 {
         font-size: 25px;
     }
+
+    .table-bordered input{
+        width:150px;
+    }
 }
 
 @media(min-width:768px) {

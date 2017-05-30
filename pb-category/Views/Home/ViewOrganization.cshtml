@@ -1,6 +1,40 @@
-﻿
-@{
-    ViewBag.Title = "ViewOrganization";
+﻿@{
+    ViewBag.Title = "Обозреватель проекта";
 }
+<h3>Обозреватель проекта</h3>
+<div class="row">
+    <h4>Наименование организации: @Session["Organization.Name"]</h4>
+</div>
+<div class="row">
+    <h4>Адрес: @Session["Organization.Address"]</h4>
+</div>
+<div class="row">
+    <h3>Здание</h3>
+    <div class="well">
+        <table class="table-bordered material">
+            <tr>
+                <td width="10%">№</td>
+                <td width="30%">Наименование помещения</td>
+                <td width="20%">Площадь, м<sup>2</sup></td>
+                <td width="30%">Вид обращающихся веществ (материалов)</td>
+                <td width="10%">Категория</td>
+            </tr>
+            @{ 
+                for (int i = 0; i < ViewBag.Count; i++)
+                {
 
-<h2>ViewOrganization</h2>
+                    double S = Convert.ToDouble((Session["Organization.Length"] as List<string>)[i]) * Convert.ToDouble((Session["Organization.Width"] as List<string>)[i]);
+                    <tr>
+                        <td>@(i + 1)</td>
+                        <td>@((Session["Organization.Annotations"] as List<string>)[i])</td>
+                        <td>@S</td>
+                        <td>@((Session["CategoryText"] as List<string>)[i])</td>
+                        <td>@((Session["CategoryEnd"] as List<string>)[i])</td>
+                    </tr>
+                }
+            }
+        </table>
+        @Html.ActionLink("Добавить в здание еще помещение", "SelectCategory", "Home", null, new { @class = "btn" })
+
+    </div>
+</div>

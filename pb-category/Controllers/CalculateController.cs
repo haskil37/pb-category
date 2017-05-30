@@ -325,8 +325,10 @@ namespace pb_category.Controllers
             }
             if (CurrentStep == 9) //Если все нужные 8 шагов есть, то считаем категорию
             {
-                double DeplaP = (Pmax - P0) * (Mkg * Z / (Vcb * Rogp)) * (100 / Cct) * (1 / Kh);
-                GlobalModelGas.DeltaP = DeplaP.ToString();
+                double DeltaP = (Pmax - P0) * (Mkg * Z / (Vcb * Rogp)) * (100 / Cct) * (1 / Kh);
+                GlobalModelGas.DeltaP = DeltaP.ToString();
+                if (DeltaP > 5)
+                    (Session["CategoryEnd"] as List<string>).Add("А");
             }
 
             ViewBag.Z = new List<SelectListItem>
@@ -633,8 +635,11 @@ namespace pb_category.Controllers
             }
             if (CurrentStep == 9) //Если все нужные 8 шагов есть, то считаем категорию
             {
-                double DeplaP = (Pmax - P0) * (Mkg * Z / (Vcb * Rogp)) * (100 / Cct) * (1 / Kh);
-                GlobalModelHFL.DeltaP = DeplaP.ToString();
+                double DeltaP = (Pmax - P0) * (Mkg * Z / (Vcb * Rogp)) * (100 / Cct) * (1 / Kh);
+                if (DeltaP > 5)
+                    (Session["CategoryEnd"] as List<string>).Add("Б");
+
+                GlobalModelHFL.DeltaP = DeltaP.ToString();
             }
 
             ViewBag.Z = new List<SelectListItem>
@@ -670,14 +675,16 @@ namespace pb_category.Controllers
                 G = Q / S;
 
             ViewBag.GategoryEnd = "noend";
-            ViewBag.Value = G;
+            ViewBag.Value = G.ToString();
             if (G > 2200)
             {
+                (Session["CategoryEnd"] as List<string>).Add("В1");
                 ViewBag.GategoryEnd = "end";
                 ViewBag.GategoryStep = "C1";
             }
             if (G <= 2200 && G >= 1401)
             {
+                (Session["CategoryEnd"] as List<string>).Add("В2");
                 ViewBag.GategoryStep = "C2";
                 if (!string.IsNullOrEmpty(model.H))
                 {
@@ -685,14 +692,18 @@ namespace pb_category.Controllers
                     if (result == true)
                     {
                         ViewBag.GategoryEnd = "end";
-                        double value = 0.64 * G * H * H;
+                        double value = 0.64 * 2200 * H * H;
                         if (Q >= value)
+                        {
+                            (Session["CategoryEnd"] as List<string>).Add("В1");
                             ViewBag.GategoryStep = "C1";
+                        }
                     }
                 }
             }
             if (G <= 1400 && G >= 181)
             {
+                (Session["CategoryEnd"] as List<string>).Add("В3");
                 ViewBag.GategoryStep = "C3";
                 if (!string.IsNullOrEmpty(model.H))
                 {
@@ -700,17 +711,23 @@ namespace pb_category.Controllers
                     if (result == true)
                     {
                         ViewBag.GategoryEnd = "end";
-                        double value = 0.64 * G * H * H;
+                        double value = 0.64 * 1400 * H * H;
                         if (Q >= value)
+                        {
                             ViewBag.GategoryStep = "C2";
+                            (Session["CategoryEnd"] as List<string>).Add("В2");
+                        }
                     }
                 }
             }
             if (G <= 180 && G > 0)
             {
                 ViewBag.GategoryStep = "C4";
+                (Session["CategoryEnd"] as List<string>).Add("В4");
+
                 if (Convert.ToDouble(model.S) < 10)
                     ViewBag.GategoryEnd = "end";
+
                 double l = 0;
                 if (q != null)
                 {
@@ -748,7 +765,10 @@ namespace pb_category.Controllers
                 if (!string.IsNullOrEmpty(submitButton))
                 {
                     if (submitButton == "No")
+                    {
+                        (Session["CategoryEnd"] as List<string>).Add("В3");
                         ViewBag.GategoryStep = "C3";
+                    }
                     ViewBag.GategoryEnd = "end";
                 }
                 else
