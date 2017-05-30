@@ -23,6 +23,8 @@ namespace pb_category.Controllers
         public ActionResult Index()
         {
             Session.Clear();
+            Session["Count"] = 0;
+
             Session["Organization.Name"] = "";
             Session["Organization.Address"] = "";
             Session["Organization.Annotations"] = new List<string>();
@@ -56,6 +58,8 @@ namespace pb_category.Controllers
             Session["Length"] = model.Length;
             Session["Width"] = model.Width;
             Session["Height"] = model.Height;
+
+            Session["Count"] = (int)Session["Count"] + 1;
 
             Session["SelectMenu"] = 2;
             switch (model.Category)

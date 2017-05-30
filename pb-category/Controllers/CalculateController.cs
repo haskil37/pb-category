@@ -328,7 +328,12 @@ namespace pb_category.Controllers
                 double DeltaP = (Pmax - P0) * (Mkg * Z / (Vcb * Rogp)) * (100 / Cct) * (1 / Kh);
                 GlobalModelGas.DeltaP = DeltaP.ToString();
                 if (DeltaP > 5)
-                    (Session["CategoryEnd"] as List<string>).Add("А");
+                {
+                    if ((int)Session["Count"] != (Session["CategoryEnd"] as List<string>).Count)
+                        (Session["CategoryEnd"] as List<string>).Add("А");
+                    else
+                        (Session["CategoryEnd"] as List<string>)[(int)Session["Count"] - 1] = "А";
+                }
             }
 
             ViewBag.Z = new List<SelectListItem>
@@ -637,8 +642,12 @@ namespace pb_category.Controllers
             {
                 double DeltaP = (Pmax - P0) * (Mkg * Z / (Vcb * Rogp)) * (100 / Cct) * (1 / Kh);
                 if (DeltaP > 5)
-                    (Session["CategoryEnd"] as List<string>).Add("Б");
-
+                {
+                    if ((int)Session["Count"] != (Session["CategoryEnd"] as List<string>).Count)
+                        (Session["CategoryEnd"] as List<string>).Add("Б");
+                    else
+                        (Session["CategoryEnd"] as List<string>)[(int)Session["Count"] - 1] = "Б";
+                }
                 GlobalModelHFL.DeltaP = DeltaP.ToString();
             }
 
@@ -678,13 +687,19 @@ namespace pb_category.Controllers
             ViewBag.Value = G.ToString();
             if (G > 2200)
             {
-                (Session["CategoryEnd"] as List<string>).Add("В1");
+                if ((int)Session["Count"] != (Session["CategoryEnd"] as List<string>).Count)
+                    (Session["CategoryEnd"] as List<string>).Add("В1");
+                else
+                    (Session["CategoryEnd"] as List<string>)[(int)Session["Count"] - 1] = "В1";
                 ViewBag.GategoryEnd = "end";
                 ViewBag.GategoryStep = "C1";
             }
             if (G <= 2200 && G >= 1401)
             {
-                (Session["CategoryEnd"] as List<string>).Add("В2");
+                if ((int)Session["Count"] != (Session["CategoryEnd"] as List<string>).Count)
+                    (Session["CategoryEnd"] as List<string>).Add("В2");
+                else
+                    (Session["CategoryEnd"] as List<string>)[(int)Session["Count"] - 1] = "В2";
                 ViewBag.GategoryStep = "C2";
                 if (!string.IsNullOrEmpty(model.H))
                 {
@@ -695,7 +710,10 @@ namespace pb_category.Controllers
                         double value = 0.64 * 2200 * H * H;
                         if (Q >= value)
                         {
-                            (Session["CategoryEnd"] as List<string>).Add("В1");
+                            if ((int)Session["Count"] != (Session["CategoryEnd"] as List<string>).Count)
+                                (Session["CategoryEnd"] as List<string>).Add("В1");
+                            else
+                                (Session["CategoryEnd"] as List<string>)[(int)Session["Count"] - 1] = "В1";
                             ViewBag.GategoryStep = "C1";
                         }
                     }
@@ -703,7 +721,10 @@ namespace pb_category.Controllers
             }
             if (G <= 1400 && G >= 181)
             {
-                (Session["CategoryEnd"] as List<string>).Add("В3");
+                if ((int)Session["Count"] != (Session["CategoryEnd"] as List<string>).Count)
+                    (Session["CategoryEnd"] as List<string>).Add("В3");
+                else
+                    (Session["CategoryEnd"] as List<string>)[(int)Session["Count"] - 1] = "В3";
                 ViewBag.GategoryStep = "C3";
                 if (!string.IsNullOrEmpty(model.H))
                 {
@@ -715,7 +736,10 @@ namespace pb_category.Controllers
                         if (Q >= value)
                         {
                             ViewBag.GategoryStep = "C2";
-                            (Session["CategoryEnd"] as List<string>).Add("В2");
+                            if ((int)Session["Count"] != (Session["CategoryEnd"] as List<string>).Count)
+                                (Session["CategoryEnd"] as List<string>).Add("В2");
+                            else
+                                (Session["CategoryEnd"] as List<string>)[(int)Session["Count"] - 1] = "В2";
                         }
                     }
                 }
@@ -723,7 +747,10 @@ namespace pb_category.Controllers
             if (G <= 180 && G > 0)
             {
                 ViewBag.GategoryStep = "C4";
-                (Session["CategoryEnd"] as List<string>).Add("В4");
+                if ((int)Session["Count"] != (Session["CategoryEnd"] as List<string>).Count)
+                    (Session["CategoryEnd"] as List<string>).Add("В4");
+                else
+                    (Session["CategoryEnd"] as List<string>)[(int)Session["Count"] - 1] = "В4";
 
                 if (Convert.ToDouble(model.S) < 10)
                     ViewBag.GategoryEnd = "end";
@@ -766,7 +793,10 @@ namespace pb_category.Controllers
                 {
                     if (submitButton == "No")
                     {
-                        (Session["CategoryEnd"] as List<string>).Add("В3");
+                        if ((int)Session["Count"] != (Session["CategoryEnd"] as List<string>).Count)
+                            (Session["CategoryEnd"] as List<string>).Add("В3");
+                        else
+                            (Session["CategoryEnd"] as List<string>)[(int)Session["Count"] - 1] = "В3";
                         ViewBag.GategoryStep = "C3";
                     }
                     ViewBag.GategoryEnd = "end";
