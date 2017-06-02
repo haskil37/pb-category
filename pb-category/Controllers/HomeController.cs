@@ -39,8 +39,12 @@ namespace pb_category.Controllers
         public ActionResult SelectCategory()
         {
             Session["SelectMenu"] = 1;
-
-            return View(new OrganizationViewModel() { Name = Session["Organization.Name"].ToString(), Address= Session["Organization.Address"].ToString() });
+            string Name = "", Address = "";
+            if (Session["Organization.Name"] != null)
+                Name = Session["Organization.Name"].ToString();
+            if (Session["Organization.Address"] != null)
+                Address = Session["Organization.Address"].ToString();
+            return View(new OrganizationViewModel() { Name = Name, Address = Address });
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
